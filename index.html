@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AETHER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --white: #fafaf8;
+      --ink: #1a1a18;
+      --muted: #8a8a82;
+      --rule: #d8d8d0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10vh 2rem 8vh;
+      text-align: center;
+    }
+
+    /* Hero */
+    .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(4rem, 14vw, 11rem);
+      letter-spacing: 0.35em;
+      line-height: 1;
+      color: var(--ink);
+      margin-right: -0.35em; /* optical compensation for letter-spacing */
+    }
+
+    .tagline {
+      margin-top: 1.6rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Divider */
+    .rule {
+      width: 1px;
+      height: 60px;
+      background: var(--rule);
+      margin: 5rem auto;
+    }
+
+    /* About */
+    .about {
+      max-width: 560px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      line-height: 1.85;
+      color: #3a3a36;
+      font-style: italic;
+    }
+
+    /* Wholesale notice */
+    .notice {
+      margin-top: 3.5rem;
+      display: inline-block;
+      border: 1px solid var(--rule);
+      padding: 0.65rem 2rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--rule);
+    }
+
+    footer span {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <h1 class="wordmark">AETHER</h1>
+    <p class="tagline">Beyond the veil</p>
+
+    <div class="rule"></div>
+
+    <p class="about">
+      AETHER sources and distributes premium psychedelic compounds to licensed
+      facilitators, clinical researchers, and verified institutional buyers.
+      Our network operates exclusively at the wholesale level — precision-grade
+      material, handled with discretion, supplied to those who understand its worth.
+    </p>
+
+  </main>
+
+  <footer>
+    <span>AETHER</span>
+  </footer>
+
+</body>
+</html>
