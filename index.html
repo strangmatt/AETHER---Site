@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ÆTHER — Psychedelic Education</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     @font-face {
       font-family: 'GeometosRounded';
@@ -225,8 +226,75 @@
       color: var(--muted);
     }
 
+    /* Social share */
+    .modal-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      margin: 1.5rem 0 1.25rem;
+    }
+
+    .modal-social-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      color: #aaaaaa;
+      transition: color 0.2s, transform 0.15s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .social-icon.x       { background: #000000; border: 1px solid #333; }
+    .social-icon.facebook { background: #1877f2; }
+    .social-icon.whatsapp { background: #25d366; }
+    .social-icon.reddit  { background: #ff4500; }
+    .social-icon.telegram { background: #0088cc; }
+    .social-icon.copy    { background: var(--card-bg); border: 1px solid var(--gold); color: var(--gold); }
+
+    .social-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
     .modal-close {
-      margin-top: 1.75rem;
+      margin-top: 1.5rem;
       background: none;
       border: 1px solid var(--rule);
       color: var(--muted);
@@ -243,6 +311,19 @@
       border-color: var(--gold);
       color: var(--gold);
     }
+
+    .copy-confirm {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      height: 0.8rem;
+      margin-top: 0.4rem;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    .copy-confirm.show { opacity: 1; }
   </style>
 </head>
 <body>
@@ -324,6 +405,45 @@
       <p class="modal-title">Share this page</p>
       <div id="qr-code"></div>
       <p class="modal-url">aethera2.com</p>
+
+      <div class="modal-divider"></div>
+      <p class="modal-social-label">Share to</p>
+
+      <div class="social-grid">
+
+        <a class="social-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Faethera2.com&text=ÆTHER%20—%20Psychedelic%20Education" target="_blank" rel="noopener">
+          <span class="social-icon x"><i class="fa-brands fa-x-twitter"></i></span>
+          <span class="social-label">X</span>
+        </a>
+
+        <a class="social-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Faethera2.com" target="_blank" rel="noopener">
+          <span class="social-icon facebook"><i class="fa-brands fa-facebook-f"></i></span>
+          <span class="social-label">Facebook</span>
+        </a>
+
+        <a class="social-btn" href="https://wa.me/?text=ÆTHER%20—%20Psychedelic%20Education%20https%3A%2F%2Faethera2.com" target="_blank" rel="noopener">
+          <span class="social-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></span>
+          <span class="social-label">WhatsApp</span>
+        </a>
+
+        <a class="social-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Faethera2.com&title=ÆTHER%20—%20Psychedelic%20Education" target="_blank" rel="noopener">
+          <span class="social-icon reddit"><i class="fa-brands fa-reddit-alien"></i></span>
+          <span class="social-label">Reddit</span>
+        </a>
+
+        <a class="social-btn" href="https://t.me/share/url?url=https%3A%2F%2Faethera2.com&text=ÆTHER%20—%20Psychedelic%20Education" target="_blank" rel="noopener">
+          <span class="social-icon telegram"><i class="fa-brands fa-telegram"></i></span>
+          <span class="social-label">Telegram</span>
+        </a>
+
+        <button class="social-btn" onclick="copyLink()">
+          <span class="social-icon copy"><i class="fa-regular fa-copy"></i></span>
+          <span class="social-label">Copy</span>
+        </button>
+
+      </div>
+
+      <p class="copy-confirm" id="copy-confirm">Link copied!</p>
       <button class="modal-close" onclick="closeModal()">Close</button>
     </div>
   </div>
@@ -358,6 +478,14 @@
 
     function closeModal() {
       document.getElementById('share-modal').classList.remove('open');
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText('https://aethera2.com').then(function() {
+        var el = document.getElementById('copy-confirm');
+        el.classList.add('show');
+        setTimeout(function() { el.classList.remove('show'); }, 2000);
+      });
     }
   </script>
 </body>
