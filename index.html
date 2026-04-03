@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ÆTHER — Psychedelic Education</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     @font-face {
@@ -458,13 +458,18 @@
     function openShare() {
       document.getElementById('share-modal').classList.add('open');
       if (!qrGenerated) {
-        new QRCode(document.getElementById('qr-code'), {
-          text: 'https://aethera2.com',
+        QRCode.toString('https://aethera2.com', {
+          type: 'svg',
           width: 200,
-          height: 200,
-          colorDark: '#000000',
-          colorLight: '#ffffff',
-          correctLevel: QRCode.CorrectLevel.H
+          margin: 1,
+          color: { dark: '#000000', light: '#ffffff' },
+          errorCorrectionLevel: 'H'
+        }, function(err, svg) {
+          if (!err) {
+            document.getElementById('qr-code').innerHTML = svg;
+            document.getElementById('qr-code').querySelector('svg').style.cssText =
+              'width:200px;height:200px;display:block;border:6px solid #fff;';
+          }
         });
         qrGenerated = true;
       }
