@@ -458,17 +458,16 @@
     function openShare() {
       document.getElementById('share-modal').classList.add('open');
       if (!qrGenerated) {
-        QRCode.toString('https://aethera2.com', {
-          type: 'svg',
-          width: 200,
-          margin: 1,
+        var canvas = document.createElement('canvas');
+        QRCode.toCanvas(canvas, 'https://aethera2.com', {
+          width: 600,
+          margin: 2,
           color: { dark: '#000000', light: '#ffffff' },
           errorCorrectionLevel: 'H'
-        }, function(err, svg) {
+        }, function(err) {
           if (!err) {
-            document.getElementById('qr-code').innerHTML = svg;
-            document.getElementById('qr-code').querySelector('svg').style.cssText =
-              'width:200px;height:200px;display:block;border:6px solid #fff;';
+            canvas.style.cssText = 'width:200px;height:200px;display:block;border:6px solid #fff;';
+            document.getElementById('qr-code').appendChild(canvas);
           }
         });
         qrGenerated = true;
