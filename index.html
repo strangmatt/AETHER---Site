@@ -129,9 +129,11 @@
       height: auto;
       display: block;
       margin: 0 auto 1.5rem;
-      filter: invert(1) sepia(1) saturate(0.5) hue-rotate(5deg) brightness(0.85);
-      opacity: 0.75;
+      filter: invert(1) brightness(1.3) contrast(1.6) sepia(0.4) saturate(2);
+      opacity: 1;
     }
+
+    .card-molecule.flip { transform: rotate(180deg); }
 
     /* Disclaimer */
     .disclaimer {
@@ -387,7 +389,7 @@
       </div>
 
       <div class="card">
-        <img class="card-molecule" src="assets/molecules/mescaline.png" alt="Mescaline molecular structure" />
+        <img class="card-molecule flip" src="assets/molecules/mescaline.png" alt="Mescaline molecular structure" />
         <p class="card-name">Mescaline</p>
         <p class="card-body">
           Derived from peyote, San Pedro, and other cacti, mescaline has been
