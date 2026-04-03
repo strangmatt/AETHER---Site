@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AETHER</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+  <title>ÆTHER — Psychedelic Education</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
+    @font-face {
+      font-family: 'GeometosRounded';
+      src: url('assets/GeometosRounded.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -15,10 +20,13 @@
     }
 
     :root {
-      --white: #fafaf8;
-      --ink: #1a1a18;
-      --muted: #8a8a82;
-      --rule: #d8d8d0;
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gold: #9A7D2E;
+      --gold-light: #b8952e;
+      --muted: #888880;
+      --rule: #2a2a22;
+      --card-bg: #111108;
     }
 
     html, body {
@@ -26,10 +34,9 @@
     }
 
     body {
-      background-color: var(--white);
-      color: var(--ink);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'GeometosRounded', sans-serif;
       -webkit-font-smoothing: antialiased;
       display: flex;
       flex-direction: column;
@@ -42,101 +49,317 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10vh 2rem 8vh;
+      padding: 8vh 2rem 6vh;
       text-align: center;
     }
 
-    /* Hero */
-    .wordmark {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(4rem, 14vw, 11rem);
-      letter-spacing: 0.35em;
-      line-height: 1;
-      color: var(--ink);
-      margin-right: -0.35em; /* optical compensation for letter-spacing */
+    /* Logo */
+    .logo {
+      width: clamp(180px, 40vw, 320px);
+      height: auto;
     }
 
     .tagline {
-      margin-top: 1.6rem;
-      font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: clamp(0.75rem, 1.8vw, 0.95rem);
-      letter-spacing: 0.28em;
+      margin-top: 1.5rem;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: clamp(0.6rem, 1.4vw, 0.8rem);
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--gold);
     }
 
     /* Divider */
     .rule {
       width: 1px;
-      height: 60px;
-      background: var(--rule);
-      margin: 5rem auto;
+      height: 50px;
+      background: var(--gold);
+      opacity: 0.4;
+      margin: 4rem auto;
     }
 
     /* About */
     .about {
-      max-width: 560px;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-      line-height: 1.85;
-      color: #3a3a36;
-      font-style: italic;
+      max-width: 520px;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+      line-height: 2;
+      letter-spacing: 0.05em;
+      color: var(--muted);
     }
 
-    /* Wholesale notice */
-    .notice {
-      margin-top: 3.5rem;
-      display: inline-block;
+    /* Substance cards */
+    .substances {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      max-width: 920px;
+      width: 100%;
+      margin-top: 5rem;
+      background: var(--rule);
       border: 1px solid var(--rule);
-      padding: 0.65rem 2rem;
-      font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
+      text-align: left;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 2rem 1.75rem;
+    }
+
+    .card-name {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .card-body {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.72rem;
+      line-height: 2;
+      letter-spacing: 0.03em;
+      color: #aaaaaa;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      margin-top: 4rem;
+      max-width: 520px;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #444440;
+      line-height: 2;
+      text-align: center;
     }
 
     /* Footer */
     footer {
-      padding: 2.5rem 2rem;
+      padding: 2rem;
       text-align: center;
       border-top: 1px solid var(--rule);
     }
 
     footer span {
-      font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: 0.65rem;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    /* Share tab */
+    .share-tab {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg) translateX(50%);
+      transform-origin: right center;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+      border: none;
+      z-index: 100;
+      transition: background 0.2s;
+    }
+
+    .share-tab:hover {
+      background: var(--gold-light);
+    }
+
+    /* Modal overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--card-bg);
+      border: 1px solid var(--gold);
+      padding: 2.5rem 2.5rem 2rem;
+      text-align: center;
+      max-width: 320px;
+      width: 90%;
+    }
+
+    .modal-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
       letter-spacing: 0.4em;
       text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.75rem;
+    }
+
+    #qr-code {
+      display: flex;
+      justify-content: center;
+    }
+
+    #qr-code canvas,
+    #qr-code img {
+      border: 6px solid #ffffff;
+    }
+
+    .modal-url {
+      margin-top: 1.25rem;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
       color: var(--muted);
+    }
+
+    .modal-close {
+      margin-top: 1.75rem;
+      background: none;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .modal-close:hover {
+      border-color: var(--gold);
+      color: var(--gold);
     }
   </style>
 </head>
 <body>
 
   <main>
-    <h1 class="wordmark">AETHER</h1>
-    <p class="tagline">Beyond the veil</p>
+    <img class="logo" src="assets/logo.png" alt="ÆTHER" />
+    <p class="tagline">Psychedelic Education — Ann Arbor</p>
 
     <div class="rule"></div>
 
     <p class="about">
-      AETHER sources and distributes premium psychedelic compounds to licensed
-      facilitators, clinical researchers, and verified institutional buyers.
-      Our network operates exclusively at the wholesale level — precision-grade
-      material, handled with discretion, supplied to those who understand its worth.
+      An educational resource on naturally occurring and synthetic psychedelic
+      compounds — their history, effects, and place in emerging research and
+      harm reduction practice.
+    </p>
+
+    <div class="substances">
+
+      <div class="card">
+        <p class="card-name">Psilocybin Mushrooms</p>
+        <p class="card-body">
+          Used ceremonially for thousands of years across Mesoamerican cultures,
+          psilocybin mushrooms produce profound alterations in perception and
+          cognition. Clinical trials at Johns Hopkins and NYU have shown
+          significant promise in treating depression, addiction, and end-of-life
+          anxiety. Ann Arbor decriminalized natural psychedelics in 2020.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-name">DMT</p>
+        <p class="card-body">
+          N,N-Dimethyltryptamine is an endogenous tryptamine found in many
+          plants and animals. Known for intensely brief visionary states, it is
+          the active component in ayahuasca when combined with an MAOI. Ongoing
+          research explores its role in consciousness, near-death experience,
+          and neuroplasticity.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-name">5-MeO-DMT</p>
+        <p class="card-body">
+          Found in the Sonoran Desert toad and several plant species,
+          5-methoxy-DMT produces one of the most powerful non-ordinary states
+          known — often described as ego dissolution. Emerging research suggests
+          rapid and lasting reductions in anxiety, depression, and PTSD
+          symptomology.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-name">Mescaline</p>
+        <p class="card-body">
+          Derived from peyote, San Pedro, and other cacti, mescaline has been
+          central to Indigenous spiritual practice for over 5,000 years.
+          Its long-duration phenethylamine experience is characterized by
+          vivid color enhancement, empathic depth, and introspective clarity.
+          Research into its therapeutic applications is ongoing.
+        </p>
+      </div>
+
+    </div>
+
+    <p class="disclaimer">
+      This site is for educational purposes only. Nothing here constitutes
+      legal, medical, or therapeutic advice. Always consult a qualified
+      professional. Know your local laws.
     </p>
 
   </main>
 
+  <!-- Share tab -->
+  <button class="share-tab" onclick="openShare()">Share</button>
+
+  <!-- QR Modal -->
+  <div class="modal-overlay" id="share-modal" onclick="closeShare(event)">
+    <div class="modal">
+      <p class="modal-title">Share this page</p>
+      <div id="qr-code"></div>
+      <p class="modal-url">aethera2.com</p>
+      <button class="modal-close" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
   <footer>
-    <span>AETHER</span>
+    <span>ÆTHER &nbsp;·&nbsp; Ann Arbor</span>
   </footer>
 
+  <script>
+    var qrGenerated = false;
+
+    function openShare() {
+      document.getElementById('share-modal').classList.add('open');
+      if (!qrGenerated) {
+        new QRCode(document.getElementById('qr-code'), {
+          text: 'https://aethera2.com',
+          width: 200,
+          height: 200,
+          colorDark: '#000000',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.H
+        });
+        qrGenerated = true;
+      }
+    }
+
+    function closeShare(event) {
+      if (event.target === document.getElementById('share-modal')) {
+        closeModal();
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('share-modal').classList.remove('open');
+    }
+  </script>
 </body>
 </html>
