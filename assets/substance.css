@@ -1,0 +1,171 @@
+@font-face {
+  font-family: 'GeometosRounded';
+  src: url('GeometosRounded.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gold: #9A7D2E;
+  --gold-light: #b8952e;
+  --muted: #888880;
+  --rule: #2a2a22;
+  --card-bg: #111108;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: 'GeometosRounded', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.back-btn {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.back-btn:hover { color: var(--gold); }
+
+.header-logo {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* Main */
+main {
+  flex: 1;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5vh 2rem 6vh;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.molecule {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  filter: invert(1) brightness(1.3) contrast(1.6) sepia(0.4) saturate(2);
+  margin-bottom: 2rem;
+}
+
+.molecule.flip { transform: rotate(180deg); }
+
+.title {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  letter-spacing: 0.2em;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Divider */
+.rule {
+  width: 1px;
+  height: 50px;
+  background: var(--gold);
+  opacity: 0.4;
+  margin: 3rem auto;
+}
+
+/* Sections */
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.section {
+  border-left: 2px solid var(--gold);
+  padding-left: 1.5rem;
+}
+
+.section-title {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.85rem;
+}
+
+.section-body {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.78rem;
+  line-height: 2;
+  color: #aaaaaa;
+}
+
+/* Disclaimer */
+.disclaimer {
+  margin-top: 4rem;
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #444440;
+  line-height: 2;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--rule);
+}
+
+footer span {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.6;
+}
