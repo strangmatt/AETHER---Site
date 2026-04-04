@@ -514,8 +514,8 @@
         Reach us securely and privately via Signal.<br/>
         Tap below to message us directly.
       </p>
-      <a class="signal-btn" href="https://signal.me/#p/+15172313384" target="_blank" rel="noopener">
-        <i class="fa-brands fa-signal-messenger"></i>
+      <a class="signal-btn" href="#" onclick="openSignal();return false;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.849L.054 23.07a.75.75 0 0 0 .92.907l5.13-1.666A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2zm0 4a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 12 6zm-4 0a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 8 6zm8 0a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 16 6zm-4 3c-3.314 0-6 2.239-6 5 0 1.524.755 2.891 1.961 3.842l-.707 2.121 2.197-.713A6.685 6.685 0 0 0 12 19c3.314 0 6-2.239 6-5s-2.686-5-6-5z"/></svg>
         Message on Signal
       </a>
       <a class="signal-download" href="https://signal.org/download/" target="_blank" rel="noopener">
@@ -568,8 +568,10 @@
           <span class="social-label">Telegram</span>
         </a>
 
-        <a class="social-btn" href="https://signal.me/#p/+15172313384" target="_blank" rel="noopener">
-          <span class="social-icon signal"><i class="fa-brands fa-signal-messenger"></i></span>
+        <a class="social-btn" href="#" onclick="openSignal();return false;">
+          <span class="social-icon signal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.849L.054 23.07a.75.75 0 0 0 .92.907l5.13-1.666A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2zm0 4a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 12 6zm-4 0a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 8 6zm8 0a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 16 6zm-4 3c-3.314 0-6 2.239-6 5 0 1.524.755 2.891 1.961 3.842l-.707 2.121 2.197-.713A6.685 6.685 0 0 0 12 19c3.314 0 6-2.239 6-5s-2.686-5-6-5z"/></svg>
+          </span>
           <span class="social-label">Signal</span>
         </a>
 
@@ -602,6 +604,11 @@
 
     function closeModal() {
       document.getElementById('share-modal').classList.remove('open');
+    }
+
+    function openSignal() {
+      var n = ['+1','517','231','3384'].join('');
+      window.open('https://signal.me/#p/' + n, '_blank', 'noopener');
     }
 
     function copyLink() {
