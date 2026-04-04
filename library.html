@@ -22,54 +22,78 @@
     .book-list {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1rem;
     }
     .book {
       display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
+      gap: 1.2rem;
+      align-items: flex-start;
       padding: 1.1rem 1.4rem;
       background: var(--card-bg);
       border-left: 2px solid var(--gold);
     }
+    .book-cover {
+      flex-shrink: 0;
+      width: 62px;
+    }
+    .book-cover img {
+      width: 62px;
+      height: auto;
+      display: block;
+      border: 1px solid #1e1e1a;
+      opacity: 0.88;
+    }
+    .book-text {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
     .book-title {
       font-family: 'GeometosRounded', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--white);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
     }
     .book-author {
       font-family: 'GeometosRounded', sans-serif;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
     }
     .book-desc {
       font-family: 'GeometosRounded', sans-serif;
-      font-size: 0.65rem;
-      line-height: 1.8;
-      color: #777770;
+      font-size: 0.63rem;
+      line-height: 1.85;
+      color: #6a6a64;
       margin-top: 0.3rem;
-    }
-    .learn-more {
-      display: inline-block;
-      font-family: 'GeometosRounded', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-decoration: none;
-      border: 1px solid var(--gold);
-      padding: 0.55rem 1.1rem;
-      transition: background 0.2s, color 0.2s;
-    }
-    .learn-more:hover {
-      background: var(--gold);
-      color: var(--black);
     }
     .section-anchor {
       scroll-margin-top: 5rem;
+    }
+    .section-feature-img {
+      margin: 1.5rem 0 2rem;
+    }
+    .section-feature-img img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%) contrast(1.08) brightness(0.9);
+    }
+    .section-feature-caption {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #333330;
+      text-align: right;
+      margin-top: 0.4rem;
+      line-height: 1.8;
     }
   </style>
 </head>
@@ -95,30 +119,56 @@
     <div class="section section-anchor" id="psilocybin">
       <h2 class="section-title">Psilocybin</h2>
     </div>
-    <div class="book-list" style="margin-bottom:3rem; margin-top:1.5rem;">
+
+    <div class="section-feature-img">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Cubensis_Xalapa.jpg" alt="Psilocybe cubensis" loading="lazy" />
+      <div class="section-feature-caption">Psilocybe cubensis · Alan Rockefeller · CC BY-SA 4.0 · Wikimedia Commons</div>
+    </div>
+
+    <div class="book-list" style="margin-bottom:3rem;">
 
       <div class="book">
-        <div class="book-title">The Psilocybin Solution: The Role of Sacred Mushrooms in the Quest for Meaning</div>
-        <div class="book-author">Simon G. Powell · 2011</div>
-        <div class="book-desc">Powell presents an information-theoretic account of psilocybin consciousness — arguing that the mushroom acts as a conduit to something Powell calls "the Other": a source of biologically and spiritually meaningful information accessible through psychedelic states. Dense, original, and philosophically rigorous.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9781250210050-M.jpg" alt="The Immortality Key cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Immortality Key: The Secret History of the Religion with No Name</div>
+          <div class="book-author">Brian C. Muraresku · 2020</div>
+          <div class="book-desc">Investigates the hypothesis that the kykeon potion at the center of the Eleusinian Mysteries — the ancient Greek rites that shaped Western civilization — contained psychedelic ergot compounds. Controversial and extensively documented. A serious scholarly argument for psychedelics as a foundation of Western religious experience.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">Shroom: A Cultural History of the Magic Mushroom</div>
-        <div class="book-author">Andy Letcher · 2006</div>
-        <div class="book-desc">A scholarly corrective to mushroom mythology. Letcher challenges the "ancient use" narrative and argues that psilocybin mushrooms were essentially unknown as psychedelics until the 1950s. Essential reading for anyone who wants to separate fact from folklore in mushroom history.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9781594204227-M.jpg" alt="How to Change Your Mind cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">How to Change Your Mind</div>
+          <div class="book-author">Michael Pollan · 2018</div>
+          <div class="book-desc">Pollan's account of the modern psychedelic renaissance — covering the science of the Default Mode Network, the Johns Hopkins and NYU trials, the history of psychedelic research, and his own experiences with psilocybin, LSD, and 5-MeO-DMT. The book most responsible for introducing psychedelics to a mainstream audience.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">How to Change Your Mind</div>
-        <div class="book-author">Michael Pollan · 2018</div>
-        <div class="book-desc">Pollan's account of the modern psychedelic renaissance — covering the science of the Default Mode Network, the Johns Hopkins and NYU trials, the history of psychedelic research, and his own experiences with psilocybin, LSD, and 5-MeO-DMT. The book most responsible for introducing psychedelics to a mainstream audience.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9781594774706-M.jpg" alt="The Psilocybin Solution cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Psilocybin Solution: The Role of Sacred Mushrooms in the Quest for Meaning</div>
+          <div class="book-author">Simon G. Powell · 2011</div>
+          <div class="book-desc">Powell presents an information-theoretic account of psilocybin consciousness — arguing that the mushroom acts as a conduit to something Powell calls "the Other": a source of biologically and spiritually meaningful information accessible through psychedelic states. Dense, original, and philosophically rigorous.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">The Immortality Key: The Secret History of the Religion with No Name</div>
-        <div class="book-author">Brian C. Muraresku · 2020</div>
-        <div class="book-desc">Investigates the hypothesis that the kykeon potion at the center of the Eleusinian Mysteries — the ancient Greek rites that shaped Western civilization — contained psychedelic ergot compounds. Controversial and extensively documented. A serious scholarly argument for psychedelics as a foundation of Western religious experience.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780060828455-M.jpg" alt="Shroom cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">Shroom: A Cultural History of the Magic Mushroom</div>
+          <div class="book-author">Andy Letcher · 2006</div>
+          <div class="book-desc">A scholarly corrective to mushroom mythology. Letcher challenges the "ancient use" narrative and argues that psilocybin mushrooms were essentially unknown as psychedelics until the 1950s. Essential reading for anyone who wants to separate fact from folklore in mushroom history.</div>
+        </div>
       </div>
 
     </div>
@@ -129,30 +179,56 @@
     <div class="section section-anchor" id="dmt">
       <h2 class="section-title">DMT & Ayahuasca</h2>
     </div>
-    <div class="book-list" style="margin-bottom:3rem; margin-top:1.5rem;">
+
+    <div class="section-feature-img">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Ayahuasca_brewing_02.jpg" alt="Ayahuasca brewing" loading="lazy" />
+      <div class="section-feature-caption">Ayahuasca brewing · Apollo · CC BY 2.0 · Wikimedia Commons</div>
+    </div>
+
+    <div class="book-list" style="margin-bottom:3rem;">
 
       <div class="book">
-        <div class="book-title">DMT: The Spirit Molecule</div>
-        <div class="book-author">Rick Strassman, M.D. · 2000</div>
-        <div class="book-desc">The definitive account of Strassman's landmark 1990–1995 UNM research — the first federally approved psychedelic study in decades. 400 doses to 60 volunteers, documented entity contact, and a bold hypothesis linking the pineal gland to endogenous DMT production. Required reading for anyone interested in DMT research.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780199252923-M.jpg" alt="The Antipodes of the Mind cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Antipodes of the Mind: Charting the Phenomenology of the Ayahuasca Experience</div>
+          <div class="book-author">Benny Shanon · 2002</div>
+          <div class="book-desc">The most rigorous phenomenological study of the ayahuasca experience ever published. Shanon, a cognitive scientist, catalogued and analyzed thousands of ayahuasca visions across hundreds of sessions, identifying recurring themes, figures, and structures that suggest the experience accesses a shared substrate of mind.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">The Cosmic Serpent: DNA and the Origins of Knowledge</div>
-        <div class="book-author">Jeremy Narby · 1998</div>
-        <div class="book-desc">Anthropologist Narby's account of living with the Ashaninca people of the Amazon, and his hypothesis — born from his own ayahuasca experiences — that shamanic visions access information encoded in DNA. Speculative but thought-provoking; one of the most widely discussed books in ayahuasca literature.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780892819553-M.jpg" alt="DMT The Spirit Molecule cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">DMT: The Spirit Molecule</div>
+          <div class="book-author">Rick Strassman, M.D. · 2000</div>
+          <div class="book-desc">The definitive account of Strassman's landmark 1990–1995 UNM research — the first federally approved psychedelic study in decades. 400 doses to 60 volunteers, documented entity contact, and a bold hypothesis linking the pineal gland to endogenous DMT production. Required reading for anyone interested in DMT research.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">The Antipodes of the Mind: Charting the Phenomenology of the Ayahuasca Experience</div>
-        <div class="book-author">Benny Shanon · 2002</div>
-        <div class="book-desc">The most rigorous phenomenological study of the ayahuasca experience ever published. Shanon, a cognitive scientist, catalogued and analyzed thousands of ayahuasca visions across hundreds of sessions, identifying recurring themes, figures, and structures that suggest the experience accesses a shared substrate of mind.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780874779646-M.jpg" alt="The Cosmic Serpent cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Cosmic Serpent: DNA and the Origins of Knowledge</div>
+          <div class="book-author">Jeremy Narby · 1998</div>
+          <div class="book-desc">Anthropologist Narby's account of living with the Ashaninca people of the Amazon, and his hypothesis — born from his own ayahuasca experiences — that shamanic visions access information encoded in DNA. Speculative but thought-provoking; one of the most widely discussed books in ayahuasca literature.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">The Road to Eleusis: Unveiling the Secret of the Mysteries</div>
-        <div class="book-author">Wasson, Hofmann & Ruck · 1978</div>
-        <div class="book-desc">The foundational text proposing that the kykeon of the Eleusinian Mysteries contained an ergot-derived psychedelic. Co-authored by the mycologist who introduced psilocybin mushrooms to the West, the chemist who discovered LSD, and a classical scholar. Controversial but impossible to dismiss.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780940262089-M.jpg" alt="The Road to Eleusis cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Road to Eleusis: Unveiling the Secret of the Mysteries</div>
+          <div class="book-author">Wasson, Hofmann & Ruck · 1978</div>
+          <div class="book-desc">The foundational text proposing that the kykeon of the Eleusinian Mysteries contained an ergot-derived psychedelic. Co-authored by the mycologist who introduced psilocybin mushrooms to the West, the chemist who discovered LSD, and a classical scholar. Controversial but impossible to dismiss.</div>
+        </div>
       </div>
 
     </div>
@@ -163,18 +239,34 @@
     <div class="section section-anchor" id="5meo-dmt">
       <h2 class="section-title">5-MeO-DMT</h2>
     </div>
-    <div class="book-list" style="margin-bottom:3rem; margin-top:1.5rem;">
+
+    <div class="section-feature-img">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/2009-03-13Bufo_alvarius067.jpg" alt="Incilius alvarius — Sonoran Desert toad" loading="lazy" style="object-position: center center;" />
+      <div class="section-feature-caption">Incilius alvarius (Sonoran Desert toad) · Wikimedia Commons</div>
+    </div>
+
+    <div class="book-list" style="margin-bottom:3rem;">
 
       <div class="book">
-        <div class="book-title">Tryptamine Palace: 5-MeO-DMT and the Sonoran Desert Toad</div>
-        <div class="book-author">James Oroc · 2009</div>
-        <div class="book-desc">The most thorough and personal book written about 5-MeO-DMT. Oroc chronicles his own transformative encounters with the substance, develops a quantum-physics-informed model of consciousness to explain the "white light" experience, and surveys the global use of 5-MeO-DMT-containing plant preparations in indigenous traditions. Essential.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9781732921603-M.jpg" alt="The Way of the Psychonaut cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Way of the Psychonaut: Encyclopedia for Inner Journeys</div>
+          <div class="book-author">Stanislav Grof, M.D. · 2019</div>
+          <div class="book-desc">The magnum opus of the psychiatrist who pioneered LSD-assisted psychotherapy and founded transpersonal psychology. Grof's encyclopedic two-volume work provides the most comprehensive theoretical framework available for understanding non-ordinary states of consciousness — including the complete ego dissolution and nondual awareness characteristic of 5-MeO-DMT. Essential foundational reading for anyone working seriously in this space.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">Entheogenic Liberation: Unraveling the Enigma of Nonduality with 5-MeO-DMT Energetic Therapy</div>
-        <div class="book-author">Martin W. Ball · 2020</div>
-        <div class="book-desc">Ball presents a detailed therapeutic framework for working with 5-MeO-DMT as a tool for nondual recognition — the direct realization that the separate self is a construction. Covers the mechanics of energetic release, the role of breath and vocalization, integration, and the risks of "failure to reassemble." Practical and philosophically grounded.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9781594772689-M.jpg" alt="Tryptamine Palace cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">Tryptamine Palace: 5-MeO-DMT and the Sonoran Desert Toad</div>
+          <div class="book-author">James Oroc · 2009</div>
+          <div class="book-desc">The most thorough and personal book written about 5-MeO-DMT. Oroc chronicles his own transformative encounters with the substance, develops a quantum-physics-informed model of consciousness to explain the "white light" experience, and surveys the global use of 5-MeO-DMT-containing plant preparations in indigenous traditions. Essential.</div>
+        </div>
       </div>
 
     </div>
@@ -185,24 +277,45 @@
     <div class="section section-anchor" id="mescaline">
       <h2 class="section-title">Mescaline & Peyote</h2>
     </div>
-    <div class="book-list" style="margin-bottom:3rem; margin-top:1.5rem;">
+
+    <div class="section-feature-img">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Peyote_Cactus.jpg" alt="Lophophora williamsii — peyote cactus" loading="lazy" />
+      <div class="section-feature-caption">Lophophora williamsii (peyote) · Public domain · Wikimedia Commons</div>
+    </div>
+
+    <div class="book-list" style="margin-bottom:3rem;">
 
       <div class="book">
-        <div class="book-title">Mescaline: A Global History of the First Psychedelic</div>
-        <div class="book-author">Mike Jay · 2019</div>
-        <div class="book-desc">The definitive history of mescaline — from Chavin culture's San Pedro use in 1200 BCE, through German psychiatry's early studies, to Huxley's Hollywood Hills experiment in 1953 and the coining of the word "psychedelic." Jay is meticulous, readable, and fair-minded. This is the book on mescaline.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780300228557-M.jpg" alt="Mescaline cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">Mescaline: A Global History of the First Psychedelic</div>
+          <div class="book-author">Mike Jay · 2019</div>
+          <div class="book-desc">The definitive history of mescaline — from Chavin culture's San Pedro use in 1200 BCE, through German psychiatry's early studies, to Huxley's Hollywood Hills experiment in 1953 and the coining of the word "psychedelic." Jay is meticulous, readable, and fair-minded. This is the book on mescaline.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">The Doors of Perception / Heaven and Hell</div>
-        <div class="book-author">Aldous Huxley · 1954 / 1956</div>
-        <div class="book-desc">The book that introduced mescaline to the Western literary imagination. Huxley's account of his 1953 experience — vases of flowers transfigured with numinous significance, the "reducing valve" theory of the brain — remains one of the most eloquent and influential descriptions of a psychedelic experience ever written.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780816507542-M.jpg" alt="Peyote The Divine Cactus cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">Peyote: The Divine Cactus</div>
+          <div class="book-author">Edward F. Anderson · 1980</div>
+          <div class="book-desc">The comprehensive botanical, ethnobotanical, and anthropological reference on peyote. Covers the plant's biology, its chemistry, its legal history, and its role in the Native American Church and indigenous Mexican traditions in exhaustive detail.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">Peyote: The Divine Cactus</div>
-        <div class="book-author">Edward F. Anderson · 1980</div>
-        <div class="book-desc">The comprehensive botanical, ethnobotanical, and anthropological reference on peyote. Covers the plant's biology, its chemistry, its legal history, and its role in the Native American Church and indigenous Mexican traditions in exhaustive detail.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780061729072-M.jpg" alt="The Doors of Perception cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Doors of Perception / Heaven and Hell</div>
+          <div class="book-author">Aldous Huxley · 1954 / 1956</div>
+          <div class="book-desc">The book that introduced mescaline to the Western literary imagination. Huxley's account of his 1953 experience — vases of flowers transfigured with numinous significance, the "reducing valve" theory of the brain — remains one of the most eloquent and influential descriptions of a psychedelic experience ever written.</div>
+        </div>
       </div>
 
     </div>
@@ -213,24 +326,45 @@
     <div class="section section-anchor" id="figures">
       <h2 class="section-title">Key Figures</h2>
     </div>
-    <div class="book-list" style="margin-bottom:3rem; margin-top:1.5rem;">
+
+    <div class="section-feature-img">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Albert_Hofmann_Oct_1993.jpg" alt="Albert Hofmann" loading="lazy" style="object-position: center 20%;" />
+      <div class="section-feature-caption">Albert Hofmann, October 1993 · Philip H. Bailey · CC BY-SA 2.5 · Wikimedia Commons</div>
+    </div>
+
+    <div class="book-list" style="margin-bottom:3rem;">
 
       <div class="book">
-        <div class="book-title">LSD: My Problem Child</div>
-        <div class="book-author">Albert Hofmann · 1979</div>
-        <div class="book-desc">The autobiography of the chemist who synthesized LSD and first isolated psilocybin. Hofmann recounts his accidental discovery of LSD's properties in 1943, his participation in Wasson's mushroom ceremony in Mexico, and his lifelong belief that psychedelics, approached with respect, hold profound potential for human beings.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780553371307-M.jpg" alt="Food of the Gods cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">Food of the Gods: The Search for the Original Tree of Knowledge</div>
+          <div class="book-author">Terence McKenna · 1992</div>
+          <div class="book-desc">McKenna's sweeping theory of human evolution and psychedelic plants — including the "stoned ape" hypothesis and a history of humanity's relationship with psychoactive substances. Provocative, erudite, and unverifiable — but no list of essential psychedelic texts is complete without it.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">The Joyous Cosmology</div>
-        <div class="book-author">Alan Watts · 1962</div>
-        <div class="book-desc">Watts's exploration of psychedelic experience through the lens of Eastern philosophy. Brief, dense, and lyrical — one of the first attempts to articulate the philosophical implications of ego dissolution in language accessible to a Western audience. Preface by Timothy Leary and Richard Alpert.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780199639410-M.jpg" alt="LSD My Problem Child cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">LSD: My Problem Child</div>
+          <div class="book-author">Albert Hofmann · 1979</div>
+          <div class="book-desc">The autobiography of the chemist who synthesized LSD and first isolated psilocybin. Hofmann recounts his accidental discovery of LSD's properties in 1943, his participation in Wasson's mushroom ceremony in Mexico, and his lifelong belief that psychedelics, approached with respect, hold profound potential for human beings.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">Food of the Gods: The Search for the Original Tree of Knowledge</div>
-        <div class="book-author">Terence McKenna · 1992</div>
-        <div class="book-desc">McKenna's sweeping theory of human evolution and psychedelic plants — including the "stoned ape" hypothesis and a history of humanity's relationship with psychoactive substances. Provocative, erudite, and unverifiable — but no list of essential psychedelic texts is complete without it.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9781608681600-M.jpg" alt="The Joyous Cosmology cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Joyous Cosmology</div>
+          <div class="book-author">Alan Watts · 1962</div>
+          <div class="book-desc">Watts's exploration of psychedelic experience through the lens of Eastern philosophy. Brief, dense, and lyrical — one of the first attempts to articulate the philosophical implications of ego dissolution in language accessible to a Western audience. Preface by Timothy Leary and Richard Alpert.</div>
+        </div>
       </div>
 
     </div>
@@ -244,21 +378,36 @@
     <div class="book-list" style="margin-bottom:3rem; margin-top:1.5rem;">
 
       <div class="book">
-        <div class="book-title">A Really Good Day: How Microdosing Made a Mega Difference in My Mood, My Marriage, and My Life</div>
-        <div class="book-author">Ayelet Waldman · 2017</div>
-        <div class="book-desc">A writer and attorney documents a month of microdosing LSD to address severe mood dysregulation, drawing on James Fadiman's research protocol. Honest, accessible, and one of the books most responsible for bringing microdosing into mainstream conversation.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780451494092-M.jpg" alt="A Really Good Day cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">A Really Good Day: How Microdosing Made a Mega Difference in My Mood, My Marriage, and My Life</div>
+          <div class="book-author">Ayelet Waldman · 2017</div>
+          <div class="book-desc">A writer and attorney documents a month of microdosing LSD to address severe mood dysregulation, drawing on James Fadiman's research protocol. Honest, accessible, and one of the books most responsible for bringing microdosing into mainstream conversation.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">The Psychedelic Explorer's Guide: Safe, Therapeutic, and Sacred Journeys</div>
-        <div class="book-author">James Fadiman · 2011</div>
-        <div class="book-desc">Fadiman's practical guide to psychedelic use — from session preparation and set and setting, to the microdosing protocol he developed and popularized. The closest thing to a clinical manual for non-clinical psychedelic use. Grounded in decades of research and practice.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9780062429667-M.jpg" alt="Stealing Fire cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">Stealing Fire: How Silicon Valley, the Navy SEALs, and Maverick Scientists Are Revolutionizing the Way We Live and Work</div>
+          <div class="book-author">Kotler & Wheal · 2017</div>
+          <div class="book-desc">Examines the pursuit of altered states — including psychedelics — across performance culture, military training, and technology. Places psychedelic experience within the broader science of flow states and ecstatic experience.</div>
+        </div>
       </div>
 
       <div class="book">
-        <div class="book-title">Stealing Fire: How Silicon Valley, the Navy SEALs, and Maverick Scientists Are Revolutionizing the Way We Live and Work</div>
-        <div class="book-author">Kotler & Wheal · 2017</div>
-        <div class="book-desc">Examines the pursuit of altered states — including psychedelics — across performance culture, military training, and technology. Places psychedelic experience within the broader science of flow states and ecstatic experience.</div>
+        <div class="book-cover">
+          <img src="https://covers.openlibrary.org/b/isbn/9781594774027-M.jpg" alt="The Psychedelic Explorer's Guide cover" onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="book-text">
+          <div class="book-title">The Psychedelic Explorer's Guide: Safe, Therapeutic, and Sacred Journeys</div>
+          <div class="book-author">James Fadiman · 2011</div>
+          <div class="book-desc">Fadiman's practical guide to psychedelic use — from session preparation and set and setting, to the microdosing protocol he developed and popularized. The closest thing to a clinical manual for non-clinical psychedelic use. Grounded in decades of research and practice.</div>
+        </div>
       </div>
 
     </div>

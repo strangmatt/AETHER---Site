@@ -169,3 +169,43 @@ footer span {
   color: var(--gold);
   opacity: 0.6;
 }
+
+/* Learn More link */
+.learn-more {
+  display: inline-block;
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  padding: 0.55rem 1.1rem;
+  transition: background 0.2s, color 0.2s;
+}
+.learn-more:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* Section photos */
+.section-photo {
+  margin: 2.5rem 0;
+}
+.section-photo img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%) contrast(1.08) brightness(0.92);
+}
+.section-photo-caption {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #3a3a36;
+  text-align: right;
+  margin-top: 0.5rem;
+  line-height: 1.8;
+}
