@@ -372,6 +372,66 @@
     }
 
     .copy-confirm.show { opacity: 1; }
+
+    /* Contact section */
+    .contact {
+      margin-top: 5rem;
+      text-align: center;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .contact-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .contact-text {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.72rem;
+      line-height: 2;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .signal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #3a76f0;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .signal-btn:hover { background: #2e5fd4; }
+
+    .signal-download {
+      display: block;
+      margin-top: 1rem;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #444440;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .signal-download:hover { color: var(--gold); }
+
+    /* Signal in modal */
+    .social-icon.signal { background: #3a76f0; }
   </style>
 </head>
 <body>
@@ -446,6 +506,23 @@
       professional. Know your local laws.
     </p>
 
+    <div class="rule"></div>
+
+    <div class="contact">
+      <p class="contact-title">Contact Us</p>
+      <p class="contact-text">
+        Reach us securely and privately via Signal.<br/>
+        Tap below to message us directly.
+      </p>
+      <a class="signal-btn" href="https://signal.me/#p/+15172313384" target="_blank" rel="noopener">
+        <i class="fa-brands fa-signal-messenger"></i>
+        Message on Signal
+      </a>
+      <a class="signal-download" href="https://signal.org/download/" target="_blank" rel="noopener">
+        Don't have Signal? Download it free →
+      </a>
+    </div>
+
   </main>
 
   <!-- Share tab -->
@@ -489,6 +566,11 @@
         <a class="social-btn" href="https://t.me/share/url?url=https%3A%2F%2Faethera2.com&text=ÆTHER%20—%20Psychedelic%20Education" target="_blank" rel="noopener">
           <span class="social-icon telegram"><i class="fa-brands fa-telegram"></i></span>
           <span class="social-label">Telegram</span>
+        </a>
+
+        <a class="social-btn" href="https://signal.me/#p/+15172313384" target="_blank" rel="noopener">
+          <span class="social-icon signal"><i class="fa-brands fa-signal-messenger"></i></span>
+          <span class="social-label">Signal</span>
         </a>
 
         <button class="social-btn" onclick="copyLink()">
