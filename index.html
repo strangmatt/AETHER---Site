@@ -24,7 +24,6 @@
   <meta name="twitter:description" content="An educational resource on psilocybin, DMT, 5-MeO-DMT, and mescaline. History, effects, and emerging research — based in Ann Arbor." />
   <meta name="twitter:image"       content="https://aethera2.com/assets/og-image.png" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     @font-face {
@@ -245,7 +244,6 @@
       justify-content: center;
     }
 
-    #qr-code canvas { display: none; }
     #qr-code img { border: 6px solid #ffffff; }
 
     .modal-url {
@@ -437,7 +435,9 @@
   <div class="modal-overlay" id="share-modal" onclick="closeShare(event)">
     <div class="modal">
       <p class="modal-title">Share this page</p>
-      <div id="qr-code"></div>
+      <div id="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&ecc=H&data=https%3A%2F%2Faethera2.com" alt="QR code for aethera2.com" width="200" height="200" style="border:6px solid #fff;display:block;" />
+      </div>
       <p class="modal-url">aethera2.com</p>
 
       <div class="modal-divider"></div>
@@ -487,25 +487,8 @@
   </footer>
 
   <script>
-    var qrGenerated = false;
-
     function openShare() {
       document.getElementById('share-modal').classList.add('open');
-      if (!qrGenerated) {
-        new QRCode(document.getElementById('qr-code'), {
-          text: 'https://aethera2.com',
-          width: 600,
-          height: 600,
-          colorDark: '#000000',
-          colorLight: '#ffffff',
-          correctLevel: QRCode.CorrectLevel.H
-        });
-        setTimeout(function() {
-          var img = document.querySelector('#qr-code img');
-          if (img) img.style.cssText = 'width:200px;height:200px;border:6px solid #fff;display:block;';
-        }, 100);
-        qrGenerated = true;
-      }
     }
 
     function closeShare(event) {
