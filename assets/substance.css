@@ -188,6 +188,53 @@ footer span {
   color: var(--black);
 }
 
+/* Effects grid */
+.effects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 1.25rem;
+}
+.effects-col {
+  background: var(--card-bg);
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+.effects-col-title {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+}
+.effects-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.effects-list li {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.64rem;
+  line-height: 1.7;
+  color: #888880;
+  padding-left: 0.85rem;
+  position: relative;
+}
+.effects-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  opacity: 0.45;
+  font-size: 0.5rem;
+  top: 0.18rem;
+}
+
 /* Section photos */
 .section-photo {
   margin: 2.5rem 0;

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DMT Cartridge — Use &amp; Safety — ÆTHER</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/substance.css" />
+  <style>
+    .product-badge {
+      display: inline-block;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .spec-cell {
+      background: var(--card-bg);
+      padding: 1.1rem 1.25rem;
+    }
+    .spec-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .spec-value {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.72rem;
+      line-height: 1.7;
+      color: #aaaaaa;
+    }
+
+    .warning-block {
+      border: 1px solid #5a2a2a;
+      background: #0e0808;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+    }
+    .warning-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #c04040;
+      margin-bottom: 1rem;
+    }
+    .warning-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .warning-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.7rem;
+      line-height: 1.85;
+      color: #999990;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .warning-list li::before {
+      content: '⚠';
+      position: absolute;
+      left: 0;
+      font-size: 0.55rem;
+      top: 0.18rem;
+      color: #c04040;
+      opacity: 0.7;
+    }
+
+    .storage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .storage-cell {
+      background: var(--card-bg);
+      padding: 1.1rem 1.25rem;
+    }
+    .storage-cell-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .storage-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .storage-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.66rem;
+      line-height: 1.75;
+      color: #888880;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+    .storage-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.45;
+      font-size: 0.5rem;
+      top: 0.18rem;
+    }
+
+    .emergency-block {
+      border: 1px solid var(--gold);
+      background: var(--card-bg);
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+    .emergency-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .emergency-number {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+    }
+    .emergency-sub {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+
+    .ingredients-note {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+      color: #555550;
+      margin-top: 0.85rem;
+      font-style: italic;
+    }
+
+    .mfr-block {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.62rem;
+      line-height: 2;
+      letter-spacing: 0.08em;
+      color: #555550;
+      margin-top: 1rem;
+    }
+    .mfr-block a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .mfr-block a:hover {
+      color: var(--gold-light);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="dmt.html" class="back-btn">← DMT</a>
+    <a href="index.html" class="header-logo">ÆTHER</a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="product-badge">Product Use &amp; Safety</div>
+      <h1 class="title">DMT Cartridge</h1>
+      <p class="subtitle">N,N-Dimethyltryptamine · 500 mg · 0.25 mL</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="sections">
+
+      <!-- Product Overview -->
+      <div class="section">
+        <h2 class="section-title">Product Overview</h2>
+        <p class="section-body">The ÆTHER DMT cartridge is a 510-thread, lead-free ceramic vaporizer cartridge containing 500 mg of N,N-Dimethyltryptamine in 0.25 mL of USP-grade propylene glycol. Designed for inhalation via a compatible 510-thread battery, it is intended for intentional use in a safe and supportive environment by adults 21 years of age or older only.</p>
+
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <div class="spec-label">Contents</div>
+            <div class="spec-value">500 mg DMT<br/>0.25 mL Propylene Glycol</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Ratio</div>
+            <div class="spec-value">DMT : PG — 2:1 by weight<br/>Actual value may vary</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Hardware</div>
+            <div class="spec-value">510-thread ceramic<br/>Lead-free cartridge</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Activation</div>
+            <div class="spec-value">30–60 seconds after inhalation</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Primary Effects</div>
+            <div class="spec-value">5–20 minutes</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Compatibility</div>
+            <div class="spec-value">510-thread battery only<br/>Avoid high heat / voltage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingredients -->
+      <div class="section">
+        <h2 class="section-title">Ingredients</h2>
+        <p class="section-body">N,N-Dimethyltryptamine (DMT)<br/>Propylene Glycol (USP grade)</p>
+        <p class="ingredients-note">Does not contain Vitamin E acetate, MCT oil, THC, or terpenes.</p>
+      </div>
+
+      <!-- Storage & Handling -->
+      <div class="section">
+        <h2 class="section-title">Storage &amp; Handling</h2>
+        <div class="storage-grid">
+          <div class="storage-cell">
+            <div class="storage-cell-title">Storage</div>
+            <ul class="storage-list">
+              <li>Store upright in a cool, dark place</li>
+              <li>Keep between 15–25°C (59–77°F)</li>
+              <li>Crystallization may occur naturally</li>
+            </ul>
+          </div>
+          <div class="storage-cell">
+            <div class="storage-cell-title">Restoring Fluidity</div>
+            <ul class="storage-list">
+              <li>Gently warm the sealed cartridge indirectly</li>
+              <li>Use body heat or a warm water bath below 50°C (122°F)</li>
+              <li>Do not microwave</li>
+              <li>Do not expose to open flame</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warnings -->
+      <div class="section">
+        <h2 class="section-title">Warnings</h2>
+        <div class="warning-block">
+          <div class="warning-header">⚠ Warning — Psychoactive Substance</div>
+          <ul class="warning-list">
+            <li>For adults 21 years of age or older only. Keep out of reach of children and pets.</li>
+            <li>Do not use if pregnant, breastfeeding, or planning pregnancy. Exposure may result in serious fetal harm or developmental injury.</li>
+            <li>This product produces intense psychoactive effects, including altered perception, impaired judgment, confusion, anxiety, panic, loss of coordination, or psychological distress. Use may result in injury.</li>
+            <li>Do not drive, operate machinery, or engage in hazardous activities while under the influence.</li>
+            <li>The safety profile and long-term effects of this substance have not been fully characterized. Improper use or unsuitable environments may increase the risk of adverse psychological or physical effects.</li>
+            <li>Do not use if you have a personal or family history of psychotic disorders or severe psychiatric conditions.</li>
+            <li>Intended for intentional use in a safe and supportive environment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Emergency -->
+      <div class="section">
+        <h2 class="section-title">Emergency Contact</h2>
+        <div class="emergency-block">
+          <div class="emergency-label">National Poison Control Center</div>
+          <div class="emergency-number">1-800-222-1222</div>
+          <div class="emergency-sub">In case of emergency or accidental ingestion</div>
+        </div>
+      </div>
+
+      <!-- Legal Disclaimer -->
+      <div class="section">
+        <h2 class="section-title">Legal Disclaimer</h2>
+        <p class="section-body">Purchaser assumes all responsibility for legal compliance and proper use. Manufacturer is not responsible for misuse, improper storage, use inconsistent with provided safety guidance, adverse reaction whether foreseeable or unforeseeable, allergic reaction, or unauthorized use.</p>
+        <p class="section-body" style="margin-top:1rem;">Not evaluated by the U.S. Food &amp; Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+      </div>
+
+      <!-- Manufacturer -->
+      <div class="section">
+        <h2 class="section-title">Manufactured By</h2>
+        <div class="mfr-block">
+          ÆTHER<br/>
+          Washtenaw County, MI<br/>
+          <a href="https://www.aethera2.com/">aethera2.com</a><br/>
+          @AetherA2
+        </div>
+      </div>
+
+    </div>
+
+    <p class="disclaimer">This page is for product safety and informational purposes only. Nothing here constitutes legal, medical, or therapeutic advice. Purchaser assumes all responsibility for legal compliance. Know your local laws.</p>
+  </main>
+
+  <footer>
+    <span>ÆTHER &nbsp;·&nbsp; Ann Arbor</span>
+  </footer>
+</body>
+</html>
