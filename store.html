@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harm Reduction Store — ÆTHER</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/substance.css" />
+  <style>
+    /* Widen main for two-column product grid */
+    main {
+      max-width: 920px;
+    }
+
+    .store-intro {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 3rem;
+    }
+    .store-intro p {
+      font-size: 0.72rem;
+      line-height: 2;
+      color: #888880;
+    }
+
+    /* ── Product grid ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-tag {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.65;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-name {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .product-desc {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.65rem;
+      line-height: 1.9;
+      color: #888880;
+      flex: 1;
+    }
+
+    .product-price {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      margin-top: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .product-price span {
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-left: 0.4rem;
+    }
+
+    /* Primary "Buy with Card" button */
+    .btn-card {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      border: none;
+      padding: 0.7rem 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-card:hover { background: var(--gold-light); }
+
+    /* Secondary PayPal link */
+    .btn-paypal {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: 1px solid var(--rule);
+      padding: 0.6rem 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-paypal:hover {
+      border-color: #003087;
+      color: #4fa7e8;
+    }
+
+    /* ── Naloxone section ── */
+    .naloxone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .naloxone-cell {
+      background: var(--card-bg);
+      padding: 1.25rem 1.4rem;
+    }
+    .naloxone-cell-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .naloxone-cell p {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.64rem;
+      line-height: 1.85;
+      color: #888880;
+    }
+    .naloxone-cell a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .naloxone-cell a:hover { color: var(--gold-light); }
+
+    /* ── Alternative payments section ── */
+    .alt-pay-section {
+      margin-top: 1rem;
+    }
+
+    .alt-pay-intro {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.68rem;
+      line-height: 2;
+      color: #888880;
+      margin-bottom: 1.5rem;
+    }
+
+    .alt-pay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .alt-pay-card {
+      background: var(--card-bg);
+      padding: 1.5rem 1.6rem;
+    }
+
+    .alt-pay-platform {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .alt-pay-handle {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .alt-pay-note {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.58rem;
+      line-height: 1.85;
+      color: #555550;
+    }
+
+    .manual-order-note {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--rule);
+      background: var(--card-bg);
+    }
+    .manual-order-note p {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.64rem;
+      line-height: 2;
+      color: #888880;
+    }
+    .manual-order-note a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .manual-order-note a:hover { color: var(--gold-light); }
+
+    .signal-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.64rem;
+      transition: color 0.2s;
+    }
+    .signal-inline:hover { color: var(--gold-light); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <a href="index.html" class="header-logo">ÆTHER</a>
+  </header>
+
+  <main>
+
+    <div class="hero" style="padding-bottom:1.5rem;">
+      <h1 class="title" style="font-size:clamp(1.6rem,6vw,2.8rem);">Store</h1>
+      <p class="subtitle">Harm Reduction Supplies — Ann Arbor</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="store-intro">
+      <p>Test strips, reagent kits, and safety supplies for people who use drugs. Every order shipped discreetly. Questions or custom orders via Signal.</p>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PRODUCTS
+         To update: edit name, desc, and price here.
+         For each product replace the href values:
+           btn-card  → your Stripe Payment Link URL
+                        (stripe.com → Dashboard → Payment Links → Create)
+           btn-paypal → https://paypal.me/YOURUSERNAME/AMOUNT
+         ══════════════════════════════════════ -->
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-tag">Test Strips</div>
+        <div class="product-name">Fentanyl Test Strips — 10 Pack</div>
+        <p class="product-desc">BTNX rapid fentanyl test strips. Detect fentanyl and most fentanyl analogues in drugs, residue, and water. Results in 2–5 minutes. Proven 96–99% sensitivity in field studies.</p>
+        <div class="product-price">$8.00 <span>USD · ships free</span></div>
+        <a class="btn-card" href="REPLACE-WITH-STRIPE-LINK-FENT-10">
+          Buy with Card / Google Pay →
+        </a>
+        <a class="btn-paypal" href="REPLACE-WITH-PAYPAL-LINK-FENT-10">
+          Pay with PayPal / Venmo
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Test Strips</div>
+        <div class="product-name">Fentanyl Test Strips — 25 Pack</div>
+        <p class="product-desc">BTNX rapid fentanyl test strips in bulk. Same high-sensitivity strips — more value per strip. Ideal for community distribution, outreach workers, or regular use.</p>
+        <div class="product-price">$16.00 <span>USD · ships free</span></div>
+        <a class="btn-card" href="REPLACE-WITH-STRIPE-LINK-FENT-25">
+          Buy with Card / Google Pay →
+        </a>
+        <a class="btn-paypal" href="REPLACE-WITH-PAYPAL-LINK-FENT-25">
+          Pay with PayPal / Venmo
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Test Strips</div>
+        <div class="product-name">Xylazine (Tranq) Test Strips — 10 Pack</div>
+        <p class="product-desc">Detect xylazine — the veterinary sedative increasingly found in the illicit drug supply. Xylazine is not reversed by naloxone; knowing it is present is critical for overdose response planning.</p>
+        <div class="product-price">$12.00 <span>USD · ships free</span></div>
+        <a class="btn-card" href="REPLACE-WITH-STRIPE-LINK-XYL-10">
+          Buy with Card / Google Pay →
+        </a>
+        <a class="btn-paypal" href="REPLACE-WITH-PAYPAL-LINK-XYL-10">
+          Pay with PayPal / Venmo
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Test Strips</div>
+        <div class="product-name">Xylazine Test Strips — 25 Pack</div>
+        <p class="product-desc">Bulk xylazine test strips for community distribution or regular use. Same field-validated strips as the 10-pack.</p>
+        <div class="product-price">$22.00 <span>USD · ships free</span></div>
+        <a class="btn-card" href="REPLACE-WITH-STRIPE-LINK-XYL-25">
+          Buy with Card / Google Pay →
+        </a>
+        <a class="btn-paypal" href="REPLACE-WITH-PAYPAL-LINK-XYL-25">
+          Pay with PayPal / Venmo
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Reagent Kit</div>
+        <div class="product-name">Drug Checking Reagent Kit</div>
+        <p class="product-desc">Three-reagent kit — Marquis, Mecke, and Simon's. Identify the presence of MDMA, amphetamines, opiates, and other compounds by color reaction. Includes testing surface, instructions, and color reference card.</p>
+        <div class="product-price">$20.00 <span>USD · ships free</span></div>
+        <a class="btn-card" href="REPLACE-WITH-STRIPE-LINK-REAGENT">
+          Buy with Card / Google Pay →
+        </a>
+        <a class="btn-paypal" href="REPLACE-WITH-PAYPAL-LINK-REAGENT">
+          Pay with PayPal / Venmo
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-tag">Bundle</div>
+        <div class="product-name">Complete Safety Kit</div>
+        <p class="product-desc">Everything in one: 10 fentanyl test strips, 10 xylazine test strips, and the three-reagent checking kit. The most complete harm reduction supply package we offer.</p>
+        <div class="product-price">$35.00 <span>USD · ships free</span></div>
+        <a class="btn-card" href="REPLACE-WITH-STRIPE-LINK-BUNDLE">
+          Buy with Card / Google Pay →
+        </a>
+        <a class="btn-paypal" href="REPLACE-WITH-PAYPAL-LINK-BUNDLE">
+          Pay with PayPal / Venmo
+        </a>
+      </div>
+
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- Naloxone free resources -->
+    <div class="section">
+      <h2 class="section-title">Naloxone — Get It Free</h2>
+      <p class="section-body">We do not sell naloxone. In most of the United States it is available at no cost — often without a prescription — through pharmacies, harm reduction organizations, and state programs. Getting it free is faster and more accessible than ordering from us.</p>
+      <div class="naloxone-grid">
+        <div class="naloxone-cell">
+          <div class="naloxone-cell-title">NEXT Distro</div>
+          <p>Mail-based naloxone and supplies. Ships free to most states. <a href="https://nextdistro.org/" target="_blank" rel="noopener">nextdistro.org →</a></p>
+        </div>
+        <div class="naloxone-cell">
+          <div class="naloxone-cell-title">NEXT Distro — Michigan</div>
+          <p>Michigan residents can request naloxone by mail through the state program. <a href="https://nextdistro.org/michigan" target="_blank" rel="noopener">nextdistro.org/michigan →</a></p>
+        </div>
+        <div class="naloxone-cell">
+          <div class="naloxone-cell-title">Narcan Finder</div>
+          <p>Locate naloxone at pharmacies near you. Many offer it OTC or by prescription. <a href="https://www.narcannow.com/" target="_blank" rel="noopener">narcannow.com →</a></p>
+        </div>
+        <div class="naloxone-cell">
+          <div class="naloxone-cell-title">NEXT Ann Arbor</div>
+          <p>Local harm reduction resources and free supplies for Washtenaw County residents. Contact us via Signal for a referral.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- CashApp / Venmo / Zelle alternative payments -->
+    <div class="section alt-pay-section">
+      <h2 class="section-title">Also Accept</h2>
+      <p class="alt-pay-intro">
+        Prefer to pay directly? Send payment to one of the handles below and follow the instructions for manual orders.
+      </p>
+
+      <!-- ══════════════════════════════════════
+           REPLACE the handles below with your own.
+           CashApp: your $cashtag (e.g. $AetherA2)
+           Venmo: your @username
+           Zelle: your phone number or email address
+           ══════════════════════════════════════ -->
+      <div class="alt-pay-grid">
+
+        <div class="alt-pay-card">
+          <div class="alt-pay-platform">CashApp</div>
+          <div class="alt-pay-handle">$REPLACE-CASHTAG</div>
+          <div class="alt-pay-note">Send the exact order amount. Include your order details in the payment note.</div>
+        </div>
+
+        <div class="alt-pay-card">
+          <div class="alt-pay-platform">Venmo</div>
+          <div class="alt-pay-handle">@REPLACE-VENMO</div>
+          <div class="alt-pay-note">Send the exact order amount. Include your order details in the payment note.</div>
+        </div>
+
+        <div class="alt-pay-card">
+          <div class="alt-pay-platform">Zelle</div>
+          <div class="alt-pay-handle">REPLACE-ZELLE-EMAIL-OR-PHONE</div>
+          <div class="alt-pay-note">Send via your bank app. Include your order in the memo field if your bank supports it.</div>
+        </div>
+
+      </div>
+
+      <div class="manual-order-note">
+        <p>After sending payment, message us on Signal with: (1) what you ordered, (2) your shipping address, and (3) the payment method used. Orders are confirmed and shipped once payment is verified — typically within 24 hours.</p>
+        <p style="margin-top:0.75rem;">
+          <a class="signal-inline" href="#" onclick="openSignal();return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.849L.054 23.07a.75.75 0 0 0 .92.907l5.13-1.666A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2zm0 4a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 12 6zm-4 0a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 8 6zm8 0a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 16 6zm-4 3c-3.314 0-6 2.239-6 5 0 1.524.755 2.891 1.961 3.842l-.707 2.121 2.197-.713A6.685 6.685 0 0 0 12 19c3.314 0 6-2.239 6-5s-2.686-5-6-5z"/></svg>
+            Message on Signal →
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <p class="disclaimer">All products are for harm reduction and educational purposes. Nothing sold here constitutes medical advice. Know your local laws. We do not sell controlled substances.</p>
+
+  </main>
+
+  <footer>
+    <span>ÆTHER &nbsp;·&nbsp; Ann Arbor</span>
+  </footer>
+
+  <script>
+    function openSignal() {
+      window.open('https://signal.me/#eu/Ss0JsFb8nv-4qkJ03ZIFVXrQ6tTS3I6PwfrjMlHs3oSPc28QPtVGP7ov2DS37PEP', '_blank', 'noopener');
+    }
+  </script>
+
+</body>
+</html>
