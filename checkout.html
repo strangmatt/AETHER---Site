@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — ÆTHER</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    @font-face {
+      font-family: 'GeometosRounded';
+      src: url('assets/GeometosRounded.ttf') format('truetype');
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:     #0a0a0a;
+      --white:     #ffffff;
+      --gold:      #9A7D2E;
+      --gold-light:#b8952e;
+      --muted:     #888880;
+      --rule:      #2a2a22;
+      --card-bg:   #111108;
+      --input-bg:  #0d0d08;
+    }
+    html, body { min-height: 100%; background: var(--black); color: var(--white); font-family: 'GeometosRounded', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    /* ── Header ── */
+    .co-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .back-btn {
+      font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color .2s;
+    }
+    .back-btn:hover { color: var(--gold); }
+    .header-logo {
+      font-size: 0.78rem; letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none; position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    .header-right {
+      font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; color: #444440;
+    }
+
+    /* ── Layout ── */
+    .co-wrap {
+      display: flex;
+      align-items: flex-start;
+      min-height: calc(100vh - 62px);
+    }
+    .co-form-col {
+      flex: 1;
+      padding: 3rem 3rem 4rem clamp(1.5rem, 5vw, 4rem);
+      max-width: 600px;
+    }
+    .co-summary-col {
+      width: 380px;
+      min-width: 320px;
+      border-left: 1px solid var(--rule);
+      padding: 3rem clamp(1.5rem, 4vw, 3rem) 4rem 2.5rem;
+      background: var(--card-bg);
+      min-height: 100%;
+    }
+
+    /* ── Section labels ── */
+    .co-section { margin-bottom: 2.25rem; }
+    .co-section-title {
+      font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.1rem;
+    }
+
+    /* ── Form inputs ── */
+    .form-input {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--rule);
+      color: var(--white);
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.72rem;
+      padding: 0.75rem 0.9rem;
+      outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+    .form-input:focus { border-color: var(--gold); }
+    .form-input::placeholder { color: #444440; }
+    select.form-input { cursor: pointer; color: var(--white); }
+    select.form-input option { background: #111108; }
+
+    .form-row { display: flex; gap: 1px; }
+    .form-row .form-input { flex: 1; }
+    .form-stack { display: flex; flex-direction: column; gap: 1px; }
+
+    .form-checkbox {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-top: 0.75rem; cursor: pointer;
+    }
+    .form-checkbox input[type="checkbox"] { accent-color: var(--gold); width: 14px; height: 14px; cursor: pointer; }
+    .form-checkbox span {
+      font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted);
+    }
+
+    /* ── Shipping options ── */
+    .shipping-options { display: flex; flex-direction: column; gap: 1px; }
+    .shipping-option {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--rule);
+      background: var(--input-bg);
+      cursor: pointer;
+      transition: border-color .15s;
+    }
+    .shipping-option:has(input:checked) { border-color: var(--gold); }
+    .shipping-option input[type="radio"] { accent-color: var(--gold); flex-shrink: 0; }
+    .shipping-option-label { flex: 1; display: flex; flex-direction: column; gap: 0.2rem; }
+    .shipping-carrier { font-size: 0.66rem; letter-spacing: 0.05em; color: var(--white); }
+    .shipping-days    { font-size: 0.55rem; letter-spacing: 0.1em; color: var(--muted); }
+    .shipping-price   { font-size: 0.66rem; letter-spacing: 0.05em; color: var(--gold); }
+
+    /* ── Payment method tabs ── */
+    .security-note {
+      font-size: 0.58rem; letter-spacing: 0.15em; color: #555550;
+      margin-bottom: 1.1rem; text-align: center;
+    }
+    .security-note i { margin-right: 0.4rem; }
+
+    .pay-option { margin-bottom: 1px; }
+    .pay-option-header {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--rule);
+      background: var(--input-bg);
+      cursor: pointer;
+      user-select: none;
+      transition: border-color .15s;
+    }
+    .pay-option-header input[type="radio"] { accent-color: var(--gold); flex-shrink: 0; }
+    .pay-option-header-text { flex: 1; font-size: 0.66rem; letter-spacing: 0.08em; color: var(--white); }
+    .card-icons { display: flex; gap: 0.35rem; align-items: center; }
+    .card-icon {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.18rem 0.4rem; border: 1px solid #333330;
+      color: #888880; background: #0d0d08;
+    }
+
+    .pay-option-body {
+      border: 1px solid var(--gold);
+      border-top: none;
+      background: var(--input-bg);
+      padding: 1.5rem 1.25rem;
+      display: none;
+    }
+    .pay-option-body.open { display: block; }
+
+    /* Stripe Payment Element container */
+    #payment-element { min-height: 60px; }
+
+    .pay-not-configured {
+      font-size: 0.65rem; line-height: 2; color: var(--muted); text-align: center; padding: 0.5rem 0;
+    }
+    .pay-not-configured a { color: var(--gold); }
+
+    /* Zelle / Crypto display */
+    .manual-pay-handle {
+      font-size: 0.9rem; letter-spacing: 0.04em; color: var(--white);
+      background: #111108; border: 1px solid var(--rule); padding: 0.5rem 0.85rem;
+      display: inline-block; margin: 0.5rem 0;
+    }
+    .manual-pay-note {
+      font-size: 0.6rem; line-height: 1.9; color: var(--muted); margin-top: 0.5rem;
+    }
+
+    /* ── Submit ── */
+    .submit-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      padding: 1rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background .2s;
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--gold-light); }
+    .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .error-msg { font-size: 0.62rem; color: #c04040; margin-top: 0.75rem; line-height: 1.7; }
+
+    /* ── Order summary ── */
+    .summary-title {
+      font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+    }
+
+    .order-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1.25rem;
+    }
+    .order-item-badge {
+      width: 52px; height: 52px; flex-shrink: 0;
+      border: 1px solid var(--rule);
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--gold);
+      position: relative;
+    }
+    .order-item-qty {
+      position: absolute; top: -6px; right: -6px;
+      background: var(--muted); color: var(--black);
+      font-size: 0.5rem; width: 16px; height: 16px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    .order-item-info { flex: 1; }
+    .order-item-tag  { font-size: 0.48rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
+    .order-item-name { font-size: 0.65rem; letter-spacing: 0.04em; color: var(--white); line-height: 1.5; }
+    .order-item-price { font-size: 0.72rem; letter-spacing: 0.05em; color: var(--gold); white-space: nowrap; }
+
+    .discount-row { display: flex; gap: 1px; margin-bottom: 1.5rem; }
+    .discount-apply-btn {
+      background: none; border: 1px solid var(--rule); color: var(--muted);
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase;
+      padding: 0 1.1rem; cursor: pointer; flex-shrink: 0;
+      transition: border-color .2s, color .2s;
+    }
+    .discount-apply-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .cost-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 0; border-bottom: 1px solid var(--rule);
+    }
+    .cost-row:last-child { border-bottom: none; }
+    .cost-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .cost-value { font-size: 0.72rem; letter-spacing: 0.05em; color: var(--white); }
+    .cost-row.total-row .cost-label { color: var(--white); }
+    .cost-row.total-row .cost-value  { color: var(--gold); font-size: 0.9rem; }
+
+    /* ── Mobile summary accordion ── */
+    .mobile-summary-toggle {
+      display: none;
+      width: 100%;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0.9rem 1.5rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mobile-summary-toggle span {
+      font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+    }
+    .mobile-summary-total { font-size: 0.75rem; color: var(--white); }
+    .mobile-summary-body { display: none; padding: 1.5rem; background: var(--card-bg); border-bottom: 1px solid var(--rule); }
+    .mobile-summary-body.open { display: block; }
+
+    @media (max-width: 760px) {
+      .co-wrap { flex-direction: column; }
+      .co-summary-col { display: none; }
+      .co-form-col { max-width: 100%; padding: 1.5rem; }
+      .mobile-summary-toggle { display: flex; }
+      .header-logo { position: static; transform: none; }
+      .header-right { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="co-header">
+    <a class="back-btn" href="store.html">← Store</a>
+    <a class="header-logo" href="index.html">ÆTHER</a>
+    <span class="header-right">Secure Checkout</span>
+  </header>
+
+  <!-- Mobile summary toggle -->
+  <button class="mobile-summary-toggle" onclick="toggleMobileSummary()">
+    <span id="mobile-toggle-label">Order Summary ▾</span>
+    <span class="mobile-summary-total" id="mobile-total-display">$0.00</span>
+  </button>
+  <div class="mobile-summary-body" id="mobile-summary-body">
+    <!-- populated by JS -->
+  </div>
+
+  <div class="co-wrap">
+
+    <!-- ════════════════════════ FORM COLUMN ════════════════════════ -->
+    <div class="co-form-col">
+      <form id="checkout-form" novalidate>
+
+        <!-- Contact -->
+        <div class="co-section">
+          <h2 class="co-section-title">Contact</h2>
+          <div class="form-stack">
+            <input class="form-input" type="email" id="email" name="email" placeholder="Email" required />
+          </div>
+          <label class="form-checkbox">
+            <input type="checkbox" id="email-offers" />
+            <span>Email me with news and offers</span>
+          </label>
+        </div>
+
+        <!-- Delivery -->
+        <div class="co-section">
+          <h2 class="co-section-title">Delivery</h2>
+          <div class="form-stack">
+            <select class="form-input" id="country" name="country">
+              <option value="US">United States</option>
+            </select>
+            <div class="form-row">
+              <input class="form-input" type="text" id="first-name" name="first-name" placeholder="First name" required />
+              <input class="form-input" type="text" id="last-name" name="last-name" placeholder="Last name" required />
+            </div>
+            <input class="form-input" type="text" id="address" name="address" placeholder="Address" required />
+            <input class="form-input" type="text" id="apt" name="apt" placeholder="Apartment, suite, etc. (optional)" />
+            <div class="form-row">
+              <input class="form-input" type="text" id="city" name="city" placeholder="City" required style="flex:2" />
+              <select class="form-input" id="state" name="state" required>
+                <option value="" disabled selected>State</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+                <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
+                <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
+                <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
+                <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+                <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+                <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
+                <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
+                <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+                <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+                <option>WI</option><option>WY</option><option>DC</option>
+              </select>
+              <input class="form-input" type="text" id="zip" name="zip" placeholder="ZIP" required style="flex:1.2" />
+            </div>
+            <input class="form-input" type="tel" id="phone" name="phone" placeholder="Phone (optional)" />
+          </div>
+        </div>
+
+        <!-- Shipping method -->
+        <div class="co-section">
+          <h2 class="co-section-title">Shipping Method</h2>
+          <div class="shipping-options" id="shipping-options">
+            <label class="shipping-option">
+              <input type="radio" name="shipping" value="usps" checked onchange="updateShipping(this)" />
+              <div class="shipping-option-label">
+                <span class="shipping-carrier">USPS First Class</span>
+                <span class="shipping-days">3–5 business days</span>
+              </div>
+              <span class="shipping-price">Free</span>
+            </label>
+            <label class="shipping-option">
+              <input type="radio" name="shipping" value="usps-priority" onchange="updateShipping(this)" />
+              <div class="shipping-option-label">
+                <span class="shipping-carrier">USPS Priority Mail</span>
+                <span class="shipping-days">1–3 business days</span>
+              </div>
+              <span class="shipping-price">$5.99</span>
+            </label>
+            <label class="shipping-option">
+              <input type="radio" name="shipping" value="ups" onchange="updateShipping(this)" />
+              <div class="shipping-option-label">
+                <span class="shipping-carrier">UPS Ground</span>
+                <span class="shipping-days">2–5 business days</span>
+              </div>
+              <span class="shipping-price">$7.99</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Payment -->
+        <div class="co-section">
+          <h2 class="co-section-title">Payment</h2>
+          <p class="security-note">🔒 All transactions are secure and encrypted.</p>
+
+          <!-- Credit / Debit Card -->
+          <div class="pay-option">
+            <label class="pay-option-header" onclick="selectPayment('card')">
+              <input type="radio" name="payment" value="card" checked />
+              <span class="pay-option-header-text">Credit / Debit Card</span>
+              <div class="card-icons">
+                <span class="card-icon">VISA</span>
+                <span class="card-icon">MC</span>
+                <span class="card-icon">AMEX</span>
+              </div>
+            </label>
+            <div class="pay-option-body open" id="body-card">
+              <div id="payment-element">
+                <p class="pay-not-configured" id="stripe-placeholder">
+                  Loading card payment…
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zelle -->
+          <!-- ════════════════════════════════════════
+               REPLACE: update the Zelle handle below
+               with your phone number or email address.
+               ════════════════════════════════════════ -->
+          <div class="pay-option">
+            <label class="pay-option-header" onclick="selectPayment('zelle')">
+              <input type="radio" name="payment" value="zelle" />
+              <span class="pay-option-header-text">Zelle (Direct Payment)</span>
+            </label>
+            <div class="pay-option-body" id="body-zelle">
+              <p style="font-size:0.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;">Send To</p>
+              <div class="manual-pay-handle" id="zelle-handle">REPLACE-ZELLE-PHONE-OR-EMAIL</div>
+              <p class="manual-pay-note">Send the exact order total to the phone number or email above using your bank's Zelle feature. After sending, click Place Order — we'll verify and ship once payment clears.</p>
+            </div>
+          </div>
+
+          <!-- Crypto -->
+          <!-- ════════════════════════════════════════
+               REPLACE: update the crypto wallet address
+               and coin label below.
+               ════════════════════════════════════════ -->
+          <div class="pay-option">
+            <label class="pay-option-header" onclick="selectPayment('crypto')">
+              <input type="radio" name="payment" value="crypto" />
+              <span class="pay-option-header-text">Crypto (Manual Payment)</span>
+            </label>
+            <div class="pay-option-body" id="body-crypto">
+              <p style="font-size:0.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;">Bitcoin (BTC) Address</p>
+              <div class="manual-pay-handle" id="crypto-handle" style="font-size:.7rem;word-break:break-all;">REPLACE-BTC-WALLET-ADDRESS</div>
+              <p class="manual-pay-note">Send the exact USD equivalent in BTC to the address above. After sending, click Place Order and include your transaction ID when prompted. Other coins accepted on request — message us on Signal.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <label class="form-checkbox">
+          <input type="checkbox" id="billing-same" checked />
+          <span>Use shipping address as billing address</span>
+        </label>
+
+        <button type="submit" class="submit-btn" id="submit-btn">Place Order</button>
+        <p class="error-msg" id="error-msg"></p>
+
+      </form>
+    </div>
+
+    <!-- ════════════════════════ SUMMARY COLUMN ════════════════════════ -->
+    <div class="co-summary-col">
+      <p class="summary-title">Order Summary</p>
+
+      <div id="order-items">
+        <!-- populated by JS -->
+      </div>
+
+      <div class="discount-row">
+        <input class="form-input" type="text" id="discount-code" placeholder="Discount code" />
+        <button class="discount-apply-btn" type="button" onclick="applyDiscount()">Apply</button>
+      </div>
+
+      <div id="cost-summary">
+        <div class="cost-row">
+          <span class="cost-label">Subtotal</span>
+          <span class="cost-value" id="subtotal-display">—</span>
+        </div>
+        <div class="cost-row">
+          <span class="cost-label">Shipping</span>
+          <span class="cost-value" id="shipping-display">Free</span>
+        </div>
+        <div class="cost-row total-row">
+          <span class="cost-label">Total</span>
+          <span class="cost-value" id="total-display">—</span>
+        </div>
+        <div class="cost-row" style="border-bottom:none;padding-top:.4rem;">
+          <span class="cost-label" style="color:#444440">Currency</span>
+          <span class="cost-value" style="font-size:.6rem;color:#444440">USD</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.co-wrap -->
+
+  <script>
+  // ══════════════════════════════════════════════════════
+  // CONFIGURATION
+  // ══════════════════════════════════════════════════════
+
+  // 1. Replace with your Stripe publishable key (pk_live_... or pk_test_...)
+  const STRIPE_PK = 'pk_live_REPLACE_WITH_YOUR_STRIPE_PUBLISHABLE_KEY';
+
+  // Product catalog (prices in cents for Stripe)
+  const PRODUCTS = {
+    'fent-10':  { name: 'Fentanyl Test Strips — 10 Pack', tag: 'Test Strips',  price: 800  },
+    'fent-25':  { name: 'Fentanyl Test Strips — 25 Pack', tag: 'Test Strips',  price: 1600 },
+    'xyl-10':   { name: 'Xylazine Test Strips — 10 Pack', tag: 'Test Strips',  price: 1200 },
+    'xyl-25':   { name: 'Xylazine Test Strips — 25 Pack', tag: 'Test Strips',  price: 2200 },
+    'reagent':  { name: 'Drug Checking Reagent Kit',       tag: 'Reagent Kit', price: 2000 },
+    'bundle':   { name: 'Complete Safety Kit',             tag: 'Bundle',      price: 3500 },
+  };
+
+  const SHIPPING_RATES = {
+    'usps':          { price: 0   },
+    'usps-priority': { price: 599 },
+    'ups':           { price: 799 },
+  };
+
+  // ══════════════════════════════════════════════════════
+  // CART / STATE
+  // ══════════════════════════════════════════════════════
+
+  let cart      = [];   // [{ sku, qty, product }]
+  let shipping  = 0;    // cents
+  let stripe_   = null;
+  let elements_ = null;
+  let clientSecret = null;
+
+  function fmt(cents) {
+    return '$' + (cents / 100).toFixed(2);
+  }
+
+  function subtotal() {
+    return cart.reduce((s, i) => s + i.product.price * i.qty, 0);
+  }
+
+  function total() {
+    return subtotal() + shipping;
+  }
+
+  // ── Load cart from URL params ──
+  // Supports: ?sku=fent-10&qty=2
+  // or multi: ?items=fent-10:1,xyl-10:2
+  function loadCart() {
+    const p = new URLSearchParams(window.location.search);
+
+    if (p.get('items')) {
+      p.get('items').split(',').forEach(chunk => {
+        const [sku, qty] = chunk.split(':');
+        addToCart(sku, parseInt(qty) || 1);
+      });
+    } else if (p.get('sku')) {
+      addToCart(p.get('sku'), parseInt(p.get('qty')) || 1);
+    } else {
+      // Nothing in URL — show empty state
+      document.getElementById('order-items').innerHTML =
+        '<p style="font-size:.62rem;color:var(--muted);line-height:2;margin-bottom:1.5rem;">No items selected.<br><a href="store.html" style="color:var(--gold);">← Back to store</a></p>';
+    }
+  }
+
+  function addToCart(sku, qty) {
+    const product = PRODUCTS[sku];
+    if (!product) return;
+    const existing = cart.find(i => i.sku === sku);
+    if (existing) { existing.qty += qty; }
+    else          { cart.push({ sku, qty, product }); }
+    renderSummary();
+  }
+
+  // ── Render order summary ──
+  function renderSummary() {
+    const container    = document.getElementById('order-items');
+    const mobileBody   = document.getElementById('mobile-summary-body');
+    const sub          = subtotal();
+    const tot          = total();
+
+    let html = '';
+    cart.forEach(item => {
+      html += `
+        <div class="order-item">
+          <div class="order-item-badge">
+            Æ
+            <span class="order-item-qty">${item.qty}</span>
+          </div>
+          <div class="order-item-info">
+            <div class="order-item-tag">${item.product.tag}</div>
+            <div class="order-item-name">${item.product.name}</div>
+          </div>
+          <div class="order-item-price">${fmt(item.product.price * item.qty)}</div>
+        </div>`;
+    });
+
+    container.innerHTML = html;
+    if (mobileBody) mobileBody.innerHTML = html;
+
+    document.getElementById('subtotal-display').textContent = fmt(sub);
+    document.getElementById('shipping-display').textContent = shipping === 0 ? 'Free' : fmt(shipping);
+    document.getElementById('total-display').textContent    = fmt(tot);
+    document.getElementById('mobile-total-display').textContent = fmt(tot);
+  }
+
+  function updateShipping(radio) {
+    shipping = SHIPPING_RATES[radio.value]?.price ?? 0;
+    renderSummary();
+    if (clientSecret) reinitStripe(); // amount changed, need new PaymentIntent
+  }
+
+  function applyDiscount() {
+    // Placeholder — hook up to your own discount logic
+    alert('Discount codes coming soon.');
+  }
+
+  // ══════════════════════════════════════════════════════
+  // PAYMENT METHOD TABS
+  // ══════════════════════════════════════════════════════
+
+  function selectPayment(method) {
+    document.querySelectorAll('.pay-option-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.pay-option-header input[type=radio]').forEach(r => r.checked = false);
+    document.getElementById('body-' + method).classList.add('open');
+    const radio = document.querySelector(`.pay-option-header input[value="${method}"]`);
+    if (radio) radio.checked = true;
+
+    if (method === 'card' && !elements_) initStripe();
+  }
+
+  // ══════════════════════════════════════════════════════
+  // STRIPE SETUP
+  // ══════════════════════════════════════════════════════
+
+  async function initStripe() {
+    const placeholder = document.getElementById('stripe-placeholder');
+
+    if (STRIPE_PK.includes('REPLACE')) {
+      if (placeholder) placeholder.innerHTML =
+        'Card payment not configured yet. Add your Stripe publishable key to checkout.html and deploy your <a href="https://docs.netlify.com/functions/overview/" target="_blank">Netlify Function</a>, or pay via Zelle or Crypto.';
+      return;
+    }
+
+    if (!stripe_) stripe_ = Stripe(STRIPE_PK);
+    if (placeholder) placeholder.textContent = 'Loading…';
+
+    try {
+      const res = await fetch('/.netlify/functions/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: total(), currency: 'usd' })
+      });
+
+      if (!res.ok) throw new Error('Function returned ' + res.status);
+      const data = await res.json();
+      clientSecret = data.clientSecret;
+
+      elements_ = stripe_.elements({
+        clientSecret,
+        appearance: {
+          theme: 'night',
+          variables: {
+            colorPrimary:    '#9A7D2E',
+            colorBackground: '#0d0d08',
+            colorText:       '#ffffff',
+            fontFamily:      'sans-serif',
+            borderRadius:    '0px',
+          }
+        }
+      });
+
+      if (placeholder) placeholder.remove();
+      const payEl = elements_.create('payment', { layout: 'tabs' });
+      payEl.mount('#payment-element');
+
+    } catch (e) {
+      console.error('Stripe init failed:', e);
+      if (placeholder) placeholder.innerHTML =
+        'Card payment requires the Netlify backend. <a href="https://app.netlify.com/start" target="_blank" style="color:var(--gold)">Deploy to Netlify</a> to enable. For now, use Zelle or Crypto.';
+    }
+  }
+
+  async function reinitStripe() {
+    if (!stripe_ || !elements_) return;
+    // Update existing PaymentIntent amount
+    clientSecret = null;
+    elements_ = null;
+    document.getElementById('payment-element').innerHTML =
+      '<p class="pay-not-configured" id="stripe-placeholder">Updating…</p>';
+    await initStripe();
+  }
+
+  // ══════════════════════════════════════════════════════
+  // FORM SUBMIT
+  // ══════════════════════════════════════════════════════
+
+  function generateOrderRef() {
+    return 'A-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+  }
+
+  function getFormData() {
+    return {
+      email:     document.getElementById('email').value.trim(),
+      firstName: document.getElementById('first-name').value.trim(),
+      lastName:  document.getElementById('last-name').value.trim(),
+      address:   document.getElementById('address').value.trim(),
+      apt:       document.getElementById('apt').value.trim(),
+      city:      document.getElementById('city').value.trim(),
+      state:     document.getElementById('state').value,
+      zip:       document.getElementById('zip').value.trim(),
+      phone:     document.getElementById('phone').value.trim(),
+    };
+  }
+
+  function validateForm() {
+    const f = getFormData();
+    const missing = [];
+    if (!f.email)     missing.push('email');
+    if (!f.firstName) missing.push('first name');
+    if (!f.lastName)  missing.push('last name');
+    if (!f.address)   missing.push('address');
+    if (!f.city)      missing.push('city');
+    if (!f.state)     missing.push('state');
+    if (!f.zip)       missing.push('ZIP code');
+    return missing;
+  }
+
+  function setLoading(on) {
+    const btn = document.getElementById('submit-btn');
+    btn.disabled    = on;
+    btn.textContent = on ? 'Processing…' : 'Place Order';
+  }
+
+  document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const errEl = document.getElementById('error-msg');
+    errEl.textContent = '';
+
+    if (cart.length === 0) {
+      errEl.textContent = 'Your cart is empty.';
+      return;
+    }
+
+    const missing = validateForm();
+    if (missing.length) {
+      errEl.textContent = 'Please fill in: ' + missing.join(', ') + '.';
+      return;
+    }
+
+    const method = document.querySelector('input[name="payment"]:checked')?.value;
+    const ref    = generateOrderRef();
+    const f      = getFormData();
+
+    if (method === 'card') {
+      if (!stripe_ || !elements_) {
+        errEl.textContent = 'Card payment is not ready. Please wait a moment or choose Zelle / Crypto.';
+        return;
+      }
+      setLoading(true);
+      const { error } = await stripe_.confirmPayment({
+        elements: elements_,
+        confirmParams: {
+          return_url: `${window.location.origin}/success.html?ref=${ref}&method=card`,
+          payment_method_data: {
+            billing_details: {
+              name:  `${f.firstName} ${f.lastName}`,
+              email: f.email,
+              phone: f.phone || undefined,
+              address: {
+                line1:       f.address,
+                line2:       f.apt || undefined,
+                city:        f.city,
+                state:       f.state,
+                postal_code: f.zip,
+                country:     'US',
+              }
+            }
+          }
+        }
+      });
+      setLoading(false);
+      if (error) errEl.textContent = error.message;
+
+    } else {
+      // Zelle or Crypto — save order to sessionStorage and go to success page
+      const order = {
+        ref, method,
+        items:    cart.map(i => ({ name: i.product.name, qty: i.qty, price: i.product.price })),
+        subtotal: subtotal(),
+        shipping,
+        total:    total(),
+        address:  f,
+      };
+      sessionStorage.setItem('ae_order', JSON.stringify(order));
+      window.location.href = `success.html?ref=${ref}&method=${method}`;
+    }
+  });
+
+  // ══════════════════════════════════════════════════════
+  // MOBILE SUMMARY TOGGLE
+  // ══════════════════════════════════════════════════════
+
+  let mobileSummaryOpen = false;
+  function toggleMobileSummary() {
+    mobileSummaryOpen = !mobileSummaryOpen;
+    document.getElementById('mobile-summary-body').classList.toggle('open', mobileSummaryOpen);
+    document.getElementById('mobile-toggle-label').textContent =
+      mobileSummaryOpen ? 'Order Summary ▴' : 'Order Summary ▾';
+  }
+
+  // ══════════════════════════════════════════════════════
+  // INIT
+  // ══════════════════════════════════════════════════════
+
+  loadCart();
+  initStripe(); // kick off stripe init on page load (card is default)
+
+  </script>
+</body>
+</html>

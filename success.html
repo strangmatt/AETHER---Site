@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — ÆTHER</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="assets/substance.css" />
+  <style>
+    main { text-align: center; display: flex; flex-direction: column; align-items: center; padding-top: 8vh; }
+
+    .success-icon {
+      font-size: 2.5rem; color: var(--gold); margin-bottom: 2rem;
+    }
+    .order-ref {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.12em; color: var(--white);
+      background: var(--card-bg); border: 1px solid var(--rule);
+      padding: 0.6rem 1.5rem; margin-top: 1rem; display: inline-block;
+    }
+    .order-ref-label {
+      font-size: 0.5rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.35rem;
+    }
+
+    .manual-instructions {
+      margin-top: 3rem;
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid var(--gold);
+      background: var(--card-bg);
+      padding: 2rem 2rem 1.75rem;
+      text-align: left;
+    }
+    .manual-instructions-title {
+      font-size: 0.58rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .manual-instructions p {
+      font-size: 0.68rem; line-height: 2; color: #888880;
+    }
+    .manual-instructions .handle {
+      font-size: 0.9rem; letter-spacing: 0.04em; color: var(--white);
+      background: #0d0d08; border: 1px solid var(--rule);
+      padding: 0.4rem 0.75rem; display: inline-block;
+      margin: 0.5rem 0; word-break: break-all;
+    }
+    .signal-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #3a76f0; color: #fff; text-decoration: none;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.65rem 1.5rem; margin-top: 1rem;
+      transition: background .2s;
+    }
+    .signal-btn:hover { background: #2e5fd4; }
+
+    .back-store {
+      margin-top: 3rem;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+      transition: color .2s;
+    }
+    .back-store:hover { color: var(--gold-light); }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-btn">← Home</a>
+    <a href="index.html" class="header-logo">ÆTHER</a>
+  </header>
+
+  <main>
+    <div class="hero" style="padding-bottom:0.5rem;">
+      <div class="success-icon">✦</div>
+      <h1 class="title" style="font-size:clamp(1.4rem,5vw,2.2rem);" id="page-title">Order Confirmed</h1>
+      <p class="subtitle" id="page-subtitle">Thank you for your order</p>
+      <div style="margin-top:1.25rem;">
+        <div class="order-ref-label">Order Reference</div>
+        <div class="order-ref" id="order-ref">—</div>
+      </div>
+    </div>
+
+    <!-- Shown only for Zelle / Crypto manual payments -->
+    <div class="manual-instructions" id="manual-instructions" style="display:none;">
+      <div class="manual-instructions-title" id="manual-title">Complete Your Payment</div>
+      <div id="manual-body"></div>
+      <a class="signal-btn" href="#" onclick="openSignal();return false;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.849L.054 23.07a.75.75 0 0 0 .92.907l5.13-1.666A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2zm0 4a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 12 6zm-4 0a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 8 6zm8 0a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 16 6zm-4 3c-3.314 0-6 2.239-6 5 0 1.524.755 2.891 1.961 3.842l-.707 2.121 2.197-.713A6.685 6.685 0 0 0 12 19c3.314 0 6-2.239 6-5s-2.686-5-6-5z"/></svg>
+        Confirm on Signal →
+      </a>
+    </div>
+
+    <a class="back-store" href="store.html">← Back to Store</a>
+  </main>
+
+  <footer>
+    <span>ÆTHER &nbsp;·&nbsp; Ann Arbor</span>
+  </footer>
+
+  <script>
+    // ══════════════════════════════════════════════════════
+    // REPLACE these with your actual handles
+    // ══════════════════════════════════════════════════════
+    const ZELLE_HANDLE  = 'REPLACE-ZELLE-PHONE-OR-EMAIL';
+    const CRYPTO_HANDLE = 'REPLACE-BTC-WALLET-ADDRESS';
+    // ══════════════════════════════════════════════════════
+
+    const params = new URLSearchParams(window.location.search);
+    const ref    = params.get('ref') || '—';
+    const method = params.get('method') || 'card';
+
+    document.getElementById('order-ref').textContent = ref;
+
+    const order = (() => {
+      try { return JSON.parse(sessionStorage.getItem('ae_order')); } catch { return null; }
+    })();
+
+    if (method === 'zelle') {
+      document.getElementById('page-subtitle').textContent  = 'Send payment to complete your order';
+      document.getElementById('manual-instructions').style.display = 'block';
+      document.getElementById('manual-title').textContent   = 'Send Zelle Payment';
+      const total = order ? '$' + (order.total / 100).toFixed(2) : 'your order total';
+      document.getElementById('manual-body').innerHTML = `
+        <p>Send <strong style="color:var(--white)">${total}</strong> via Zelle to:</p>
+        <div class="handle">${ZELLE_HANDLE}</div>
+        <p style="margin-top:.75rem;">Include your order reference <strong style="color:var(--white)">${ref}</strong> in the memo, then message us on Signal with your shipping address to confirm.</p>`;
+    } else if (method === 'crypto') {
+      document.getElementById('page-subtitle').textContent  = 'Send payment to complete your order';
+      document.getElementById('manual-instructions').style.display = 'block';
+      document.getElementById('manual-title').textContent   = 'Send Bitcoin Payment';
+      const total = order ? '$' + (order.total / 100).toFixed(2) : 'your order total';
+      document.getElementById('manual-body').innerHTML = `
+        <p>Send the USD equivalent of <strong style="color:var(--white)">${total}</strong> in BTC to:</p>
+        <div class="handle">${CRYPTO_HANDLE}</div>
+        <p style="margin-top:.75rem;">Then message us on Signal with: your order reference <strong style="color:var(--white)">${ref}</strong>, your transaction ID, and your shipping address.</p>`;
+    }
+
+    function openSignal() {
+      window.open('https://signal.me/#eu/Ss0JsFb8nv-4qkJ03ZIFVXrQ6tTS3I6PwfrjMlHs3oSPc28QPtVGP7ov2DS37PEP', '_blank', 'noopener');
+    }
+  </script>
+</body>
+</html>
