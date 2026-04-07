@@ -485,13 +485,10 @@
 
   <script>
   // ══════════════════════════════════════════════════════
-  // CONFIGURATION
+  // CONFIGURATION — replace with your Stripe publishable key
   // ══════════════════════════════════════════════════════
-
-  // 1. Replace with your Stripe publishable key (pk_live_... or pk_test_...)
   const STRIPE_PK = 'pk_live_REPLACE_WITH_YOUR_STRIPE_PUBLISHABLE_KEY';
 
-  // Product catalog (prices in cents for Stripe)
   const PRODUCTS = {
     'fent-10':  { name: 'Fentanyl Test Strips — 10 Pack', tag: 'Test Strips',  price: 800  },
     'fent-25':  { name: 'Fentanyl Test Strips — 25 Pack', tag: 'Test Strips',  price: 1600 },
@@ -502,39 +499,25 @@
   };
 
   const SHIPPING_RATES = {
-    'usps':          { price: 0   },
-    'usps-priority': { price: 599 },
-    'ups':           { price: 799 },
+    'usps':          0,
+    'usps-priority': 599,
+    'ups':           799,
   };
 
-  // ══════════════════════════════════════════════════════
-  // CART / STATE
-  // ══════════════════════════════════════════════════════
+  // ── State ──
+  let cart     = [];
+  let shipping = 0;
+  let stripe_  = null;
+  let elements_= null;
+  const orderRef = 'A-' + Math.random().toString(36).substring(2, 8).toUpperCase();
 
-  let cart      = [];   // [{ sku, qty, product }]
-  let shipping  = 0;    // cents
-  let stripe_   = null;
-  let elements_ = null;
-  let clientSecret = null;
+  const fmt = cents => '$' + (cents / 100).toFixed(2);
+  const subtotal = () => cart.reduce((s, i) => s + i.product.price * i.qty, 0);
+  const total    = () => subtotal() + shipping;
 
-  function fmt(cents) {
-    return '$' + (cents / 100).toFixed(2);
-  }
-
-  function subtotal() {
-    return cart.reduce((s, i) => s + i.product.price * i.qty, 0);
-  }
-
-  function total() {
-    return subtotal() + shipping;
-  }
-
-  // ── Load cart from URL params ──
-  // Supports: ?sku=fent-10&qty=2
-  // or multi: ?items=fent-10:1,xyl-10:2
+  // ── Cart ──
   function loadCart() {
     const p = new URLSearchParams(window.location.search);
-
     if (p.get('items')) {
       p.get('items').split(',').forEach(chunk => {
         const [sku, qty] = chunk.split(':');
@@ -543,7 +526,6 @@
     } else if (p.get('sku')) {
       addToCart(p.get('sku'), parseInt(p.get('qty')) || 1);
     } else {
-      // Nothing in URL — show empty state
       document.getElementById('order-items').innerHTML =
         '<p style="font-size:.62rem;color:var(--muted);line-height:2;margin-bottom:1.5rem;">No items selected.<br><a href="store.html" style="color:var(--gold);">← Back to store</a></p>';
     }
@@ -553,138 +535,80 @@
     const product = PRODUCTS[sku];
     if (!product) return;
     const existing = cart.find(i => i.sku === sku);
-    if (existing) { existing.qty += qty; }
-    else          { cart.push({ sku, qty, product }); }
+    if (existing) existing.qty += qty;
+    else cart.push({ sku, qty, product });
     renderSummary();
   }
 
-  // ── Render order summary ──
   function renderSummary() {
-    const container    = document.getElementById('order-items');
-    const mobileBody   = document.getElementById('mobile-summary-body');
-    const sub          = subtotal();
-    const tot          = total();
-
     let html = '';
     cart.forEach(item => {
-      html += `
-        <div class="order-item">
-          <div class="order-item-badge">
-            Æ
-            <span class="order-item-qty">${item.qty}</span>
-          </div>
-          <div class="order-item-info">
-            <div class="order-item-tag">${item.product.tag}</div>
-            <div class="order-item-name">${item.product.name}</div>
-          </div>
-          <div class="order-item-price">${fmt(item.product.price * item.qty)}</div>
-        </div>`;
+      html += `<div class="order-item">
+        <div class="order-item-badge">Æ<span class="order-item-qty">${item.qty}</span></div>
+        <div class="order-item-info">
+          <div class="order-item-tag">${item.product.tag}</div>
+          <div class="order-item-name">${item.product.name}</div>
+        </div>
+        <div class="order-item-price">${fmt(item.product.price * item.qty)}</div>
+      </div>`;
     });
-
-    container.innerHTML = html;
-    if (mobileBody) mobileBody.innerHTML = html;
-
-    document.getElementById('subtotal-display').textContent = fmt(sub);
-    document.getElementById('shipping-display').textContent = shipping === 0 ? 'Free' : fmt(shipping);
-    document.getElementById('total-display').textContent    = fmt(tot);
-    document.getElementById('mobile-total-display').textContent = fmt(tot);
+    document.getElementById('order-items').innerHTML = html;
+    const mb = document.getElementById('mobile-summary-body');
+    if (mb) mb.innerHTML = html;
+    document.getElementById('subtotal-display').textContent      = fmt(subtotal());
+    document.getElementById('shipping-display').textContent      = shipping === 0 ? 'Free' : fmt(shipping);
+    document.getElementById('total-display').textContent         = fmt(total());
+    document.getElementById('mobile-total-display').textContent  = fmt(total());
   }
 
   function updateShipping(radio) {
-    shipping = SHIPPING_RATES[radio.value]?.price ?? 0;
+    shipping = SHIPPING_RATES[radio.value] ?? 0;
     renderSummary();
-    if (clientSecret) reinitStripe(); // amount changed, need new PaymentIntent
+    // Update Stripe element amount if already mounted
+    if (elements_) elements_.update({ amount: total() });
   }
 
-  function applyDiscount() {
-    // Placeholder — hook up to your own discount logic
-    alert('Discount codes coming soon.');
-  }
+  function applyDiscount() { alert('Discount codes coming soon.'); }
 
-  // ══════════════════════════════════════════════════════
-  // PAYMENT METHOD TABS
-  // ══════════════════════════════════════════════════════
-
+  // ── Payment tabs ──
   function selectPayment(method) {
     document.querySelectorAll('.pay-option-body').forEach(b => b.classList.remove('open'));
     document.querySelectorAll('.pay-option-header input[type=radio]').forEach(r => r.checked = false);
     document.getElementById('body-' + method).classList.add('open');
     const radio = document.querySelector(`.pay-option-header input[value="${method}"]`);
     if (radio) radio.checked = true;
-
-    if (method === 'card' && !elements_) initStripe();
+    if (method === 'card' && !elements_) mountStripeElement();
   }
 
-  // ══════════════════════════════════════════════════════
-  // STRIPE SETUP
-  // ══════════════════════════════════════════════════════
-
-  async function initStripe() {
+  // ── Stripe — deferred mode (mount without PaymentIntent) ──
+  function mountStripeElement() {
     const placeholder = document.getElementById('stripe-placeholder');
-
     if (STRIPE_PK.includes('REPLACE')) {
       if (placeholder) placeholder.innerHTML =
-        'Card payment not configured yet. Add your Stripe publishable key to checkout.html and deploy your <a href="https://docs.netlify.com/functions/overview/" target="_blank">Netlify Function</a>, or pay via Zelle or Crypto.';
+        'Card payment not yet configured. Add your Stripe publishable key to checkout.html, or pay via Zelle / Crypto.';
       return;
     }
-
     if (!stripe_) stripe_ = Stripe(STRIPE_PK);
-    if (placeholder) placeholder.textContent = 'Loading…';
-
-    try {
-      const res = await fetch('/.netlify/functions/create-payment-intent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: total(), currency: 'usd' })
-      });
-
-      if (!res.ok) throw new Error('Function returned ' + res.status);
-      const data = await res.json();
-      clientSecret = data.clientSecret;
-
-      elements_ = stripe_.elements({
-        clientSecret,
-        appearance: {
-          theme: 'night',
-          variables: {
-            colorPrimary:    '#9A7D2E',
-            colorBackground: '#0d0d08',
-            colorText:       '#ffffff',
-            fontFamily:      'sans-serif',
-            borderRadius:    '0px',
-          }
+    elements_ = stripe_.elements({
+      mode:     'payment',
+      amount:   total(),
+      currency: 'usd',
+      appearance: {
+        theme: 'night',
+        variables: {
+          colorPrimary:    '#9A7D2E',
+          colorBackground: '#0d0d08',
+          colorText:       '#ffffff',
+          fontFamily:      'sans-serif',
+          borderRadius:    '0px',
         }
-      });
-
-      if (placeholder) placeholder.remove();
-      const payEl = elements_.create('payment', { layout: 'tabs' });
-      payEl.mount('#payment-element');
-
-    } catch (e) {
-      console.error('Stripe init failed:', e);
-      if (placeholder) placeholder.innerHTML =
-        'Card payment requires the Netlify backend. <a href="https://app.netlify.com/start" target="_blank" style="color:var(--gold)">Deploy to Netlify</a> to enable. For now, use Zelle or Crypto.';
-    }
+      }
+    });
+    if (placeholder) placeholder.remove();
+    elements_.create('payment', { layout: 'tabs' }).mount('#payment-element');
   }
 
-  async function reinitStripe() {
-    if (!stripe_ || !elements_) return;
-    // Update existing PaymentIntent amount
-    clientSecret = null;
-    elements_ = null;
-    document.getElementById('payment-element').innerHTML =
-      '<p class="pay-not-configured" id="stripe-placeholder">Updating…</p>';
-    await initStripe();
-  }
-
-  // ══════════════════════════════════════════════════════
-  // FORM SUBMIT
-  // ══════════════════════════════════════════════════════
-
-  function generateOrderRef() {
-    return 'A-' + Math.random().toString(36).substring(2, 8).toUpperCase();
-  }
-
+  // ── Form helpers ──
   function getFormData() {
     return {
       email:     document.getElementById('email').value.trim(),
@@ -701,15 +625,10 @@
 
   function validateForm() {
     const f = getFormData();
-    const missing = [];
-    if (!f.email)     missing.push('email');
-    if (!f.firstName) missing.push('first name');
-    if (!f.lastName)  missing.push('last name');
-    if (!f.address)   missing.push('address');
-    if (!f.city)      missing.push('city');
-    if (!f.state)     missing.push('state');
-    if (!f.zip)       missing.push('ZIP code');
-    return missing;
+    return ['email','firstName','lastName','address','city','state','zip']
+      .filter(k => !f[k])
+      .map(k => ({ email:'email', firstName:'first name', lastName:'last name',
+                   address:'address', city:'city', state:'state', zip:'ZIP' }[k]));
   }
 
   function setLoading(on) {
@@ -718,37 +637,77 @@
     btn.textContent = on ? 'Processing…' : 'Place Order';
   }
 
+  // ── Submit ──
   document.getElementById('checkout-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const errEl = document.getElementById('error-msg');
     errEl.textContent = '';
 
-    if (cart.length === 0) {
-      errEl.textContent = 'Your cart is empty.';
-      return;
-    }
-
+    if (!cart.length) { errEl.textContent = 'Your cart is empty.'; return; }
     const missing = validateForm();
-    if (missing.length) {
-      errEl.textContent = 'Please fill in: ' + missing.join(', ') + '.';
-      return;
-    }
+    if (missing.length) { errEl.textContent = 'Please fill in: ' + missing.join(', ') + '.'; return; }
 
-    const method = document.querySelector('input[name="payment"]:checked')?.value;
-    const ref    = generateOrderRef();
-    const f      = getFormData();
+    const method   = document.querySelector('input[name="payment"]:checked')?.value;
+    const f        = getFormData();
+    const shipKey  = document.querySelector('input[name="shipping"]:checked')?.value || 'usps';
+    const shipLabels = { usps:'USPS First Class', 'usps-priority':'USPS Priority Mail', ups:'UPS Ground' };
+    const item     = cart[0] || {};
 
+    // ─ Card ─
     if (method === 'card') {
       if (!stripe_ || !elements_) {
-        errEl.textContent = 'Card payment is not ready. Please wait a moment or choose Zelle / Crypto.';
+        errEl.textContent = 'Card payment is not ready. Choose Zelle or Crypto, or wait a moment.';
         return;
       }
       setLoading(true);
+
+      // 1. Validate Stripe element fields
+      const { error: submitErr } = await elements_.submit();
+      if (submitErr) { errEl.textContent = submitErr.message; setLoading(false); return; }
+
+      // 2. Create PaymentIntent with full order metadata
+      let clientSecret;
+      try {
+        const res = await fetch('/.netlify/functions/create-payment-intent', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount:   total(),
+            currency: 'usd',
+            metadata: {
+              order_ref:       orderRef,
+              customer_name:   `${f.firstName} ${f.lastName}`,
+              customer_email:  f.email,
+              customer_phone:  f.phone,
+              address_line1:   f.address,
+              address_line2:   f.apt,
+              address_city:    f.city,
+              address_state:   f.state,
+              address_zip:     f.zip,
+              product_sku:     item.sku      || '',
+              product_name:    item.product?.name || '',
+              product_qty:     String(item.qty || 1),
+              shipping_method: shipKey,
+              subtotal_cents:  String(subtotal()),
+              shipping_cents:  String(shipping),
+            }
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to create payment');
+        clientSecret = data.clientSecret;
+      } catch (err) {
+        errEl.textContent = err.message;
+        setLoading(false);
+        return;
+      }
+
+      // 3. Confirm payment → Stripe redirects to success.html on completion
       const { error } = await stripe_.confirmPayment({
         elements: elements_,
+        clientSecret,
         confirmParams: {
-          return_url: `${window.location.origin}/success.html?ref=${ref}&method=card`,
+          return_url: `${window.location.origin}/success.html?ref=${orderRef}&method=card`,
           payment_method_data: {
             billing_details: {
               name:  `${f.firstName} ${f.lastName}`,
@@ -769,25 +728,48 @@
       setLoading(false);
       if (error) errEl.textContent = error.message;
 
+    // ─ Zelle / Crypto ─
     } else {
-      // Zelle or Crypto — save order to sessionStorage and go to success page
-      const order = {
-        ref, method,
-        items:    cart.map(i => ({ name: i.product.name, qty: i.qty, price: i.product.price })),
-        subtotal: subtotal(),
-        shipping,
-        total:    total(),
-        address:  f,
+      setLoading(true);
+      const orderPayload = {
+        ref:            orderRef,
+        paymentMethod:  method,
+        name:           `${f.firstName} ${f.lastName}`,
+        email:          f.email,
+        phone:          f.phone,
+        address:        f.address,
+        apt:            f.apt,
+        city:           f.city,
+        state:          f.state,
+        zip:            f.zip,
+        productSku:     item.sku      || '',
+        productName:    item.product?.name || '',
+        qty:            item.qty      || 1,
+        shippingMethod: shipKey,
+        subtotalCents:  subtotal(),
+        shippingCents:  shipping,
+        totalCents:     total(),
       };
-      sessionStorage.setItem('ae_order', JSON.stringify(order));
-      window.location.href = `success.html?ref=${ref}&method=${method}`;
+
+      try {
+        await fetch('/.netlify/functions/save-order', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(orderPayload),
+        });
+      } catch (err) {
+        console.warn('save-order failed (non-critical):', err);
+      }
+
+      sessionStorage.setItem('ae_order', JSON.stringify({
+        ...orderPayload,
+        shippingLabel: shipLabels[shipKey] || shipKey,
+      }));
+      window.location.href = `success.html?ref=${orderRef}&method=${method}`;
     }
   });
 
-  // ══════════════════════════════════════════════════════
-  // MOBILE SUMMARY TOGGLE
-  // ══════════════════════════════════════════════════════
-
+  // ── Mobile toggle ──
   let mobileSummaryOpen = false;
   function toggleMobileSummary() {
     mobileSummaryOpen = !mobileSummaryOpen;
@@ -796,12 +778,9 @@
       mobileSummaryOpen ? 'Order Summary ▴' : 'Order Summary ▾';
   }
 
-  // ══════════════════════════════════════════════════════
-  // INIT
-  // ══════════════════════════════════════════════════════
-
+  // ── Init ──
   loadCart();
-  initStripe(); // kick off stripe init on page load (card is default)
+  mountStripeElement(); // card is default — mount element on page load
 
   </script>
 </body>
