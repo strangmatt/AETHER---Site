@@ -40,7 +40,10 @@
     .header-logo {
       font-size: 0.78rem; letter-spacing: 0.45em; text-transform: uppercase;
       color: var(--gold); text-decoration: none; position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center;
     }
+    .header-logo img { height: 30px; width: auto; display: block; }
+    .footer-logo { height: 26px; width: auto; display: block; margin: 0 auto 0.6rem; opacity: 0.7; }
     .header-right {
       font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; color: #444440;
     }
@@ -277,7 +280,7 @@
 
   <header class="co-header">
     <a class="back-btn" href="store.html">← Store</a>
-    <a class="header-logo" href="index.html">ÆTHER</a>
+    <a class="header-logo" href="index.html"><img src="assets/logo-header.png" alt="ÆTHER" /></a>
     <span class="header-right">Secure Checkout</span>
   </header>
 
