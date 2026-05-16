@@ -188,6 +188,145 @@
     .mfr-block a:hover {
       color: var(--gold-light);
     }
+
+    /* Dosing table */
+    .dose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .dose-cell {
+      background: var(--card-bg);
+      padding: 1.1rem 1.25rem;
+      text-align: center;
+    }
+    .dose-tier {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.55rem;
+    }
+    .dose-amount {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      color: #cccccc;
+      margin-bottom: 0.3rem;
+    }
+    .dose-note {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      line-height: 1.7;
+      color: #666660;
+    }
+    .dose-caveat {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      line-height: 1.85;
+      color: #666660;
+      margin-top: 0.9rem;
+      font-style: italic;
+    }
+
+    /* Duration strip */
+    .duration-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .duration-cell {
+      background: var(--card-bg);
+      padding: 0.9rem 1.25rem;
+      text-align: center;
+    }
+    .duration-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .duration-value {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.78rem;
+      color: #aaaaaa;
+    }
+
+    .contraindication-block {
+      border: 1px solid #7a1a1a;
+      background: #100606;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1rem;
+    }
+    .contraindication-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #d04040;
+      margin-bottom: 1rem;
+    }
+    .warning-list li.critical {
+      color: #c8a090;
+    }
+    .warning-list li.critical::before {
+      opacity: 1;
+    }
+
+    .set-setting-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .set-setting-cell {
+      background: var(--card-bg);
+      padding: 1.1rem 1.25rem;
+    }
+    .set-setting-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .set-setting-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .set-setting-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.66rem;
+      line-height: 1.75;
+      color: #888880;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+    .set-setting-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.45;
+      font-size: 0.5rem;
+      top: 0.18rem;
+    }
   </style>
 </head>
 <body>
@@ -240,6 +379,147 @@
         </div>
       </div>
 
+      <!-- Potential Benefits -->
+      <div class="section">
+        <h2 class="section-title">Potential Benefits</h2>
+        <p class="section-body">DMT has been the subject of significant research interest, both in its pure form and as the active component of ayahuasca — the Amazonian plant brew that has been studied extensively in clinical settings. Research consistently points to its capacity to produce meaningful, lasting psychological benefits. Rick Strassman's landmark clinical trials at the University of New Mexico in the 1990s documented profound therapeutic and mystical effects. Subsequent ayahuasca research at institutions including Johns Hopkins, Imperial College London, and MAPS has demonstrated significant promise for depression, addiction, and trauma. The brief duration of vaporized DMT makes it particularly well-suited to supervised therapeutic application.</p>
+
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <div class="spec-label">Mood &amp; Depression</div>
+            <div class="spec-value">Ayahuasca trials show rapid reductions in treatment-resistant depression — often after a single session</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Addiction</div>
+            <div class="spec-value">Significant reductions in alcohol and substance dependence reported in clinical and naturalistic settings</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Neuroplasticity</div>
+            <div class="spec-value">DMT acts on sigma-1 receptors and promotes neural growth — potential neuroprotective effects under investigation</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Visionary States</div>
+            <div class="spec-value">Consistently produces among the most vivid and structured visionary experiences of any known substance</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Psychological Insight</div>
+            <div class="spec-value">Many users report profound shifts in perspective, emotional processing, and sense of meaning</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Short Duration</div>
+            <div class="spec-value">Primary effects resolve within 20–30 minutes when vaporized — manageable for structured use</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spiritual Significance -->
+      <div class="section">
+        <h2 class="section-title">Spiritual Significance</h2>
+        <p class="section-body">DMT has one of the deepest roots in human spiritual practice of any psychedelic compound. In its plant-combined form as ayahuasca, it has been central to Amazonian shamanic traditions for thousands of years — used for healing, divination, communication with ancestors and spirits, and navigating the invisible world that underlies ordinary reality. These traditions developed sophisticated ceremonial frameworks for its use that are still practiced today, and which have informed much of the modern therapeutic and harm reduction approach to the substance.</p>
+        <p class="section-body" style="margin-top:1rem;">DMT is also found endogenously in the human body — in trace amounts in blood, cerebrospinal fluid, and various tissues — leading researcher Rick Strassman to propose in <em>DMT: The Spirit Molecule</em> that it may play a role in naturally occurring non-ordinary states such as dreams, near-death experiences, and spontaneous mystical episodes. Whether or not this hypothesis holds, it has shaped a widely held intuition that DMT opens a door to something native to human consciousness rather than foreign to it.</p>
+        <p class="section-body" style="margin-top:1rem;">At breakthrough doses, DMT consistently produces encounters with what users describe as intelligent presences, entities, or beings — experiences that are structurally distinct from ordinary hallucination and that carry a quality of reality and significance that many find difficult to dismiss. The anthropologist and psychonaut Terence McKenna described these as "the tykes" or "machine elves" — autonomous, playful, apparently communicative intelligences existing in the DMT space. Regardless of their ultimate nature, these encounters are among the most culturally significant and philosophically challenging reports in the entire psychedelic literature. Across cultures, across centuries, and in clinical trials alike, people return from DMT with the conviction that they have touched something real.</p>
+      </div>
+
+      <!-- Dosing Guide -->
+      <div class="section">
+        <h2 class="section-title">Dosing Guide</h2>
+        <p class="section-body">The dose-response curve for vaporized DMT is steep. The difference between a sub-breakthrough and a full breakthrough experience can be as little as 5–10 mg. Individual sensitivity varies based on body composition, metabolism, prior experience, and technique. Begin conservatively — a single slow inhalation — and wait for full onset before assessing.</p>
+
+        <div class="dose-grid">
+          <div class="dose-cell">
+            <div class="dose-tier">Threshold</div>
+            <div class="dose-amount">2–5 mg</div>
+            <div class="dose-note">Mild warmth, slight visual shimmering, subtle shift in perception</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Light</div>
+            <div class="dose-amount">10–20 mg</div>
+            <div class="dose-note">Noticeable visual enhancement, geometric patterning, mood lift</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Common</div>
+            <div class="dose-amount">20–40 mg</div>
+            <div class="dose-note">Strong visuals, immersive altered state, loss of ordinary grounding</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Strong</div>
+            <div class="dose-amount">40–60 mg</div>
+            <div class="dose-note">Breakthrough territory — complete immersion in visionary space</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Heavy</div>
+            <div class="dose-amount">60+ mg</div>
+            <div class="dose-note">Full breakthrough — entity contact, complete departure from ordinary reality</div>
+          </div>
+        </div>
+
+        <p class="dose-caveat">Doses refer to active compound inhaled, not cartridge draw volume. A single moderate inhalation typically delivers 5–15 mg depending on draw length and battery voltage. Always begin with one slow inhalation and assess before proceeding. The cartridge contains 500 mg total — it is not intended for a single session.</p>
+
+        <div class="duration-strip">
+          <div class="duration-cell">
+            <div class="duration-label">Onset</div>
+            <div class="duration-value">30–60 sec</div>
+          </div>
+          <div class="duration-cell">
+            <div class="duration-label">Peak</div>
+            <div class="duration-value">5–20 min</div>
+          </div>
+          <div class="duration-cell">
+            <div class="duration-label">Total</div>
+            <div class="duration-value">15–30 min</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Set & Setting -->
+      <div class="section">
+        <h2 class="section-title">Set &amp; Setting</h2>
+        <p class="section-body">At breakthrough doses, DMT produces complete immersion in a visionary state — ordinary awareness of the body and environment is suspended entirely. A trusted, sober companion is strongly recommended. Even at lighter doses, the rapid onset and intensity of the experience can be disorienting without proper preparation and a safe physical environment.</p>
+
+        <div class="set-setting-grid">
+          <div class="set-setting-cell">
+            <div class="set-setting-title">Physical Environment</div>
+            <ul class="set-setting-list">
+              <li>Sit or lie down on a safe surface before inhaling</li>
+              <li>Remove any obstructions — the experience may cause involuntary movement</li>
+              <li>Keep the space quiet, comfortable, and free of interruption</li>
+              <li>Dim or soft lighting is preferable to harsh or bright light</li>
+              <li>Music or silence — avoid unpredictable or jarring audio</li>
+            </ul>
+          </div>
+          <div class="set-setting-cell">
+            <div class="set-setting-title">Companion / Sitter</div>
+            <ul class="set-setting-list">
+              <li>A sober companion is strongly recommended at common doses and above</li>
+              <li>Companion should remain present throughout and not interfere</li>
+              <li>Do not attempt to communicate with the user during peak effects</li>
+              <li>Monitor breathing and physical safety throughout</li>
+              <li>Be prepared for emotional release or vocalization upon return</li>
+            </ul>
+          </div>
+          <div class="set-setting-cell">
+            <div class="set-setting-title">Preparation</div>
+            <ul class="set-setting-list">
+              <li>Approach with clear intention — know what you are seeking</li>
+              <li>Fast for at least 2–4 hours before use</li>
+              <li>Avoid alcohol and cannabis in the hours prior</li>
+              <li>Allow adequate time — the afterglow may persist for 1–2 hours</li>
+              <li>Have integration time built into your day</li>
+            </ul>
+          </div>
+          <div class="set-setting-cell">
+            <div class="set-setting-title">Technique</div>
+            <ul class="set-setting-list">
+              <li>Inhale slowly and deeply — hold briefly before exhaling</li>
+              <li>Lie back immediately after your final inhalation</li>
+              <li>Close your eyes and surrender to the onset</li>
+              <li>Do not resist — relaxation significantly shapes the quality of the experience</li>
+              <li>The experience will end on its own — trust the process</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <!-- Ingredients -->
       <div class="section">
         <h2 class="section-title">Ingredients</h2>
@@ -278,12 +558,40 @@
           <div class="warning-header">⚠ Warning — Psychoactive Substance</div>
           <ul class="warning-list">
             <li>For adults 21 years of age or older only. Keep out of reach of children and pets.</li>
-            <li>Do not use if pregnant, breastfeeding, or planning pregnancy. Exposure may result in serious fetal harm or developmental injury.</li>
-            <li>This product produces intense psychoactive effects, including altered perception, impaired judgment, confusion, anxiety, panic, loss of coordination, or psychological distress. Use may result in injury.</li>
-            <li>Do not drive, operate machinery, or engage in hazardous activities while under the influence.</li>
+            <li>Do not use if you are alone or without a trusted, sober companion. A sitter is strongly recommended at common doses and above.</li>
+            <li>Do not use if you have consumed alcohol or other drugs prior to use.</li>
+            <li>Do not use if pregnant or nursing. Exposure may result in serious fetal harm or developmental injury.</li>
+            <li>Do not use if you have a personal or family history of psychotic disorders, schizophrenia, bipolar disorder, or seizures.</li>
+            <li>Do not use if you have cardiovascular disease, hypertension, or heart arrhythmia. This substance produces significant physiological activation at active doses.</li>
+            <li>Impaired judgment and coordination may persist after primary effects subside. Do not drive, swim, or operate machinery until fully recovered.</li>
             <li>The safety profile and long-term effects of this substance have not been fully characterized. Improper use or unsuitable environments may increase the risk of adverse psychological or physical effects.</li>
-            <li>Do not use if you have a personal or family history of psychotic disorders or severe psychiatric conditions.</li>
             <li>Intended for intentional use in a safe and supportive environment.</li>
+          </ul>
+        </div>
+
+        <div class="contraindication-block">
+          <div class="warning-header">⚠ Critical — Drug Interactions</div>
+          <ul class="warning-list">
+            <li class="critical">Do not use with MAOIs (monoamine oxidase inhibitors) without experienced supervision. MAOI combination is the basis of ayahuasca — it dramatically prolongs and intensifies effects (4–8 hours) and carries significant risks including hypertensive crisis and dangerous cardiovascular activation. MAOIs include certain antidepressants and ayahuasca preparations.</li>
+            <li>Do not use with SSRIs, SNRIs, tricyclic antidepressants, tramadol, or lithium without consulting your prescribing physician. These medications may diminish effects or cause adverse interactions.</li>
+            <li>Do not combine with stimulants including amphetamines, cocaine, or MDMA. Cardiovascular risk is increased.</li>
+            <li>Do not combine with cannabis immediately before use. Risk of anxiety, paranoia, and overwhelm is significantly increased.</li>
+            <li>Disclose all current medications and supplements to your companion before use. When in doubt, do not proceed.</li>
+          </ul>
+        </div>
+
+        <div class="contraindication-block" style="margin-top:1rem;">
+          <div class="warning-header">⚠ Known Risks</div>
+          <ul class="warning-list">
+            <li>Overwhelming visual intensity</li>
+            <li>Severe anxiety or panic during onset</li>
+            <li>Temporary loss of ordinary awareness and coordination</li>
+            <li>Confusion or disorientation upon return</li>
+            <li>Intense emotional release</li>
+            <li>Nausea or vomiting</li>
+            <li>Elevated heart rate or blood pressure</li>
+            <li>Challenging or distressing psychological content</li>
+            <li>Psychological fragility in predisposed individuals</li>
           </ul>
         </div>
       </div>
@@ -295,6 +603,7 @@
           <div class="emergency-label">National Poison Control Center</div>
           <div class="emergency-number">1-800-222-1222</div>
           <div class="emergency-sub">In case of emergency or accidental ingestion</div>
+          <div class="emergency-sub" style="margin-top:1rem; color:#c04040; letter-spacing:0.18em;">Call 911 immediately if breathing problems,<br/>loss of consciousness, or medical distress occur.</div>
         </div>
       </div>
 
