@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Managing a Drug Crisis — ÆTHER</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/substance.css" />
+  <style>
+    .product-badge {
+      display: inline-block;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .assessment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .assessment-grid { grid-template-columns: 1fr; }
+    }
+    .assessment-cell {
+      background: var(--card-bg);
+      padding: 1.3rem 1.5rem;
+    }
+    .assessment-type {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .assessment-type.critical { color: #c04040; }
+    .assessment-type.crisis   { color: var(--gold); }
+    .assessment-definition {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.66rem;
+      line-height: 1.85;
+      color: #999990;
+      margin-bottom: 0.9rem;
+    }
+    .assessment-questions {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .assessment-questions li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      line-height: 1.8;
+      color: #888880;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .assessment-questions li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    .warning-block {
+      border: 1px solid #5a2a2a;
+      background: #0e0808;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+    }
+    .warning-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #c04040;
+      margin-bottom: 1rem;
+    }
+    .warning-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .warning-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.7rem;
+      line-height: 1.85;
+      color: #999990;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .warning-list li::before {
+      content: '⚠';
+      position: absolute;
+      left: 0;
+      font-size: 0.55rem;
+      top: 0.18rem;
+      color: #c04040;
+      opacity: 0.7;
+    }
+    .warning-list li.critical {
+      color: #c8a090;
+    }
+    .warning-list li.critical::before {
+      opacity: 1;
+    }
+
+    .contraindication-block {
+      border: 1px solid #7a1a1a;
+      background: #100606;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1rem;
+    }
+    .contraindication-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #d04040;
+      margin-bottom: 1rem;
+    }
+
+    .info-block {
+      border: 1px solid #2a3a1a;
+      background: #0b0e08;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+    }
+    .info-block .info-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .scenario-block {
+      border-left: 3px solid #5a2a2a;
+      background: #0d0909;
+      padding: 1.2rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .scenario-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: #c04040;
+      margin-bottom: 0.75rem;
+    }
+
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      counter-reset: step-counter;
+    }
+    .steps-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.68rem;
+      line-height: 1.85;
+      color: #999990;
+      padding-left: 2rem;
+      position: relative;
+      counter-increment: step-counter;
+    }
+    .steps-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      color: var(--gold);
+      background: #1a1a10;
+      border: 1px solid var(--rule);
+      width: 1.3rem;
+      height: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 0.15rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .bullet-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.68rem;
+      line-height: 1.85;
+      color: #999990;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .bullet-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.5;
+      font-size: 0.55rem;
+      top: 0.2rem;
+    }
+
+    .nvc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .nvc-cell {
+      background: var(--card-bg);
+      padding: 1.1rem 1.25rem;
+    }
+    .nvc-step {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.45rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .nvc-desc {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.65rem;
+      line-height: 1.8;
+      color: #888880;
+    }
+
+    .mantra-block {
+      border: 1px solid #2a3a1a;
+      background: #080e06;
+      padding: 1.75rem 2rem;
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+    .mantra-text {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .mantra-note {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.58rem;
+      line-height: 1.85;
+      color: #666660;
+      font-style: italic;
+    }
+
+    .emergency-block {
+      border: 1px solid #5a2a2a;
+      background: #0d0606;
+      padding: 1.75rem 2rem;
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+    .emergency-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #888880;
+      margin-bottom: 0.5rem;
+    }
+    .emergency-number {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: #dddddd;
+      margin-bottom: 0.35rem;
+    }
+    .emergency-sub {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      line-height: 1.85;
+      color: #666660;
+    }
+
+    .disposal-steps {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      counter-reset: disposal-counter;
+    }
+    .disposal-steps li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.68rem;
+      line-height: 1.85;
+      color: #999990;
+      padding-left: 2rem;
+      position: relative;
+      counter-increment: disposal-counter;
+    }
+    .disposal-steps li::before {
+      content: counter(disposal-counter);
+      position: absolute;
+      left: 0;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      color: var(--gold);
+      background: #1a1a10;
+      border: 1px solid var(--rule);
+      width: 1.3rem;
+      height: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 0.15rem;
+    }
+
+    .amnesty-block {
+      border: 1px solid #2a4a2a;
+      background: #060e06;
+      padding: 1.3rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .amnesty-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: #60b060;
+      margin-bottom: 0.65rem;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .resource-cell {
+      background: var(--card-bg);
+      padding: 1.1rem 1.25rem;
+    }
+    .resource-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .resource-value {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: #cccccc;
+      margin-bottom: 0.2rem;
+    }
+    .resource-desc {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      line-height: 1.7;
+      color: #555550;
+    }
+
+    .product-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .product-link {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--rule);
+      background: var(--card-bg);
+      padding: 0.65rem 1.1rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .product-link:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-btn">← Home</a>
+    <a href="index.html" class="header-logo"><img src="assets/logo-header.png" alt="ÆTHER" /></a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="product-badge">Harm Reduction Resource</div>
+      <h1 class="title">Managing a Drug Crisis</h1>
+      <p class="subtitle">Assessment · Response · Care</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="sections">
+
+      <!-- Introduction -->
+      <div class="section">
+        <h2 class="section-title">Introduction</h2>
+        <p class="section-body">There are a lot of different situations in which someone might need help while using psychoactive drugs. Deciding what to do in any particular instance requires calmness, clear thinking, and the ability to make decisions. This guide is intended to provide a framework for what to do — and equally important, what not to do. Which particular approach should be used is unique to each situation.</p>
+        <p class="section-body" style="margin-top:1rem;">Remember: while not easily done in the most severe situations, the single most important thing any aide can do is to <strong style="color:#cccccc;">stay calm and as clear-headed as possible.</strong> Your ability to think clearly in this moment is the most valuable resource the person in crisis has.</p>
+      </div>
+
+      <!-- Assessment -->
+      <div class="section">
+        <h2 class="section-title">Assessment</h2>
+        <p class="section-body">Helping someone through a crisis should be broken into two stages: <strong style="color:#aaaaaa;">assess</strong>, then <strong style="color:#aaaaaa;">act</strong>. The first step is to determine what type of situation you are in. Misidentifying a physical emergency as a psychological one — or vice versa — can have serious consequences.</p>
+
+        <div class="assessment-grid">
+          <div class="assessment-cell">
+            <div class="assessment-type critical">Critical</div>
+            <div class="assessment-definition">Potential or immediate physical danger to self or others. May require immediate medical attention.</div>
+            <ul class="assessment-questions">
+              <li>Is the person conscious?</li>
+              <li>Is their breathing depressed or accelerated?</li>
+              <li>Is their heart rate normal?</li>
+              <li>Is there any skin discoloration?</li>
+              <li>If unconscious, is there a pain response?</li>
+              <li>Is their body temperature dangerously high?</li>
+              <li>Are they a danger to themselves or others?</li>
+              <li>Could they get in a car, attempt suicide, or hurt themselves?</li>
+            </ul>
+          </div>
+          <div class="assessment-cell">
+            <div class="assessment-type crisis">Crisis</div>
+            <div class="assessment-definition">Psychological, emotional, or spiritual distress. Benign to extreme in presentation — not inherently a medical emergency.</div>
+            <ul class="assessment-questions">
+              <li>Are they having a spiritual, mental, or emotional crisis?</li>
+              <li>Do they seem overly scared, depressed, or angry?</li>
+              <li>Mood swings or irrational behavior?</li>
+              <li>Awake but seemingly unresponsive?</li>
+              <li>Paranoia or negative thought loops?</li>
+              <li>Panic, overwhelm, or disorientation?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-block" style="margin-top:1.25rem;">
+          <div class="info-header">Gathering Information</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Try not to leave the person alone while collecting information. In cases of emotional or spiritual crisis, it is often better to gather information from friends or nearby people rather than from the individual experiencing the crisis.</p>
+          <ul class="bullet-list">
+            <li>What substance(s) did they take, and in what form — oral, smoked, injected?</li>
+            <li>How much did they take, and when?</li>
+            <li>Are they on any medications or supplements?</li>
+            <li>Do they have friends nearby? Do they have a history of similar reactions?</li>
+          </ul>
+          <p class="section-body" style="margin-top:1rem; font-size:0.68rem; line-height:1.85; color:#888880;">With as much of this information in hand as possible, decide the severity and act accordingly. Without a good assessment, critical errors — pumping someone full of benzodiazepines unnecessarily, or failing to call 911 in time — are more likely.</p>
+        </div>
+      </div>
+
+      <!-- Naloxone & Fentanyl -->
+      <div class="section">
+        <h2 class="section-title">Naloxone &amp; Fentanyl — What You Should Know</h2>
+
+        <div class="info-block">
+          <div class="info-header">Carry Naloxone</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Anyone can benefit from having naloxone on hand. Narcan is the more widely recognized brand name for the nasal formulation of this opioid overdose reversal drug. Carrying it at high-risk settings — concerts, parties, bars — equips you to save a life.</p>
+          <ul class="bullet-list">
+            <li>Available at many pharmacies in all states under standing orders — no prescription needed in most states</li>
+            <li>Check <strong style="color:#aaaaaa;">GoodRx</strong> for discounts if you don't have insurance</li>
+            <li><strong style="color:#aaaaaa;">Next Distro</strong> offers free naloxone by mail in discreet packaging if cost or travel are barriers</li>
+            <li>Read the instructions before you might need to use it — the time to learn is now, not in an emergency</li>
+            <li>Be aware: obtaining naloxone from a pharmacy has caused some people to pay higher rates or be denied coverage for life insurance</li>
+          </ul>
+        </div>
+
+        <div class="info-block" style="margin-top:1rem;">
+          <div class="info-header">The Fentanyl Skin Contact Myth</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Contrary to a persistent media and pop culture myth, <strong style="color:#cccccc;">you cannot overdose by touching fentanyl or its analogues.</strong> What look like overdoses in first responders have turned out to be panic attacks — there are no documented cases of secondhand fentanyl overdose through skin contact.</p>
+          <p class="section-body" style="margin-top:0.75rem; font-size:0.68rem; line-height:1.85; color:#888880;">Fentanyl must be specially formulated to pass through skin — as in the prescription patches used for severe pain — and it would take covering your hands completely in those patches for an extended period to produce any effect. <strong style="color:#cccccc;">It is not dangerous to render first aid to opioid users.</strong> Do not hesitate. If there is visible powder on their lips or nose, wipe it off with your sleeve.</p>
+        </div>
+      </div>
+
+      <!-- When to Call -->
+      <div class="section">
+        <h2 class="section-title">When to Seek Professional Help</h2>
+        <div class="warning-block">
+          <div class="warning-header">Situations That Require Professional Help</div>
+          <ul class="warning-list">
+            <li class="critical">If you feel that someone's life is in danger — call 911 immediately.</li>
+            <li>If the situation is out of control and there is no one else present willing to take responsibility for the individual.</li>
+            <li>If the person is unconscious and will not respond to stimulation.</li>
+            <li>If you are unable to maintain their airway — especially if they have vomited.</li>
+            <li>If they are seizing, running a dangerously high fever, or showing signs of cardiac or respiratory distress.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Critical / Life-Threatening -->
+      <div class="section">
+        <h2 class="section-title">Responding to a Critical or Life-Threatening Situation</h2>
+        <p class="section-body">Find someone with medical emergency experience first. Red Cross first aid training is substantially better than no training. The more qualified help you can involve, the better. Below are specific response protocols for common life-threatening scenarios.</p>
+
+        <div class="scenario-block">
+          <div class="scenario-title">If the person is seizing</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Loosen clothing. Cushion and position the body to prevent injury and choking — place something soft under their head and clear hard objects from the area. Do not restrain them or put anything in their mouth. Time the seizure. Seizures are more dangerous the longer they last or the more frequently they occur. A single seizure lasting more than 5 minutes is a medical emergency — call 911.</p>
+        </div>
+
+        <div class="scenario-block">
+          <div class="scenario-title">If the person is overhydrated or dehydrating rapidly</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Evacuating a full bladder of clear urine several times per hour indicates risk of both dehydration and overhydration. Give electrolytes immediately — Pedialyte, Gatorade, coconut water, cow's milk, or milk alternatives. Foods like nuts, bananas, avocados, broccoli, and potatoes also help, but liquids are easier to take in during a drug crisis.</p>
+        </div>
+
+        <div class="scenario-block">
+          <div class="scenario-title">If the person is conscious</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Look for telltale signs of what they took. Severe jaw tension is usually associated with stimulants. Nystagmus (eye-wiggles) is also a sign of stimulant use. Pinpoint (very small) pupils are a sign of opioids. Sweating is generally a good sign at this point. Watch for chills — cover them with a blanket if shivering.</p>
+        </div>
+
+        <div class="scenario-block">
+          <div class="scenario-title">If the person is unconscious</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Try to wake them. Shake gently, speak firmly using their name: "Are you okay? Should I get a doctor?" Firmly rub your knuckles across their sternum. If they will not wake, place them in the <strong style="color:#aaaaaa;">recovery position</strong>: on their side so vomit can flow freely from their mouth. Support their head with their hands to keep the airway tilted downward, and bend the top knee to prevent rolling onto the stomach. Call 911.</p>
+        </div>
+
+        <div class="scenario-block">
+          <div class="scenario-title">If the person is not breathing</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Loosen clothing. Shake gently. Clear the airway — especially if they have vomited. Call 911 immediately. Rescue breathing and CPR can be performed by someone certified to do so. If opioids are involved, administer naloxone and repeat every 2–3 minutes if breathing does not resume.</p>
+        </div>
+
+        <div class="scenario-block">
+          <div class="scenario-title">If their body temperature is high and rising</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Above 101°F: place cold compresses on the groin and armpits, or move them to a cold shower or bath — do not leave them unattended in water. Above 102.2°F: risk of seizure increases significantly. Above 106.7°F: they are entering systemic organ failure territory. If the fever is high and rising fast, call 911 immediately and initiate cooling measures while waiting.</p>
+        </div>
+
+        <div class="scenario-block">
+          <div class="scenario-title">If extremities are painful, numb, cold, discolored, or dark</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Discoloration can indicate extreme vascular constriction — common with stimulants or stimulating psychedelics. Purple or mildly white but still warm: try warming with extra clothing or a blanket; raise temperature slowly. White, blue, or black coloring indicates critically impaired blood flow — go to the emergency room. People with darker skin may appear ashy or pale instead of obviously discolored. Pain in one or both calves may indicate deep vein thrombosis, which can result in fatal clotting. A sudden "thunderclap headache" with visual changes, panic, vomiting, or rapidly elevated blood pressure indicates a hypertensive emergency — call 911.</p>
+        </div>
+
+        <div class="scenario-block" style="border-left-color: #3a5a3a;">
+          <div class="scenario-title" style="color:#60b060;">Calling 911</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">This can be a difficult decision, but at the point of a life-threatening event, the consequences of calling outside help will be far less severe than the consequences of losing a life. Clear a path for emergency personnel. If at a party, get the music turned off and make an announcement to locate friends.</p>
+
+          <div class="amnesty-block">
+            <div class="amnesty-header">Michigan Medical Amnesty Law</div>
+            <p class="section-body" style="margin-top:0; font-size:0.66rem; line-height:1.85; color:#70a070;">In Michigan, the medical amnesty law protects people — including those who are underage — from prosecution when calling for medical assistance for a drug overdose. Call as soon as you think you need to. Seconds count for saving a life and preserving brain function.</p>
+            <p class="section-body" style="margin-top:0.75rem; font-size:0.62rem; line-height:1.85; color:#555550;">Note: Police may still arrest and charge for drug trafficking if quantities at the scene exceed defined personal use limits, or if a person present has an outstanding warrant.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crisis Situations -->
+      <div class="section">
+        <h2 class="section-title">Crisis Situations — Emotional, Mental, Spiritual</h2>
+        <p class="section-body">Crisis situations can manifest in countless ways — from belligerent outbursts to complete withdrawal from external stimuli to debilitating paranoia. How to respond depends greatly on what the person is experiencing.</p>
+        <p class="section-body" style="margin-top:1rem;">In most situations, you are not trying to force any particular outcome. The point is not to "talk them down" — this approach rarely works and often makes things worse. Make sure they know the outside world is okay and that you are with them. Make sure they don't hurt themselves or others. Watch for their reaction — if what you're doing seems to make things worse, move on to something else. Your own visible anxiety can increase their paranoia; try to keep the mood light and don't treat them like a wild animal.</p>
+
+        <div class="mantra-block">
+          <div class="mantra-text">Breathe. Relax. Let Go.</div>
+          <div class="mantra-note">Developed in the 1960s and 1970s for psychedelic therapy. Much of the emotional distress in a drug crisis comes from fighting or resisting uncomfortable internal processes — not the processes themselves. The main role of a crisis aide is to help create a space where the person can feel safe enough to stop fighting.</div>
+        </div>
+
+        <p class="section-body" style="margin-top:1.25rem;">Fear is often the dominant force precipitating a crisis. Guides suggest the most useful thing you can do is help create a space where the person feels safe enough to relax into what is happening, rather than resisting it. Reassure them that you are watching out for their physical body, that everything in the outside world is okay, and that the experience will end.</p>
+      </div>
+
+      <!-- Nonviolent Communication -->
+      <div class="section">
+        <h2 class="section-title">Nonviolent Communication</h2>
+        <p class="section-body">If someone is acting bizarrely, nonviolent communication (NVC) can help de-escalate a situation — or at minimum, keep you from making it worse. It has four components:</p>
+
+        <div class="nvc-grid">
+          <div class="nvc-cell">
+            <div class="nvc-step">Observe</div>
+            <div class="nvc-desc">Name the concrete action you observe — without judgment or interpretation.</div>
+          </div>
+          <div class="nvc-cell">
+            <div class="nvc-step">Feel</div>
+            <div class="nvc-desc">Gently tell the person how you feel about what you observe.</div>
+          </div>
+          <div class="nvc-cell">
+            <div class="nvc-step">Need</div>
+            <div class="nvc-desc">Connect this to the needs and desires you — and those around you — have.</div>
+          </div>
+          <div class="nvc-cell">
+            <div class="nvc-step">Request</div>
+            <div class="nvc-desc">Make a specific, concrete, actionable request that would address the situation.</div>
+          </div>
+        </div>
+
+        <div class="info-block" style="margin-top:1.25rem;">
+          <div class="info-header">Example</div>
+          <p class="section-body" style="margin-top:0; font-size:0.7rem; line-height:1.9; color:#888880; font-style:italic;">"Hi John, I know you're having a great time right now and are probably feeling hot, but taking your clothes off has made everyone uncomfortable. I care about you and don't want you to overheat, but I want everyone to feel comfortable and safe too. Would you please put your clothes back on while I go get some ice packs to help you cool down?"</p>
+        </div>
+      </div>
+
+      <!-- Ways to Help -->
+      <div class="section">
+        <h2 class="section-title">Ways to Help</h2>
+        <p class="section-body">These are practical things that work. Adapt to the person and the situation — not all of these apply at all times.</p>
+
+        <div class="info-block">
+          <div class="info-header">Presence &amp; Orientation</div>
+          <ul class="bullet-list">
+            <li>Try to get a sense of "how far out" they are — do they know where they are, what time it is, their name, that they took a substance?</li>
+            <li>Reassure them in a calm, matter-of-fact tone that you are with them and watching out for them.</li>
+            <li>Remind them that this is a substance-induced state of mind that will end.</li>
+            <li>Use their name. Introduce yourself and say how you came to be there.</li>
+            <li>Let them know that spiritual and emotional crises are a normal part of the human psychological process.</li>
+            <li>Be as calm as possible, even if you are feeling anxious. Use a normal tone of voice.</li>
+            <li>Make eye contact if they don't seem paranoid or fearful of you.</li>
+          </ul>
+        </div>
+
+        <div class="info-block" style="margin-top:1rem;">
+          <div class="info-header">Environment &amp; Comfort</div>
+          <ul class="bullet-list">
+            <li>Consider moving them to a quieter space if the setting seems to aggravate their state.</li>
+            <li>Reduce sensory input: a blindfold and noise-canceling headphones can be transformative for someone overwhelmed.</li>
+            <li>A heavy, soft blanket wrapped around them is one of the most comforting things reported by people in acute crises.</li>
+            <li>Taking off shoes and getting bare feet on solid ground is one of the most centering and grounding techniques available.</li>
+            <li>Offer water or easy food like bread, crackers, nuts, or fruit. Ask first — don't push it.</li>
+            <li>Look at beautiful things. Music, animals, and simple objects can all help.</li>
+            <li>Walk with them, if they are willing and it is safe.</li>
+          </ul>
+        </div>
+
+        <div class="info-block" style="margin-top:1rem;">
+          <div class="info-header">Breath &amp; Body</div>
+          <ul class="bullet-list">
+            <li>Breathe with them — slow, deep, full breaths. If they are connected enough to follow, guide them.</li>
+            <li>Placing a hand on their belly and saying "breathe from down here" can help with grounding.</li>
+            <li>Remind them to breathe and relax. Say it simply, without urgency.</li>
+            <li>Gently suggest closing their eyes and turning attention inward — this can change the course of the experience.</li>
+            <li>Touch can be very powerful, but it can also be violating. Don't touch without consent. If they seem to need a hug, ask. If they touch you first, reciprocate gently. Avoid any sexual contact.</li>
+            <li>Holding hands is often a non-threatening way to let someone know you are present.</li>
+          </ul>
+        </div>
+
+        <div class="info-block" style="margin-top:1rem;">
+          <div class="info-header">Engagement</div>
+          <ul class="bullet-list">
+            <li>Sit and talk. Pass the time. Don't expect a normal conversation.</li>
+            <li>If it seems appropriate, ask very simple questions about their experience: "What color is it?" — "Are you sad?" The answers may be metaphoric — that's okay.</li>
+            <li>Sing — anything, but children's songs work surprisingly well.</li>
+            <li>Recall good memories together — the beach, children, animals.</li>
+            <li>Dance, or just move with them.</li>
+            <li>Tell them the whole world may be falling apart for them, but everything is okay with you — framed as a reminder, not a taunt.</li>
+            <li>Intensity comes in cycles. Don't force it to move faster than it moves on its own.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pitfalls -->
+      <div class="section">
+        <h2 class="section-title">Pitfalls to Avoid</h2>
+        <div class="warning-block">
+          <div class="warning-header">Common Mistakes</div>
+          <ul class="warning-list">
+            <li>Don't try too hard to get them to "come down." This almost always makes things worse.</li>
+            <li>Don't confuse them by repeatedly asking questions they can't answer.</li>
+            <li>Don't make them feel more isolated by visibly acting worried and nervous around them.</li>
+            <li>Avoid complex physical activities — zippering a jacket, fixing a stereo, lighting the stove — especially if they are deeply altered.</li>
+            <li>Respect their needs and stated boundaries. Don't touch them if they don't want to be touched. Give space if they want space.</li>
+            <li>Don't get pulled into paranoid frameworks — gently acknowledge their experience without reinforcing fear-based narratives.</li>
+            <li>Don't overcrowd them. Ask unnecessary onlookers to give space.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Drug Waste -->
+      <div class="section">
+        <h2 class="section-title">Managing Drug Waste</h2>
+        <p class="section-body">In the aftermath of a drug crisis, there is often drug waste to manage — whether cleaning up after someone else or deciding to dispose of your own supply. Proper disposal protects children, pets, and waterways.</p>
+        <p class="section-body" style="margin-top:1rem;"><strong style="color:#aaaaaa;">Avoid flushing drugs down the sink or toilet.</strong> This contaminates waterways and affects the lifeforms that depend on them — including us. The DEA-preferred method is a community drug take-back event or authorized disposal station. If neither is available, follow household disposal guidelines:</p>
+
+        <ol class="disposal-steps">
+          <li>Remove drugs from their original containers.</li>
+          <li>Mix drugs with an undesirable substance — cat litter or used coffee grounds.</li>
+          <li>Place the mixture into a disposable container with a secure lid, such as an empty margarine tub or a sealable bag.</li>
+          <li>Cover or scratch off any personal information (Rx number, name) on the empty containers.</li>
+          <li>Place the sealed container with the drug mixture and the emptied containers in the trash.</li>
+        </ol>
+
+        <p class="section-body" style="margin-top:1.25rem;">Drug paraphernalia presents unique challenges. Some items can be cleaned and repurposed — a bong can become a flower vase. Items like unused blotter paper can be recycled. Used syringes must be treated as biohazard material and disposed of through a syringe services program. If drug residue cannot be removed, carefully break the item into smaller pieces and follow the household disposal guidelines above.</p>
+      </div>
+
+      <!-- Syringes -->
+      <div class="section">
+        <h2 class="section-title">What to Do If You Find a Syringe</h2>
+        <div class="warning-block" style="margin-bottom:1.25rem;">
+          <div class="warning-header">Before You Act — Do Not:</div>
+          <ul class="warning-list">
+            <li>Do not force needles or sharps into a container.</li>
+            <li>Do not put your fingers inside any container.</li>
+            <li>Do not bend, break, recap, or remove the needle.</li>
+            <li>Do not leave the needle unattended. If you must leave to get supplies, ask someone to watch it to prevent accidental needle stick.</li>
+          </ul>
+        </div>
+
+        <p class="section-body">Stay calm. Make sure you can clearly see and move around the needle. Bring your sharps container to the needle — not the other way around. A sturdy laundry detergent bottle works as a sharps container in an emergency; tape the lid firmly after use. Do not use coffee cans — they are not puncture resistant.</p>
+
+        <ol class="disposal-steps" style="margin-top:1.25rem;">
+          <li>Put on gloves.</li>
+          <li>Place the container on the ground beside the syringe.</li>
+          <li>Pick up the syringe by the middle of the barrel using tongs or gloved hands — whichever gives the most control.</li>
+          <li>Place the syringe into the sharps container, sharp end first.</li>
+          <li>Secure the lid of the sharps container.</li>
+          <li>Remove gloves and wash your hands.</li>
+        </ol>
+
+        <p class="section-body" style="margin-top:1.25rem;">Used syringes can be surrendered to your nearest syringe services program. A map of programs is available at <strong style="color:#aaaaaa;">nasen.org/map</strong></p>
+      </div>
+
+      <!-- Needle Stick -->
+      <div class="section">
+        <h2 class="section-title">What to Do If You Receive a Needle Stick Injury</h2>
+        <p class="section-body">If you pierce or puncture your skin with a used needle, follow this first aid protocol immediately and seek urgent medical attention afterward.</p>
+
+        <ol class="disposal-steps">
+          <li>Encourage the wound to bleed — hold it under running water.</li>
+          <li>Wash the wound with running water and plenty of soap.</li>
+          <li>Do not scrub the wound while washing.</li>
+          <li>Do not suck the wound.</li>
+          <li>Dry the wound and cover it with a waterproof bandage or dressing.</li>
+          <li>Go to the nearest emergency department. You do not need to bring the needle and do not need to know who used it.</li>
+        </ol>
+
+        <div class="info-block" style="margin-top:1.25rem;">
+          <div class="info-header">Why This Matters</div>
+          <p class="section-body" style="margin-top:0; font-size:0.68rem; line-height:1.85; color:#888880;">Needle stick injuries carry a small but real risk of bloodborne pathogen transmission, including HIV and hepatitis C. Post-exposure prophylaxis (PEP) for HIV must be started within 72 hours to be effective — the sooner, the better. Emergency departments are equipped to assess your risk and begin treatment. Do not wait.</p>
+        </div>
+      </div>
+
+      <!-- Integration -->
+      <div class="section">
+        <h2 class="section-title">Integration &amp; Recovery</h2>
+        <p class="section-body">While dealing with a drug crisis can be unnerving for everyone involved, most events are manageable with careful assessment and a calm, decisive response.</p>
+        <p class="section-body" style="margin-top:1rem;">For the person who experienced the episode: integrating the experience once the acute phase has passed is just as important as navigating the crisis itself. Difficult experiences — even frightening ones — can carry meaningful insight when approached with openness after the fact.</p>
+
+        <div class="info-block" style="margin-top:1.25rem;">
+          <div class="info-header">Integration Practices</div>
+          <ul class="bullet-list">
+            <li>Meditation and mindfulness practice</li>
+            <li>Therapy with a provider experienced in psychedelic integration</li>
+            <li>Honest conversation with trusted friends or a spiritual advisor</li>
+            <li>Expressive arts — writing, drawing, music</li>
+            <li>Integration workbooks, available through major booksellers</li>
+            <li>Peer support groups and harm reduction communities</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Emergency Resources -->
+      <div class="section">
+        <h2 class="section-title">Emergency Resources</h2>
+
+        <div class="resources-grid">
+          <div class="resource-cell">
+            <div class="resource-label">Emergency</div>
+            <div class="resource-value">911</div>
+            <div class="resource-desc">Life-threatening emergency, seizure, unconsciousness, respiratory distress</div>
+          </div>
+          <div class="resource-cell">
+            <div class="resource-label">Poison Control</div>
+            <div class="resource-value">1-800-222-1222</div>
+            <div class="resource-desc">National Poison Control Center — 24/7 guidance on substance exposure</div>
+          </div>
+          <div class="resource-cell">
+            <div class="resource-label">Crisis Line</div>
+            <div class="resource-value">988</div>
+            <div class="resource-desc">Suicide &amp; Crisis Lifeline — call or text, 24/7</div>
+          </div>
+          <div class="resource-cell">
+            <div class="resource-label">SAMHSA Helpline</div>
+            <div class="resource-value">1-800-662-4357</div>
+            <div class="resource-desc">Substance Abuse and Mental Health Services Administration — free, confidential, 24/7</div>
+          </div>
+          <div class="resource-cell">
+            <div class="resource-label">Zendo Project</div>
+            <div class="resource-value">zendoproject.org</div>
+            <div class="resource-desc">Psychedelic-specific crisis support and sitter training</div>
+          </div>
+          <div class="resource-cell">
+            <div class="resource-label">Fireside Project</div>
+            <div class="resource-value">1-62-FIRESIDE</div>
+            <div class="resource-desc">Psychedelic peer support line — call or text during or after a difficult experience</div>
+          </div>
+        </div>
+
+        <div class="emergency-block" style="margin-top:1.25rem;">
+          <div class="emergency-label">If someone is not breathing, unconscious, or in physical danger</div>
+          <div class="emergency-number">Call 911</div>
+          <div class="emergency-sub" style="color:#c04040; letter-spacing:0.15em;">Do not wait. Do not deliberate. Call now.</div>
+          <div class="emergency-sub" style="margin-top:0.75rem;">Michigan medical amnesty law protects you when calling for help during a drug overdose.</div>
+        </div>
+      </div>
+
+      <!-- Links to Product Safety Pages -->
+      <div class="section">
+        <h2 class="section-title">Product Use &amp; Safety</h2>
+        <p class="section-body">Detailed safety information, dosing guides, drug interactions, and contraindications for each substance ÆTHER carries.</p>
+        <div class="product-links">
+          <a class="product-link" href="psilocybin-product.html">Psilocybin →</a>
+          <a class="product-link" href="dmt-product.html">DMT →</a>
+          <a class="product-link" href="5meo-dmt-product.html">5-MeO-DMT →</a>
+          <a class="product-link" href="mescaline-product.html">Mescaline →</a>
+          <a class="product-link" href="sr17018-product.html">SR 17018 →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="disclaimer">This page is for harm reduction and educational purposes only. Nothing here constitutes legal, medical, or therapeutic advice. In a life-threatening emergency, call 911 immediately. Know your local laws.</p>
+  </main>
+
+  <footer>
+    <img class="footer-logo" src="assets/logo-header.png" alt="ÆTHER" /><span>Ann Arbor</span>
+  </footer>
+</body>
+</html>
