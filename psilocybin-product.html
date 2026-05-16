@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psilocybin Capsules — Use &amp; Safety — ÆTHER</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/substance.css" />
+  <style>
+    .product-badge {
+      display: inline-block;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .spec-cell { background: var(--card-bg); padding: 1.1rem 1.25rem; }
+    .spec-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .spec-value {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.72rem;
+      line-height: 1.7;
+      color: #aaaaaa;
+    }
+    .dose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .dose-cell { background: var(--card-bg); padding: 1.1rem 1.25rem; text-align: center; }
+    .dose-tier {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.55rem;
+    }
+    .dose-amount {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      color: #cccccc;
+      margin-bottom: 0.3rem;
+    }
+    .dose-note {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      line-height: 1.7;
+      color: #666660;
+    }
+    .dose-caveat {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      line-height: 1.85;
+      color: #666660;
+      margin-top: 0.9rem;
+      font-style: italic;
+    }
+    .duration-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .duration-cell { background: var(--card-bg); padding: 0.9rem 1.25rem; text-align: center; }
+    .duration-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .duration-value {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.78rem;
+      color: #aaaaaa;
+    }
+    .warning-block {
+      border: 1px solid #5a2a2a;
+      background: #0e0808;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+    }
+    .warning-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #c04040;
+      margin-bottom: 1rem;
+    }
+    .warning-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .warning-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.7rem;
+      line-height: 1.85;
+      color: #999990;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .warning-list li::before {
+      content: '⚠';
+      position: absolute;
+      left: 0;
+      font-size: 0.55rem;
+      top: 0.18rem;
+      color: #c04040;
+      opacity: 0.7;
+    }
+    .warning-list li.critical { color: #c8a090; }
+    .warning-list li.critical::before { opacity: 1; }
+    .contraindication-block {
+      border: 1px solid #7a1a1a;
+      background: #100606;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1rem;
+    }
+    .contraindication-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #d04040;
+      margin-bottom: 1rem;
+    }
+    .storage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .storage-cell { background: var(--card-bg); padding: 1.1rem 1.25rem; }
+    .storage-cell-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .storage-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .storage-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.66rem;
+      line-height: 1.75;
+      color: #888880;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+    .storage-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.45;
+      font-size: 0.5rem;
+      top: 0.18rem;
+    }
+    .emergency-block {
+      border: 1px solid var(--gold);
+      background: var(--card-bg);
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+    .emergency-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .emergency-number {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+    }
+    .emergency-sub {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .ingredients-note {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+      color: #555550;
+      margin-top: 0.85rem;
+      font-style: italic;
+    }
+    .mfr-block {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.62rem;
+      line-height: 2;
+      letter-spacing: 0.08em;
+      color: #555550;
+      margin-top: 1rem;
+    }
+    .mfr-block a { color: var(--gold); text-decoration: none; }
+    .mfr-block a:hover { color: var(--gold-light); }
+    .set-setting-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .set-setting-cell { background: var(--card-bg); padding: 1.1rem 1.25rem; }
+    .set-setting-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .set-setting-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .set-setting-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.66rem;
+      line-height: 1.75;
+      color: #888880;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+    .set-setting-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.45;
+      font-size: 0.5rem;
+      top: 0.18rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="psilocybin.html" class="back-btn">← Psilocybin</a>
+    <a href="index.html" class="header-logo"><img src="assets/logo-header.png" alt="ÆTHER" /></a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="product-badge">Product Use &amp; Safety</div>
+      <h1 class="title">Psilocybin Capsules</h1>
+      <p class="subtitle">Psilocybe cubensis · Dried Mushroom Capsules</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="sections">
+
+      <!-- Product Overview -->
+      <div class="section">
+        <h2 class="section-title">Product Overview</h2>
+        <p class="section-body">ÆTHER Psilocybin Capsules contain precisely measured quantities of dried Psilocybe cubensis in pharmaceutical-grade vegetable capsules. Intended for intentional use in a safe and supportive environment by adults 21 years of age or older only. Psilocybin is a long-duration psychedelic with a well-established safety profile in clinical settings. Approach thoughtfully — set and setting are among the most significant determinants of experience quality.</p>
+
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <div class="spec-label">Contents</div>
+            <div class="spec-value">Dried Psilocybe cubensis<br/>Vegetable capsule (HPMC)</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Route</div>
+            <div class="spec-value">Oral — swallow whole<br/>Do not crush or open capsule</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Onset</div>
+            <div class="spec-value">20–60 minutes after ingestion</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Peak Effects</div>
+            <div class="spec-value">3–5 hours</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Total Duration</div>
+            <div class="spec-value">4–6 hours</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Afterglow</div>
+            <div class="spec-value">Several hours — allow a full day</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Potential Benefits -->
+      <div class="section">
+        <h2 class="section-title">Potential Benefits</h2>
+        <p class="section-body">Psilocybin is among the most clinically researched psychedelics and has received FDA Breakthrough Therapy designation for both treatment-resistant depression (2018) and major depressive disorder (2019). A landmark 2006 study by Roland Griffiths at Johns Hopkins found that a single session produced mystical experiences participants rated among the most meaningful of their lives, with lasting improvements in mood and wellbeing. More recent trials report 70–80% response rates for treatment-resistant depression — from a single session — with effects persisting for months. Efficacy has also been demonstrated for tobacco addiction, alcohol use disorder, end-of-life anxiety, and OCD.</p>
+
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <div class="spec-label">Depression</div>
+            <div class="spec-value">70–80% response rates in treatment-resistant depression — often from a single session</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Addiction</div>
+            <div class="spec-value">80% tobacco abstinence at 6 months in Johns Hopkins trial; significant results for alcohol use disorder</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">End-of-Life Anxiety</div>
+            <div class="spec-value">Dramatic reductions in existential anxiety and depression in terminal cancer patients</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Mystical Experience</div>
+            <div class="spec-value">Reliably produces experiences rated among the most meaningful and spiritually significant of a person's life</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Neuroplasticity</div>
+            <div class="spec-value">Promotes new neural connections via BDNF upregulation — potential for long-term cognitive flexibility</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Lasting Change</div>
+            <div class="spec-value">Increases in openness, creativity, and life satisfaction shown to persist for months and years after a single experience</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spiritual Significance -->
+      <div class="section">
+        <h2 class="section-title">Spiritual Significance</h2>
+        <p class="section-body">Psilocybin mushrooms carry one of the deepest ceremonial histories of any psychoactive substance. Stone mushroom effigies from Mesoamerican cultures date to 1000 BCE. The Mazatec people of Oaxaca, Mexico — whose curandera María Sabina became the most celebrated practitioner of mushroom ceremony in the modern era — preserved an unbroken healing tradition in which the mushrooms, called <em>teonanácatl</em> ("flesh of the gods"), were understood as living medicine and divine intermediaries. The ceremony as practiced by Sabina and her lineage was not ritual in the modern sense — it was direct communion with a living intelligence that dwelt within the mushrooms and spoke through the healer for the benefit of those in need.</p>
+        <p class="section-body" style="margin-top:1rem;">R. Gordon Wasson's 1957 LIFE magazine account of participating in one of Sabina's ceremonies — the first such published account by a Westerner — ignited global interest and set off the first wave of psychedelic research. The Good Friday Experiment of 1962, in which divinity students given psilocybin reported full mystical experiences indistinguishable from the peak experiences of history's great mystics, and a 25-year follow-up that confirmed the experiences remained among the most meaningful of their lives, established psilocybin as a reliable entheogen — a substance that genuinely produces what mystics describe as sacred encounter.</p>
+        <p class="section-body" style="margin-top:1rem;">Neuroscientist Robin Carhart-Harris's research has given this a mechanistic dimension: psilocybin dramatically suppresses the Default Mode Network — the brain's system of self-referential processing, the neural substrate of the ego. Its silencing corresponds precisely with the dissolution of the ordinary sense of self that mystics have described, across all traditions, as the gateway to genuine spiritual experience. Whether understood through the lens of neuroscience, anthropology, or direct practice, psilocybin has earned its place at the center of a global conversation about the nature of consciousness, healing, and what it means to be fully human.</p>
+      </div>
+
+      <!-- Dosing Guide -->
+      <div class="section">
+        <h2 class="section-title">Dosing Guide</h2>
+        <p class="section-body">Doses are given in grams of dried Psilocybe cubensis. Potency varies between batches and individual specimens — always begin conservatively, especially with a new supply. The dose-response curve is meaningful: the difference between a common and a strong experience can be significant, and there is no benefit to exceeding your intention. Allow at least 90 minutes after ingestion before concluding the experience has not onset.</p>
+
+        <div class="dose-grid">
+          <div class="dose-cell">
+            <div class="dose-tier">Microdose</div>
+            <div class="dose-amount">0.05–0.3 g</div>
+            <div class="dose-note">Sub-perceptual — mood lift, focus, creativity. No full psychedelic effect</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Threshold</div>
+            <div class="dose-amount">0.3–1 g</div>
+            <div class="dose-note">Mild sensory shifts, body warmth, enhanced appreciation</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Light</div>
+            <div class="dose-amount">1–2 g</div>
+            <div class="dose-note">Noticeable visuals, mood amplification, introspection</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Common</div>
+            <div class="dose-amount">2–3.5 g</div>
+            <div class="dose-note">Strong visuals, deep introspection, altered sense of self</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Strong</div>
+            <div class="dose-amount">3.5–5 g</div>
+            <div class="dose-note">Potential ego dissolution — profound, challenging, transformative</div>
+          </div>
+        </div>
+
+        <p class="dose-caveat">Potency varies significantly between batches and strains. Starting low on a new supply is always prudent. Never redose before full onset — psilocybin's delayed onset (up to 90 minutes) has led many people to take additional doses prematurely, resulting in an overwhelming experience.</p>
+
+        <div class="duration-strip">
+          <div class="duration-cell">
+            <div class="duration-label">Onset</div>
+            <div class="duration-value">20–60 min</div>
+          </div>
+          <div class="duration-cell">
+            <div class="duration-label">Peak</div>
+            <div class="duration-value">3–5 hrs</div>
+          </div>
+          <div class="duration-cell">
+            <div class="duration-label">Total</div>
+            <div class="duration-value">4–6 hrs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Set & Setting -->
+      <div class="section">
+        <h2 class="section-title">Set &amp; Setting</h2>
+        <p class="section-body">Set (mindset) and setting (environment) are the primary determinants of psilocybin experience quality — more so than dose. A comfortable, familiar, and safe environment; a clear intention; and a trusted guide or companion are the foundations of a positive experience. Difficult experiences are more common in chaotic, unfamiliar, or socially demanding environments.</p>
+
+        <div class="set-setting-grid">
+          <div class="set-setting-cell">
+            <div class="set-setting-title">Environment</div>
+            <ul class="set-setting-list">
+              <li>Choose a familiar, comfortable, and private space</li>
+              <li>Nature settings are particularly rewarding at light to moderate doses</li>
+              <li>Have a comfortable place to lie down</li>
+              <li>Soft lighting — avoid harsh or fluorescent light</li>
+              <li>Prepare music in advance — music profoundly shapes the experience</li>
+            </ul>
+          </div>
+          <div class="set-setting-cell">
+            <div class="set-setting-title">Guide / Sitter</div>
+            <ul class="set-setting-list">
+              <li>A trusted, sober guide is strongly recommended at 2 g and above</li>
+              <li>Guide should be calm, grounding, and non-directive</li>
+              <li>Do not leave the person alone during peak effects</li>
+              <li>Challenging emotions are normal — presence and reassurance are the best response</li>
+              <li>Avoid stimulating conversation during peak — be a calm anchor</li>
+            </ul>
+          </div>
+          <div class="set-setting-cell">
+            <div class="set-setting-title">Preparation</div>
+            <ul class="set-setting-list">
+              <li>Fast for 4–6 hours before use to reduce nausea and speed onset</li>
+              <li>Approach with clear intention — what are you hoping to understand or heal?</li>
+              <li>Clear your schedule — allow the full day without obligations</li>
+              <li>Avoid alcohol for 24 hours prior</li>
+              <li>Arrange integration time — journaling, rest, or a follow-up conversation</li>
+            </ul>
+          </div>
+          <div class="set-setting-cell">
+            <div class="set-setting-title">During the Experience</div>
+            <ul class="set-setting-list">
+              <li>Surrender to the experience rather than resisting it</li>
+              <li>Difficult content is rarely dangerous — it is often the most valuable part</li>
+              <li>Lie down, close your eyes, and let the imagery and emotions flow</li>
+              <li>Breathe slowly and deeply if anxiety arises</li>
+              <li>The experience will end on its own — trust the process</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingredients -->
+      <div class="section">
+        <h2 class="section-title">Ingredients</h2>
+        <p class="section-body">Dried Psilocybe cubensis<br/>Hydroxypropyl methylcellulose capsule (HPMC — vegan)</p>
+        <p class="ingredients-note">Does not contain artificial additives, fillers, preservatives, or adulterants.</p>
+      </div>
+
+      <!-- Storage & Handling -->
+      <div class="section">
+        <h2 class="section-title">Storage &amp; Handling</h2>
+        <div class="storage-grid">
+          <div class="storage-cell">
+            <div class="storage-cell-title">Storage</div>
+            <ul class="storage-list">
+              <li>Store in a cool, dark, dry place</li>
+              <li>Keep between 15–20°C (59–68°F)</li>
+              <li>Moisture degrades potency — keep tightly sealed</li>
+              <li>Refrigeration or freezing extends shelf life</li>
+            </ul>
+          </div>
+          <div class="storage-cell">
+            <div class="storage-cell-title">Handling</div>
+            <ul class="storage-list">
+              <li>Keep out of reach of children and animals</li>
+              <li>Do not expose to heat or direct sunlight</li>
+              <li>Do not crush or open capsules</li>
+              <li>Potency degrades over time — use within 12 months</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warnings -->
+      <div class="section">
+        <h2 class="section-title">Warnings</h2>
+        <div class="warning-block">
+          <div class="warning-header">⚠ Warning — Psychoactive Substance</div>
+          <ul class="warning-list">
+            <li>For adults 21 years of age or older only. Keep out of reach of children and animals.</li>
+            <li>Do not use if you are alone without a trusted, sober guide or companion, especially at doses of 2 g or above.</li>
+            <li>Do not use if you have consumed alcohol or other drugs prior to use.</li>
+            <li>Do not use if pregnant or nursing.</li>
+            <li>Do not use if you have a personal or family history of psychosis, schizophrenia, or bipolar disorder. Psilocybin can precipitate or exacerbate psychotic episodes in predisposed individuals.</li>
+            <li>Do not drive, swim, or operate machinery until fully returned to baseline — a minimum of 6–8 hours after ingestion.</li>
+            <li>The experience may produce intense emotional content, challenging thoughts, or overwhelming perceptual changes. This is not an emergency — it is part of the therapeutic process. Surrender and breathe.</li>
+          </ul>
+        </div>
+
+        <div class="contraindication-block">
+          <div class="warning-header">⚠ Critical — Drug Interactions</div>
+          <ul class="warning-list">
+            <li class="critical">Do not combine with lithium. The combination is associated with a significantly elevated risk of seizures and has been reported in fatalities. This is an absolute contraindication.</li>
+            <li>Do not combine with MAOIs. The combination dramatically intensifies and prolongs the experience and may cause adverse cardiovascular or psychological effects.</li>
+            <li>SSRIs and SNRIs may blunt or eliminate psilocybin's effects. Consult your prescribing physician before use — do not abruptly discontinue prescribed medications.</li>
+            <li>Do not combine with stimulants, including amphetamines or cocaine. Cardiovascular stress and psychological overwhelm are increased.</li>
+            <li>Cannabis significantly intensifies the experience and can trigger anxiety or dysphoria — avoid before and during.</li>
+          </ul>
+        </div>
+
+        <div class="contraindication-block" style="margin-top:1rem;">
+          <div class="warning-header">⚠ Known Risks</div>
+          <ul class="warning-list">
+            <li>Nausea and vomiting during onset (especially on a full stomach)</li>
+            <li>Overwhelming visual or emotional intensity</li>
+            <li>Anxiety or panic, particularly during onset</li>
+            <li>Thought loops or obsessive ideation</li>
+            <li>Challenging or distressing psychological content</li>
+            <li>Temporary confusion or disorientation</li>
+            <li>Elevated heart rate and blood pressure</li>
+            <li>Psychological fragility in predisposed individuals</li>
+            <li>Rare: Hallucinogen Persisting Perception Disorder (HPPD)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Emergency -->
+      <div class="section">
+        <h2 class="section-title">Emergency Contact</h2>
+        <div class="emergency-block">
+          <div class="emergency-label">National Poison Control Center</div>
+          <div class="emergency-number">1-800-222-1222</div>
+          <div class="emergency-sub">In case of emergency or accidental ingestion</div>
+          <div class="emergency-sub" style="margin-top:1rem; color:#c04040; letter-spacing:0.18em;">Call 911 immediately if seizures, loss of consciousness,<br/>or medical distress occur.</div>
+        </div>
+      </div>
+
+      <!-- Legal Disclaimer -->
+      <div class="section">
+        <h2 class="section-title">Legal Disclaimer</h2>
+        <p class="section-body">Purchaser assumes all responsibility for legal compliance and proper use. Manufacturer is not responsible for misuse, improper storage, use inconsistent with provided safety guidance, adverse reaction whether foreseeable or unforeseeable, allergic reaction, or unauthorized use.</p>
+        <p class="section-body" style="margin-top:1rem;">Not evaluated by the U.S. Food &amp; Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+      </div>
+
+      <!-- Manufacturer -->
+      <div class="section">
+        <h2 class="section-title">Manufactured By</h2>
+        <div class="mfr-block">
+          ÆTHER<br/>
+          Washtenaw County, MI<br/>
+          <a href="https://www.aethera2.com/">aethera2.com</a><br/>
+          @AetherA2
+        </div>
+      </div>
+
+    </div>
+
+    <p class="disclaimer">This page is for product safety and informational purposes only. Nothing here constitutes legal, medical, or therapeutic advice. Purchaser assumes all responsibility for legal compliance. Know your local laws.</p>
+  </main>
+
+  <footer>
+    <img class="footer-logo" src="assets/logo-header.png" alt="ÆTHER" /><span>Ann Arbor</span>
+  </footer>
+</body>
+</html>

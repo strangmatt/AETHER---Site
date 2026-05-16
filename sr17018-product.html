@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SR 17018 — Use &amp; Safety — ÆTHER</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/substance.css" />
+  <style>
+    .product-badge {
+      display: inline-block;
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .spec-cell { background: var(--card-bg); padding: 1.1rem 1.25rem; }
+    .spec-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .spec-value {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.72rem;
+      line-height: 1.7;
+      color: #aaaaaa;
+    }
+    .dose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .dose-cell { background: var(--card-bg); padding: 1.1rem 1.25rem; }
+    .dose-tier {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.55rem;
+    }
+    .dose-amount {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      color: #cccccc;
+      margin-bottom: 0.4rem;
+    }
+    .dose-note {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.62rem;
+      line-height: 1.75;
+      color: #666660;
+    }
+    .dose-caveat {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      line-height: 1.85;
+      color: #666660;
+      margin-top: 0.9rem;
+      font-style: italic;
+    }
+    .warning-block {
+      border: 1px solid #5a2a2a;
+      background: #0e0808;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+    }
+    .warning-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #c04040;
+      margin-bottom: 1rem;
+    }
+    .critical-block {
+      border: 2px solid #8a1a1a;
+      background: #120404;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+    }
+    .critical-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #e04040;
+      margin-bottom: 1rem;
+    }
+    .warning-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .warning-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.7rem;
+      line-height: 1.85;
+      color: #999990;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .warning-list li::before {
+      content: '⚠';
+      position: absolute;
+      left: 0;
+      font-size: 0.55rem;
+      top: 0.18rem;
+      color: #c04040;
+      opacity: 0.7;
+    }
+    .warning-list li.critical { color: #d0a090; }
+    .warning-list li.critical::before { opacity: 1; color: #e04040; }
+    .contraindication-block {
+      border: 1px solid #7a1a1a;
+      background: #100606;
+      padding: 1.5rem 1.75rem;
+      margin-top: 1rem;
+    }
+    .contraindication-block .warning-header {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #d04040;
+      margin-bottom: 1rem;
+    }
+    .storage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      margin-top: 1.25rem;
+    }
+    .storage-cell { background: var(--card-bg); padding: 1.1rem 1.25rem; }
+    .storage-cell-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .storage-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .storage-list li {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.66rem;
+      line-height: 1.75;
+      color: #888880;
+      padding-left: 0.85rem;
+      position: relative;
+    }
+    .storage-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.45;
+      font-size: 0.5rem;
+      top: 0.18rem;
+    }
+    .emergency-block {
+      border: 1px solid var(--gold);
+      background: var(--card-bg);
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+    .emergency-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .emergency-number {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+    }
+    .emergency-sub {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+    .ingredients-note {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+      color: #555550;
+      margin-top: 0.85rem;
+      font-style: italic;
+    }
+    .mfr-block {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.62rem;
+      line-height: 2;
+      letter-spacing: 0.08em;
+      color: #555550;
+      margin-top: 1rem;
+    }
+    .mfr-block a { color: var(--gold); text-decoration: none; }
+    .mfr-block a:hover { color: var(--gold-light); }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="sr17018.html" class="back-btn">← SR 17018</a>
+    <a href="index.html" class="header-logo"><img src="assets/logo-header.png" alt="ÆTHER" /></a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="product-badge">Product Use &amp; Safety</div>
+      <h1 class="title">SR 17018</h1>
+      <p class="subtitle">Biased Mu-Opioid Receptor Agonist · Harm Reduction Protocol</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="sections">
+
+      <!-- Product Overview -->
+      <div class="section">
+        <h2 class="section-title">Product Overview</h2>
+        <p class="section-body">ÆTHER SR 17018 capsules contain precisely measured SR 17018 — a synthetic biased mu-opioid receptor agonist developed as a next-generation research compound. SR 17018 is not a recreational substance. It is a harm reduction tool used by people seeking to discontinue conventional opioids — including fentanyl, heroin, methadone, buprenorphine, and prescription opioids — without experiencing acute withdrawal. It produces analgesia and withdrawal suppression without euphoria, significantly reducing its reinforcing potential. For adults 21 years of age or older only. Read all warnings before use.</p>
+
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <div class="spec-label">Active Ingredient</div>
+            <div class="spec-value">SR 17018<br/>Analytically verified</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Route</div>
+            <div class="spec-value">Oral — swallow whole</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Mechanism</div>
+            <div class="spec-value">Biased G-protein agonism<br/>Minimal beta-arrestin-2 recruitment</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Key Properties</div>
+            <div class="spec-value">Analgesia without euphoria<br/>Withdrawal suppression<br/>Tolerance reversal</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Protocol Duration</div>
+            <div class="spec-value">Typically 1–3 weeks, tapering</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Classification</div>
+            <div class="spec-value">Research compound<br/>Not FDA-approved for human use</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Potential Benefits -->
+      <div class="section">
+        <h2 class="section-title">Potential Benefits</h2>
+        <p class="section-body">SR 17018 occupies a unique position in harm reduction. Unlike methadone or buprenorphine — which substitute one opioid dependence for another in a maintenance model — SR 17018 appears to actively reverse opioid tolerance and suppress withdrawal simultaneously, allowing people to step off conventional opioids without the agonizing withdrawal syndrome that typically drives relapse. Because it lacks the euphoric reinforcement of conventional opioids, it does not create the reward cycle that sustains dependence. Community reports since approximately 2024 have described successful cessation from some of the most difficult opioids to quit — including fentanyl and long-term methadone — using SR 17018 protocols.</p>
+
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <div class="spec-label">Withdrawal Suppression</div>
+            <div class="spec-value">Satisfies opioid receptors sufficiently to prevent acute withdrawal during the cessation period</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Tolerance Reversal</div>
+            <div class="spec-value">Preclinical data shows SR 17018 actively resets receptor-level adaptations — walking tolerance back toward baseline</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">No Euphoric Reinforcement</div>
+            <div class="spec-value">Non-euphoric profile means it does not substitute one addiction for another — no reward cycle to maintain</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Reduced Respiratory Risk</div>
+            <div class="spec-value">Preclinical safety window approximately 10× wider than morphine for respiratory depression</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Analgesia</div>
+            <div class="spec-value">Effective pain relief without the sedation, euphoria, or dependence risk of conventional opioids</div>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-label">Opioid Cessation</div>
+            <div class="spec-value">Community protocols report successful discontinuation from fentanyl, heroin, methadone, and prescription opioids</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dosing Protocol -->
+      <div class="section">
+        <h2 class="section-title">Dosing Protocol</h2>
+        <p class="section-body">SR 17018 is not used as a single-session substance — it is administered on a scheduled maintenance protocol, typically over one to three weeks, with gradual tapering as the underlying opioid dependence resolves. The following protocol reflects community reports and is not a clinically validated medical protocol. Individual response varies. Begin on the lower end and adjust based on withdrawal symptom control.</p>
+
+        <div class="dose-grid">
+          <div class="dose-cell">
+            <div class="dose-tier">Phase 1 — Induction</div>
+            <div class="dose-amount">25–30 mg</div>
+            <div class="dose-note">Every 4–6 hours · Days 1–7<br/>Initiate as acute withdrawal begins. Adjust timing to symptom control. Do not exceed 6 doses per 24 hours.</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Phase 2 — Stabilization</div>
+            <div class="dose-amount">15–25 mg</div>
+            <div class="dose-note">Every 6–8 hours · Days 7–14<br/>Reduce dose and extend intervals as tolerance reversal proceeds and withdrawal symptoms diminish.</div>
+          </div>
+          <div class="dose-cell">
+            <div class="dose-tier">Phase 3 — Taper</div>
+            <div class="dose-amount">10–15 mg</div>
+            <div class="dose-note">Every 8–12 hours · Weeks 2–3<br/>Continue tapering until SR 17018 can be discontinued without withdrawal recurrence.</div>
+          </div>
+        </div>
+
+        <p class="dose-caveat">These are community-reported protocols — not clinically validated dosing guidelines. Individual response, prior opioid history, and tolerance level significantly affect the appropriate protocol. Do not use SR 17018 alongside conventional opioids. Monitor for signs of over-sedation. If unsure, begin at the lower end of each phase.</p>
+      </div>
+
+      <!-- Ingredients -->
+      <div class="section">
+        <h2 class="section-title">Ingredients</h2>
+        <p class="section-body">SR 17018 (analytically verified)<br/>Hydroxypropyl methylcellulose capsule (HPMC — vegan)</p>
+        <p class="ingredients-note">Does not contain conventional opioids, benzodiazepines, or adulterants. Each batch analytically verified for identity and purity.</p>
+      </div>
+
+      <!-- Storage & Handling -->
+      <div class="section">
+        <h2 class="section-title">Storage &amp; Handling</h2>
+        <div class="storage-grid">
+          <div class="storage-cell">
+            <div class="storage-cell-title">Storage</div>
+            <ul class="storage-list">
+              <li>Store in a cool, dark, dry place</li>
+              <li>Keep between 15–25°C (59–77°F)</li>
+              <li>Keep tightly sealed</li>
+              <li>Refrigeration acceptable but not required</li>
+            </ul>
+          </div>
+          <div class="storage-cell">
+            <div class="storage-cell-title">Handling</div>
+            <ul class="storage-list">
+              <li>Keep out of reach of children and animals</li>
+              <li>Do not expose to excessive heat or moisture</li>
+              <li>Do not crush or open capsules</li>
+              <li>Use within 24 months of manufacture</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warnings -->
+      <div class="section">
+        <h2 class="section-title">Warnings</h2>
+
+        <div class="critical-block">
+          <div class="warning-header">⚠ Critical — Tolerance Reversal Risk</div>
+          <ul class="warning-list">
+            <li class="critical">SR 17018 actively reverses opioid tolerance. After completing a course of SR 17018, your tolerance to conventional opioids — fentanyl, heroin, morphine, oxycodone — will be substantially or completely reduced. Resuming conventional opioids at your previous dose following SR 17018 treatment carries a greatly elevated risk of fatal overdose. This risk has resulted in documented fatalities in community reports. If you resume opioid use after SR 17018, treat yourself as opioid-naive and start with a fraction of your previous dose.</li>
+          </ul>
+        </div>
+
+        <div class="warning-block" style="margin-top:1rem;">
+          <div class="warning-header">⚠ Warning — Research Compound</div>
+          <ul class="warning-list">
+            <li>For adults 21 years of age or older only. Keep out of reach of children and animals.</li>
+            <li>SR 17018 has not been approved for human use by the FDA and has not completed human clinical trials. Its full safety profile in humans has not been established.</li>
+            <li>Do not use if pregnant or nursing.</li>
+            <li>Do not use if you have respiratory disease, severe asthma, or sleep apnea. All opioid receptor agonists carry some degree of respiratory depression risk.</li>
+            <li>Do not use if you have severe hepatic or renal impairment.</li>
+            <li>Do not drive, operate machinery, or perform tasks requiring full alertness while using SR 17018.</li>
+            <li>Use naloxone (Narcan) as a backup. Although SR 17018's respiratory safety margin is improved over conventional opioids, naloxone should be available during the induction phase.</li>
+          </ul>
+        </div>
+
+        <div class="contraindication-block">
+          <div class="warning-header">⚠ Critical — Drug Interactions</div>
+          <ul class="warning-list">
+            <li class="critical">Do not combine with conventional opioids (fentanyl, heroin, morphine, oxycodone, methadone, buprenorphine) during the SR 17018 protocol. Combining opioid receptor agonists may cause unpredictable CNS and respiratory depression.</li>
+            <li class="critical">Do not combine with benzodiazepines (Xanax, Valium, Klonopin, etc.). The combination of any opioid agonist with benzodiazepines dramatically increases the risk of fatal respiratory depression.</li>
+            <li>Do not combine with alcohol. CNS and respiratory depression are potentiated.</li>
+            <li>Do not combine with other CNS depressants including sleep aids, muscle relaxants, or antihistamines with sedating properties.</li>
+            <li>Disclose all current medications to a healthcare provider if possible before beginning the protocol.</li>
+          </ul>
+        </div>
+
+        <div class="contraindication-block" style="margin-top:1rem;">
+          <div class="warning-header">⚠ Known Risks</div>
+          <ul class="warning-list">
+            <li>Residual opioid withdrawal symptoms during the induction phase</li>
+            <li>Mild sedation or dizziness, particularly at higher doses</li>
+            <li>Nausea during the first 24–48 hours of use</li>
+            <li>Constipation with extended use</li>
+            <li>Unknown long-term effects in humans (preclinical compound)</li>
+            <li>Fatal overdose risk if conventional opioids are resumed at previous doses after treatment</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Emergency -->
+      <div class="section">
+        <h2 class="section-title">Emergency Contact</h2>
+        <div class="emergency-block">
+          <div class="emergency-label">National Poison Control Center</div>
+          <div class="emergency-number">1-800-222-1222</div>
+          <div class="emergency-sub">In case of emergency or accidental ingestion</div>
+          <div class="emergency-sub" style="margin-top:1rem; color:#c04040; letter-spacing:0.18em;">Call 911 immediately and administer naloxone<br/>if breathing problems or loss of consciousness occur.</div>
+        </div>
+      </div>
+
+      <!-- Legal Disclaimer -->
+      <div class="section">
+        <h2 class="section-title">Legal Disclaimer</h2>
+        <p class="section-body">Purchaser assumes all responsibility for legal compliance and proper use. Manufacturer is not responsible for misuse, improper storage, use inconsistent with provided safety guidance, adverse reaction whether foreseeable or unforeseeable, allergic reaction, or unauthorized use.</p>
+        <p class="section-body" style="margin-top:1rem;">Not evaluated by the U.S. Food &amp; Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. SR 17018 is a research compound that has not completed human clinical trials. Use constitutes self-experimentation with an unapproved substance.</p>
+      </div>
+
+      <!-- Manufacturer -->
+      <div class="section">
+        <h2 class="section-title">Manufactured By</h2>
+        <div class="mfr-block">
+          ÆTHER<br/>
+          Washtenaw County, MI<br/>
+          <a href="https://www.aethera2.com/">aethera2.com</a><br/>
+          @AetherA2
+        </div>
+      </div>
+
+    </div>
+
+    <p class="disclaimer">This page is for product safety and informational purposes only. Nothing here constitutes legal, medical, or therapeutic advice. Purchaser assumes all responsibility for legal compliance. Know your local laws.</p>
+  </main>
+
+  <footer>
+    <img class="footer-logo" src="assets/logo-header.png" alt="ÆTHER" /><span>Ann Arbor</span>
+  </footer>
+</body>
+</html>
