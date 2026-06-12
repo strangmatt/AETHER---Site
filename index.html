@@ -582,6 +582,105 @@
 
     /* Signal in modal */
     .social-icon.signal { background: #3a76f0; }
+
+    /* ──────────────────────────────────────────────────────────
+       FACELIFT LAYER — crispness + mobile (added 2026-06-12)
+       Additive only: refines rendering, focus/touch behaviour,
+       micro-interactions, and responsiveness. No structural change.
+       ────────────────────────────────────────────────────────── */
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    body {
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+    img, svg { max-width: 100%; }
+
+    /* Keyboard-accessible focus ring */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* Subtle card lift on hover — keeps the angular look */
+    .card {
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .card:hover {
+      background: #15150c;
+    }
+    .card-molecule {
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+    .card:hover .card-molecule {
+      filter: invert(1) brightness(1.55) contrast(1.7) sepia(0.45) saturate(2.4);
+    }
+    .card:hover .card-molecule.flip {
+      transform: rotate(180deg);
+    }
+
+    /* Tactile button presses */
+    .share-tab:active,
+    .age-gate-confirm:active,
+    .age-gate-deny:active,
+    .signal-btn:active,
+    .modal-close:active { transform: translateY(1px); }
+
+    /* Share tab respects iOS safe area */
+    .share-tab {
+      bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    /* Honour reduced-motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .logo-burst, .spark { animation: none !important; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    /* ── Tablet ── */
+    @media (max-width: 760px) {
+      main { padding: 6vh 1.25rem 5vh; }
+      .rule { margin: 3rem auto; }
+      .substances { margin-top: 3.5rem; }
+      .card { padding: 1.75rem 1.5rem; }
+      .contact { margin-top: 3.5rem; }
+      .disclaimer { margin-top: 3rem; }
+    }
+
+    /* ── Phones ── */
+    @media (max-width: 480px) {
+      main { padding: 5vh 1rem 4.5vh; }
+      .tagline { font-size: 0.62rem; letter-spacing: 0.26em; }
+      .about { font-size: 0.82rem; line-height: 1.95; }
+      .rule { margin: 2.5rem auto; height: 42px; }
+      .substances { margin-top: 3rem; }
+      .card { padding: 1.6rem 1.35rem; }
+      .card-body { font-size: 0.78rem; }
+      .contact { margin-top: 3rem; }
+
+      /* Keep the share tab clear of the footer / thumb reach */
+      .share-tab {
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        padding: 0.65rem 1.75rem;
+      }
+
+      /* Roomier social grid on small screens */
+      .social-grid { gap: 1.1rem 1.25rem; }
+
+      footer { padding: 1.75rem 1.25rem; }
+    }
   </style>
 </head>
 <body>

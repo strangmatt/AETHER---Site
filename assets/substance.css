@@ -272,3 +272,119 @@ footer span {
   margin-top: 0.5rem;
   line-height: 1.8;
 }
+
+/* ──────────────────────────────────────────────────────────────
+   FACELIFT LAYER — crispness + mobile (added 2026-06-12)
+   Additive only: refines rendering, focus/touch behaviour, and
+   responsiveness without altering the existing visual language.
+   ────────────────────────────────────────────────────────────── */
+
+/* Sharper text rendering + sensible global defaults */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Never let media or embeds force horizontal scroll */
+img, svg, video, iframe {
+  max-width: 100%;
+}
+
+/* Keyboard-accessible focus ring in the brand gold */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Micro-interactions — subtle, in keeping with the angular aesthetic */
+.molecule {
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+.hero:hover .molecule {
+  filter: invert(1) brightness(1.55) contrast(1.7) sepia(0.45) saturate(2.4);
+}
+
+.section {
+  transition: border-color 0.25s ease;
+}
+.section:hover {
+  border-color: var(--gold-light);
+}
+
+.learn-more:active {
+  transform: translateY(1px);
+}
+
+.effects-col,
+.section {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Honour reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ── Tablet / small laptop ── */
+@media (max-width: 760px) {
+  header { padding: 1.15rem 1.25rem; }
+  main { padding: 4vh 1.25rem 5vh; }
+
+  .molecule { width: 150px; height: 150px; margin-bottom: 1.5rem; }
+
+  .title { letter-spacing: 0.14em; }
+  .rule { margin: 2.25rem auto; }
+
+  .section { padding-left: 1.1rem; }
+  .section-body { font-size: 0.8rem; }      /* nudge up for readability */
+
+  .section-photo img { max-height: 220px; }
+}
+
+/* ── Phones ── */
+@media (max-width: 480px) {
+  header { padding: 1rem 1rem; }
+  main { padding: 3.5vh 1rem 4.5vh; }
+
+  .header-logo img { height: 26px; }
+  .back-btn { font-size: 0.56rem; letter-spacing: 0.24em; }
+
+  .molecule { width: 124px; height: 124px; margin-bottom: 1.25rem; }
+  .title { letter-spacing: 0.1em; }
+  .subtitle { font-size: 0.6rem; letter-spacing: 0.22em; word-break: break-word; }
+
+  .section-body { font-size: 0.82rem; line-height: 1.95; }
+
+  /* Effects: 2 readable columns instead of cramped auto-fit */
+  .effects-grid { grid-template-columns: 1fr 1fr; }
+  .effects-col { padding: 1rem 1rem 1.25rem; }
+
+  .section-photo { margin: 1.75rem 0; }
+  .section-photo img { max-height: 180px; }
+
+  .disclaimer { font-size: 0.55rem; letter-spacing: 0.16em; }
+  footer { padding: 1.75rem 1.25rem; }
+}
+
+/* ── Very narrow phones ── */
+@media (max-width: 360px) {
+  .effects-grid { grid-template-columns: 1fr; }
+}

@@ -238,6 +238,19 @@
       transition: color 0.2s;
     }
     .signal-inline:hover { color: var(--gold-light); }
+
+    /* ── FACELIFT: phone layout (added 2026-06-12) ── */
+    @media (max-width: 480px) {
+      .store-intro { margin-bottom: 2.25rem; }
+      .product-card { padding: 1.6rem 1.35rem; }
+      .product-price { margin-top: 1.25rem; }
+      /* Larger tap targets for purchase buttons */
+      .btn-card, .btn-paypal { padding: 0.9rem 1rem; }
+      .naloxone-cell { padding: 1.1rem 1.2rem; }
+      .alt-pay-card { padding: 1.25rem 1.3rem; }
+      .alt-pay-handle { font-size: 0.8rem; }
+      .manual-order-note { padding: 1.1rem 1.2rem; }
+    }
   </style>
 </head>
 <body>
