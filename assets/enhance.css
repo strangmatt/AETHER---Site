@@ -58,6 +58,31 @@
   100% { transform: translate3d(-1.5%, 1.5%, 0) scale(1.03); }
 }
 
+/* ─────────────────────────  BRAND WATERMARK  ──────────────────────────────── */
+/* A large, very faint ÆTHER emblem behind the content. Decorative only and
+   kept low-opacity so it never reduces text contrast. Applied to article pages
+   (those with a <header>); the landing page already features the live logo.   */
+body:has(header)::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(64vw, 540px);
+  height: min(64vw, 540px);
+  transform: translate(-50%, -50%);
+  background: url("logo.png") center / contain no-repeat;
+  opacity: 0.045;
+  z-index: -1;            /* behind content, alongside the aurora */
+  pointer-events: none;
+}
+/* Remove the watermark when maximum legibility is requested or when printing */
+@media (prefers-contrast: more) {
+  body:has(header)::before { display: none; }
+}
+@media print {
+  body:has(header)::before { display: none; }
+}
+
 /* ─────────────────────────  READING PROGRESS  ─────────────────────────────── */
 .reading-progress {
   position: fixed;
