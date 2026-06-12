@@ -1,0 +1,116 @@
+/* ÆTHER — enhance.css  (added 2026-06-12)
+   Accessibility-first, progressive enhancements:
+   • readability + contrast refinements
+   • subtle living background (aurora)
+   • reading-progress indicator
+   • sticky, condensing header
+   • scroll-reveal animations
+
+   Principles:
+   - No content is hidden unless JS is present (html.js) AND the user
+     has not requested reduced motion. Without JS, everything shows.
+   - All decorative motion is disabled under prefers-reduced-motion.
+   - Decorative elements are aria-hidden + non-interactive.
+*/
+
+/* ─────────────────────────  READABILITY & CONTRAST  ───────────────────────── */
+/* Loaded after the page styles, so these gentle bumps win.                      */
+.section-body { font-size: 0.82rem; line-height: 2.05; }
+.card-body    { font-size: 0.76rem; line-height: 2.05; }
+.about        { line-height: 2.1; }
+
+/* Lift low-contrast body text toward WCAG AA on the near-black background */
+.book-desc            { color: #8f8f86; }
+.alt-pay-note,
+.manual-pay-note,
+.mfr-block,
+.ingredients-note     { color: #87877e; }
+.dose-note,
+.emergency-sub,
+.resource-desc,
+.manual-instructions p,
+.store-intro p        { color: #8c8c84; }
+
+/* Respect an explicit request for higher contrast */
+@media (prefers-contrast: more) {
+  .section-body, .card-body, .about,
+  .product-desc, .naloxone-cell p { color: #ececec; }
+  .aurora { display: none; }
+}
+
+/* ─────────────────────────  LIVING BACKGROUND (aurora)  ────────────────────── */
+.aurora {
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 42% at 18% 12%, rgba(154,125,46,0.10), transparent 70%),
+    radial-gradient(34% 40% at 84% 20%, rgba(120,100,40,0.08), transparent 72%),
+    radial-gradient(46% 52% at 72% 90%, rgba(154,125,46,0.07), transparent 75%);
+  filter: blur(22px);
+  will-change: transform;
+  animation: auroraDrift 52s ease-in-out infinite alternate;
+}
+@keyframes auroraDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2%, -1.5%, 0) scale(1.06); }
+  100% { transform: translate3d(-1.5%, 1.5%, 0) scale(1.03); }
+}
+
+/* ─────────────────────────  READING PROGRESS  ─────────────────────────────── */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  z-index: 450;            /* below the age gate (500), above header (400) */
+  pointer-events: none;
+}
+
+/* ─────────────────────────  STICKY CONDENSING HEADER  ─────────────────────── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 400;
+  background: rgba(10, 10, 10, 0.72);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: padding 0.3s ease, background 0.3s ease;
+}
+header.scrolled {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  background: rgba(10, 10, 10, 0.9);
+}
+/* Solid fallback where backdrop-filter is unsupported */
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  header           { background: rgba(10, 10, 10, 0.97); }
+  header.scrolled  { background: #0a0a0a; }
+}
+
+/* ─────────────────────────  SCROLL REVEAL  ────────────────────────────────── */
+/* Hidden state applies ONLY when JS is active and motion is allowed.
+   :where() keeps specificity at zero so .in-view (later) wins on source order. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js :where(
+    main > *:not(.logo-wrapper):not(.sections),
+    main > .sections > *
+  ) {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  html.js :where(.in-view) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Freeze decorative motion for users who ask for it */
+@media (prefers-reduced-motion: reduce) {
+  .aurora { animation: none; }
+  header  { transition: none; }
+}
