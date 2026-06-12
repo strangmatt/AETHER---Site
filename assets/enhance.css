@@ -71,7 +71,7 @@ body:has(header)::before {
   height: min(64vw, 540px);
   transform: translate(-50%, -50%);
   background: url("logo.png") center / contain no-repeat;
-  opacity: 0.045;
+  opacity: 0.09;
   z-index: -1;            /* behind content, alongside the aurora */
   pointer-events: none;
 }
