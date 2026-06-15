@@ -1,0 +1,10 @@
+# Commerce moved to shop.aethera2.com (split out 2026-06-15).
+# Preserve old links and printed product QR codes via 301 redirects.
+/store.html               https://shop.aethera2.com/store.html               301
+/checkout.html            https://shop.aethera2.com/checkout.html            301
+/success.html             https://shop.aethera2.com/success.html             301
+/psilocybin-product.html  https://shop.aethera2.com/psilocybin-product.html  301
+/dmt-product.html         https://shop.aethera2.com/dmt-product.html         301
+/5meo-dmt-product.html    https://shop.aethera2.com/5meo-dmt-product.html    301
+/mescaline-product.html   https://shop.aethera2.com/mescaline-product.html   301
+/sr17018-product.html     https://shop.aethera2.com/sr17018-product.html     301

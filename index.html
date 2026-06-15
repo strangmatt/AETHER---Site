@@ -88,6 +88,44 @@
       color: var(--gold);
     }
 
+    /* Harm Reduction Store CTA */
+    .store-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-top: 2.5rem;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: clamp(0.85rem, 2.2vw, 1.15rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.15rem 2.75rem;
+      border: 1px solid var(--gold);
+      box-shadow: 0 0 28px rgba(154, 125, 46, 0.35);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+
+    .store-cta:hover {
+      background: var(--gold-light);
+      box-shadow: 0 0 40px rgba(154, 125, 46, 0.55);
+    }
+
+    .store-cta:active { transform: translateY(1px); }
+
+    .store-cta i { font-size: 1.1em; }
+
+    @media (max-width: 480px) {
+      .store-cta {
+        margin-top: 2rem;
+        padding: 1rem 1.75rem;
+        letter-spacing: 0.18em;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
     /* Divider */
     .rule {
       width: 1px;
@@ -693,6 +731,10 @@
     <div class="logo-wrapper"><img class="logo" src="assets/logo.png" alt="ÆTHER" /></div>
     <p class="tagline">Psychedelic Education — Ann Arbor</p>
 
+    <a class="store-cta" href="https://shop.aethera2.com" target="_blank" rel="noopener">
+      <i class="fa-solid fa-shield-heart"></i> Harm Reduction Store
+    </a>
+
     <div class="rule"></div>
 
     <p class="about">
@@ -714,7 +756,6 @@
           anxiety. Ann Arbor decriminalized natural psychedelics in 2020.
         </p>
         <a class="learn-more" href="psilocybin.html">Learn More →</a>
-        <a class="learn-more" href="psilocybin-product.html" style="margin-top:0.6rem;">Product Use &amp; Safety →</a>
       </div>
 
       <div class="card">
@@ -728,7 +769,6 @@
           and neuroplasticity.
         </p>
         <a class="learn-more" href="dmt.html">Learn More →</a>
-        <a class="learn-more" href="dmt-product.html" style="margin-top:0.6rem;">Product Use &amp; Safety →</a>
       </div>
 
       <div class="card">
@@ -742,7 +782,6 @@
           symptomology.
         </p>
         <a class="learn-more" href="5meo-dmt.html">Learn More →</a>
-        <a class="learn-more" href="5meo-dmt-product.html" style="margin-top:0.6rem;">Product Use &amp; Safety →</a>
       </div>
 
       <div class="card">
@@ -756,7 +795,6 @@
           Research into its therapeutic applications is ongoing.
         </p>
         <a class="learn-more" href="mescaline.html">Learn More →</a>
-        <a class="learn-more" href="mescaline-product.html" style="margin-top:0.6rem;">Product Use &amp; Safety →</a>
       </div>
 
       <div class="card">
@@ -773,8 +811,6 @@
           walking their tolerance back to baseline.
         </p>
         <a class="learn-more" href="sr17018.html">Learn More →</a>
-        <a class="learn-more" href="sr17018-product.html" style="margin-top:0.6rem;">Product Use &amp; Safety →</a>
-        <a class="learn-more" href="store.html" style="margin-top:0.6rem;">Harm Reduction Store →</a>
       </div>
 
     </div>
