@@ -1,10 +1,10 @@
 {
   "redirects": [
-    { "source": "/store.html", "destination": "https://shop.aethera2.com/store.html", "permanent": true },
-    { "source": "/psilocybin-product.html", "destination": "https://shop.aethera2.com/psilocybin-product.html", "permanent": true },
-    { "source": "/dmt-product.html", "destination": "https://shop.aethera2.com/dmt-product.html", "permanent": true },
-    { "source": "/5meo-dmt-product.html", "destination": "https://shop.aethera2.com/5meo-dmt-product.html", "permanent": true },
-    { "source": "/mescaline-product.html", "destination": "https://shop.aethera2.com/mescaline-product.html", "permanent": true },
-    { "source": "/sr17018-product.html", "destination": "https://shop.aethera2.com/sr17018-product.html", "permanent": true }
+    { "source": "/store.html", "destination": "https://aether-shop-aether4.vercel.app/store.html", "permanent": false },
+    { "source": "/psilocybin-product.html", "destination": "https://aether-shop-aether4.vercel.app/psilocybin-product.html", "permanent": false },
+    { "source": "/dmt-product.html", "destination": "https://aether-shop-aether4.vercel.app/dmt-product.html", "permanent": false },
+    { "source": "/5meo-dmt-product.html", "destination": "https://aether-shop-aether4.vercel.app/5meo-dmt-product.html", "permanent": false },
+    { "source": "/mescaline-product.html", "destination": "https://aether-shop-aether4.vercel.app/mescaline-product.html", "permanent": false },
+    { "source": "/sr17018-product.html", "destination": "https://aether-shop-aether4.vercel.app/sr17018-product.html", "permanent": false }
   ]
 }
