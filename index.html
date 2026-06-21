@@ -758,6 +758,25 @@
 
       footer { padding: 1.75rem 1.25rem; }
     }
+    /* ◬ */
+    @keyframes ae-hue { from { filter: hue-rotate(0deg) saturate(1.5); } to { filter: hue-rotate(360deg) saturate(1.5); } }
+    @keyframes ae-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.09) rotate(2deg); } }
+    @keyframes ae-aura { 0% { opacity: .3; transform: scale(1); } 100% { opacity: .85; transform: scale(1.25); } }
+    body.aether-trip { animation: ae-hue 5s linear infinite; }
+    body.aether-trip .logo { animation: ae-pulse 3s ease-in-out infinite; }
+    body.aether-trip::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9990;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle at 25% 30%, rgba(255, 40, 180, 0.18), transparent 55%),
+        radial-gradient(circle at 75% 65%, rgba(40, 180, 255, 0.18), transparent 55%),
+        radial-gradient(circle at 55% 88%, rgba(150, 255, 90, 0.14), transparent 55%);
+      animation: ae-aura 6s ease-in-out infinite alternate;
+    }
   </style>
   <!-- Enhancements: living bg, reading progress, sticky header, scroll reveal -->
   <script>document.documentElement.classList.add('js');</script>
@@ -983,6 +1002,21 @@
   </footer>
 
   <script>
+    /* ◬ */
+    (function () {
+      var k = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65], i = 0, on = false;
+      document.addEventListener('keydown', function (e) {
+        i = (e.keyCode === k[i]) ? i + 1 : (e.keyCode === k[0] ? 1 : 0);
+        if (i === k.length) {
+          i = 0;
+          if (on) return;
+          on = true;
+          document.body.classList.add('aether-trip');
+          setTimeout(function () { document.body.classList.remove('aether-trip'); on = false; }, 16000);
+        }
+      });
+    })();
+
     function openShare() {
       document.getElementById('share-modal').classList.add('open');
     }
