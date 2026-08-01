@@ -139,3 +139,105 @@ header.scrolled {
   .aurora { animation: none; }
   header  { transition: none; }
 }
+
+/* ─────────────────────────  MICRO-POLISH  (added 2026-08-01)  ─────────────── */
+/* Gold selection, thin gold scrollbar, focus rings, cross-fade navigation.     */
+::selection { background: var(--gold); color: var(--black); }
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #4a3d18 #0a0a0a;
+}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #3d3315; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+a:focus-visible,
+button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* Cross-fade between pages (same-origin MPA View Transitions; progressive) */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 0.3s; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
+/* Substance-card hover: lift + soft gold halo (landing page) */
+.card {
+  position: relative;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  z-index: 1;
+  box-shadow:
+    0 18px 44px -20px rgba(154, 125, 46, 0.40),
+    0 0 0 1px rgba(154, 125, 46, 0.22);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .card:hover { transform: translateY(-4px); }
+}
+
+/* ─────────────────────────  LIVING LANDING PAGE  ──────────────────────────── */
+/* The landing page (no <header>) gets a richer aurora — a touch of deep violet
+   against the gold — so the black reads as atmosphere rather than void.       */
+body:not(:has(header)) .aurora {
+  background:
+    radial-gradient(38% 42% at 18% 12%, rgba(154, 125, 46, 0.14), transparent 70%),
+    radial-gradient(34% 40% at 84% 20%, rgba(120, 100, 40, 0.11), transparent 72%),
+    radial-gradient(30% 36% at 30% 78%, rgba(88, 62, 138, 0.08),  transparent 74%),
+    radial-gradient(46% 52% at 72% 90%, rgba(154, 125, 46, 0.10), transparent 75%);
+}
+
+/* Film grain — a very faint static texture over the whole site for depth.
+   Sits below the header (400) and all overlays; never intercepts input.      */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 350;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-contrast: more) {
+  body::after { display: none; }
+}
+@media print {
+  body::after { display: none; }
+}
+
+/* ─────────────────────────  BREATHING MOLECULES  ──────────────────────────── */
+/* Molecule structures drift and breathe on a slow cycle. Uses the independent
+   translate/scale properties so the .flip variants' rotate(180deg) transform
+   is preserved. Staggered delays keep the landing grid feeling organic.       */
+@media (prefers-reduced-motion: no-preference) {
+  .card-molecule,
+  .molecule {
+    animation: moleculeBreathe 7s ease-in-out infinite alternate;
+  }
+  .card:nth-child(2) .card-molecule { animation-delay: -2.3s; }
+  .card:nth-child(3) .card-molecule { animation-delay: -4.6s; }
+}
+@keyframes moleculeBreathe {
+  from { translate: 0 2px;  scale: 1; }
+  to   { translate: 0 -3px; scale: 1.02; }
+}
+
+/* ─────────────────────────  READING TYPOGRAPHY  ───────────────────────────── */
+/* Geometos stays for all display text (titles, buttons, labels). Long-form
+   prose moves to a humanist system stack — denser, easier over paragraphs,
+   and no external font request (keeps CSP untouched).                        */
+.section-body,
+.card-body,
+.book-desc,
+.about {
+  font-family: 'Avenir Next', 'Seravek', 'Segoe UI', 'Trebuchet MS',
+               'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.012em;
+}
+.section-body { font-size: 0.95rem; line-height: 1.95; }
+.card-body    { font-size: 0.86rem; line-height: 1.9; }
+.book-desc    { font-size: 0.85rem; line-height: 1.85; }
+.about        { font-size: 0.92rem; line-height: 2; }
