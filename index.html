@@ -203,6 +203,15 @@
     .card {
       background: var(--card-bg);
       padding: 2rem 1.75rem;
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* Make the whole card clickable via its Learn More link */
+    .card .learn-more::after {
+      content: '';
+      position: absolute;
+      inset: 0;
     }
 
     .card-name {
