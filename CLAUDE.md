@@ -16,3 +16,6 @@ Static HTML/CSS/JS, no build step. Hosted on Vercel (team `aether4`, project `ae
 - The "Harm Reduction Store" button links to `aether-shop-aether4.vercel.app` (shop.aethera2.com DNS is not set up).
 
 Related repos: `strangmatt/AETHER-Shop` (store), and the Sanity Studio.
+
+## Two computers — shared log
+This repo is edited from two machines (LAPTOP and WORK), each with its own Claude. They talk through `CLAUDE-LOG.md` in the **AETHER-Shop** repo (it is private). **Start of session:** `git pull` both repos and read the top entries. **End of session / after deploys:** add an entry there and push. Always pull before editing, so one machine does not overwrite the other.
