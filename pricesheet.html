@@ -25,7 +25,7 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Sheet rendered as a site-styled table (data fetched live from Google Sheets) */
+    /* Sheet rendered as a site-styled table (data fetched live from Google Sheets via CSV export; gviz drops mixed-type cells) */
     .sheet-wrap {
       margin-top: 2rem;
       border: 1px solid rgba(154, 125, 46, 0.45);
@@ -152,7 +152,7 @@
   <script>
     (function () {
       var SHEET_ID = '1mUe8Lr_DLo6aVajzHyJcxXoYgxqe85YMdN_F00Kau20';
-      var CSV_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&headers=1';
+      var CSV_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/export?format=csv';
       var box = document.getElementById('sheet');
 
       // RFC 4180 CSV parser (handles quoted commas, quotes and newlines)
