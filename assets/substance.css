@@ -150,6 +150,70 @@ main {
   color: #aaaaaa;
 }
 
+/* Key Papers (research links + summaries) */
+.paper-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1.4rem;
+}
+.paper {
+  background: var(--card-bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem 1.2rem;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+.paper:hover { border-color: rgba(154, 125, 46, 0.55); background: #15140b; }
+.paper-tag {
+  display: inline-block;
+  font-size: 0.5rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(154, 125, 46, 0.45);
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem 0.24rem;
+  margin-bottom: 0.7rem;
+}
+.paper-title,
+.paper-sum {
+  font-family: 'Avenir Next', 'Seravek', 'Segoe UI', 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.012em;
+}
+.paper-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #e9e4d4;
+  text-decoration: none;
+  text-wrap: pretty;
+}
+.paper-title::after { content: " \2197"; color: var(--gold); }
+.paper-title:hover, .paper-title:focus-visible { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; }
+.paper-meta {
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0.4rem 0 0.65rem;
+}
+.paper-meta em { font-style: normal; color: #a39d8a; }
+.paper-meta a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(154, 125, 46, 0.4); }
+.paper-meta a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+.paper-sum {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: #b0b0aa;
+}
+@media (max-width: 480px) {
+  .paper { padding: 0.95rem 1rem 1.05rem; }
+  .paper-title { font-size: 0.97rem; }
+  .paper-sum { font-size: 0.9rem; line-height: 1.8; }
+}
+
 /* Disclaimer */
 .disclaimer {
   margin-top: 4rem;
