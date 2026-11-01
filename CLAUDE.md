@@ -17,6 +17,9 @@ Static HTML/CSS/JS, no build step. Hosted on Vercel (team `aether4`, project `ae
 
 Related repos: `strangmatt/AETHER-Shop` (store), and the Sanity Studio.
 
+## Social media
+- **Social links** (Instagram, Facebook, X, Threads, Reddit — all @a2aether) live in `assets/social.js`, which renders the footer icons. The same file is in BOTH repos (site + shop): change one, copy to the other. Also update `sameAs` JSON-LD in the site's index.html.
+
 ## Two computers — automatic sync
 This repo is edited from two machines (LAPTOP and WORK), each with its own Claude. They share `CLAUDE-LOG.md` and `INBOX.md` in the **AETHER-Shop** repo (private).
 - `.claude/settings.json` hooks (committed, so both machines get them): **SessionStart** runs `.claude/sync.sh` (pulls every sibling `strangmatt/AETHER*` repo, skips backups, prints INBOX open items + newest log entries). **Stop** runs `.claude/check-unpushed.sh` (flags uncommitted/unpushed work once per turn; it never pushes).

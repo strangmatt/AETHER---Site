@@ -794,6 +794,23 @@
   <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="assets/enhance.css" />
   <script defer src="assets/enhance.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ÆTHER",
+    "alternateName": "ÆTHER Psychedelic Education",
+    "url": "https://www.aethera2.com/",
+    "logo": "https://www.aethera2.com/assets/logo.png",
+    "sameAs": [
+      "https://www.instagram.com/a2aether",
+      "https://www.facebook.com/profile.php?id=61595552717280",
+      "https://x.com/a2aether",
+      "https://www.threads.com/@a2aether",
+      "https://www.reddit.com/user/a2aether"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -1044,6 +1061,10 @@
 
       </div>
 
+      <div class="modal-divider"></div>
+      <p class="modal-social-label">Follow ÆTHER</p>
+      <div data-social></div>
+
       <p class="copy-confirm" id="copy-confirm">Link copied!</p>
       <button class="modal-close" onclick="closeModal()">Close</button>
     </div>
@@ -1051,6 +1072,7 @@
 
   <footer>
     <img class="footer-logo" src="assets/logo-header.png" alt="ÆTHER" /><span>Ann Arbor</span>
+    <script src="assets/social.js" defer></script>
   </footer>
 
   <script>
