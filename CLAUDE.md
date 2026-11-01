@@ -17,5 +17,8 @@ Static HTML/CSS/JS, no build step. Hosted on Vercel (team `aether4`, project `ae
 
 Related repos: `strangmatt/AETHER-Shop` (store), and the Sanity Studio.
 
-## Two computers — shared log
-This repo is edited from two machines (LAPTOP and WORK), each with its own Claude. They talk through `CLAUDE-LOG.md` in the **AETHER-Shop** repo (it is private). **Start of session:** `git pull` both repos and read the top entries. **End of session / after deploys:** add an entry there and push. Always pull before editing, so one machine does not overwrite the other.
+## Two computers — automatic sync
+This repo is edited from two machines (LAPTOP and WORK), each with its own Claude. They share `CLAUDE-LOG.md` and `INBOX.md` in the **AETHER-Shop** repo (private).
+- `.claude/settings.json` hooks (committed, so both machines get them): **SessionStart** runs `.claude/sync.sh` (pulls every sibling `strangmatt/AETHER*` repo, skips backups, prints INBOX open items + newest log entries). **Stop** runs `.claude/check-unpushed.sh` (flags uncommitted/unpushed work once per turn; it never pushes).
+- Hooks only fire when Claude is started **inside a repo folder**. Start site sessions with `cd` into `AETHER-Shop` (or the site repo) then `claude`. Otherwise run `bash <shop>/.claude/sync.sh` by hand first.
+- Do INBOX open items, then move them to Done with date + machine. End of session: add a CLAUDE-LOG.md entry, commit, push.
