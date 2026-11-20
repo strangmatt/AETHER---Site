@@ -119,6 +119,71 @@
 
     .store-cta i { font-size: 1.1em; }
 
+    /* Testimonials */
+    .testimonials {
+      width: 100%;
+      max-width: 920px;
+      margin: 4rem auto 0;
+      text-align: center;
+    }
+    .testimonials-title {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0;
+    }
+    .testimonials-intro {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0.9rem auto 0;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      margin-top: 2.25rem;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .testimonial {
+      background: var(--card-bg);
+      margin: 0;
+      padding: 1.6rem 1.5rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .testimonial p {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.75;
+      color: #d6d6cc;
+    }
+    .testimonial cite {
+      font-style: normal;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .testimonials-note {
+      font-size: 0.7rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 1.5rem auto 0;
+    }
+    @media (max-width: 600px) {
+      .testimonials { margin-top: 3rem; }
+      .testimonial { padding: 1.4rem 1.3rem; }
+    }
+
     /* Top quick actions (Library + Signal) */
     .top-actions {
       display: flex;
@@ -829,6 +894,62 @@
     <a class="store-cta" href="https://aether-shop-aether4.vercel.app" target="_blank" rel="noopener">
       <i class="fa-solid fa-shield-heart"></i> Psychedelic &amp; Harm Reduction Store
     </a>
+
+    <section class="testimonials" aria-labelledby="testimonials-title">
+      <h2 class="testimonials-title" id="testimonials-title">What People Tell Us</h2>
+      <p class="testimonials-intro">
+        Unedited comments from customers and from public reviews, with names removed.
+      </p>
+
+      <div class="testimonial-grid">
+        <blockquote class="testimonial">
+          <p>&ldquo;Love your site by the way it&rsquo;s beautiful, informative and simple to use. Came highly recommended from someone.&rdquo;</p>
+          <cite>Customer, by email</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>&ldquo;Thanks derek i appreciate it, y&rsquo;all are a life saver!&rdquo;</p>
+          <cite>Customer in Texas, by email</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>&ldquo;Thanks so much! Looking forward to it! Lucky I found you.&rdquo;</p>
+          <cite>Customer, by email</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>&ldquo;Overall, not a bad product and not a scam, which I was worried about.&rdquo;</p>
+          <cite>Public review, r/SR17018sourcereview</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>&ldquo;Received my order in 2 days. Highly recommend!&rdquo;</p>
+          <cite>Public review, r/SR17018sourcereview</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>&ldquo;The prices seem fair. Much better than I&rsquo;ve seen others mention.&rdquo;</p>
+          <cite>Public review, r/SR17018sourcereview</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>&ldquo;Thanks, will be ordering more soon!&rdquo;</p>
+          <cite>Returning customer in New Jersey, by email</cite>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p>&ldquo;It looks very very good. The water test looks super promising.&rdquo;</p>
+          <cite>Customer in Michigan, by email</cite>
+        </blockquote>
+      </div>
+
+      <p class="testimonials-note">
+        These are individual experiences, shortened only where noted and never reworded.
+        Some reviewers were offered a discount for posting publicly. Nothing we sell is an
+        approved medicine, and no comment here should be read as a claim that any product
+        treats, cures or prevents a medical condition.
+      </p>
+    </section>
 
     <div class="rule"></div>
 
