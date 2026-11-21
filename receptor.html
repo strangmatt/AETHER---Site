@@ -123,15 +123,16 @@
       <div class="section">
         <h2 class="section-title">Start With What Is Solved</h2>
         <p class="section-body">Every opioid on this site acts on one protein: the µ-opioid receptor, a G-protein-coupled receptor threaded seven times through the membrane of a nerve cell. Its structure has been solved many times over, by X-ray crystallography and cryo-electron microscopy, with different drugs held inside it.</p>
-        <p class="section-body" style="margin-top:1rem;">The model below is <strong>real experimental data</strong>, not a drawing: the receptor from PDB entry <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener" style="color:#9A7D2E;">8EF5</a>, a cryo-EM structure of the fentanyl-bound receptor coupled to its G protein, determined at 3.3&nbsp;Å. The same study also solved the receptor with SR-17018 bound (<a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener" style="color:#9A7D2E;">8EFL</a>), so you can switch between the two drugs, or overlay them. Drag to rotate, scroll to zoom.</p>
+        <p class="section-body" style="margin-top:1rem;">The model below is <strong>real experimental data</strong>, not a drawing: the receptor from PDB entry <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener" style="color:#9A7D2E;">8EF5</a>, a cryo-EM structure of the fentanyl-bound receptor coupled to its G protein, determined at 3.3&nbsp;Å. The same study also solved the receptor with SR-17018 bound (<a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener" style="color:#9A7D2E;">8EFL</a>), and with morphine (<a href="https://www.rcsb.org/structure/8EF6" target="_blank" rel="noopener" style="color:#9A7D2E;">8EF6</a>), so you can switch between the three or overlay them. The <em>Highlight helix 7</em> button picks out the face of the pocket that fentanyl and morphine press against and SR-17018 barely touches. Drag to rotate, scroll to zoom.</p>
 
         <div class="viewer-wrap">
           <div class="viewer" id="v-receptor"><div class="viewer-loading" id="v-receptor-msg">Loading the receptor…</div></div>
           <div class="viewer-controls" style="margin-bottom:0.2rem;">
             <span class="ctl-label">Ligand</span>
-            <button type="button" data-lig="fentanyl" class="on">Fentanyl — experimental</button>
-            <button type="button" data-lig="sr">SR-17018 — experimental</button>
-            <button type="button" data-lig="both">Both</button>
+            <button type="button" data-lig="fentanyl" class="on">Fentanyl</button>
+            <button type="button" data-lig="morphine">Morphine</button>
+            <button type="button" data-lig="sr">SR-17018</button>
+            <button type="button" data-lig="both">Overlay all three</button>
             <button type="button" data-lig="model">Our earlier model</button>
           </div>
           <div class="viewer-controls">
@@ -139,6 +140,7 @@
             <button type="button" data-view="overview" class="on">Whole receptor</button>
             <button type="button" data-view="pocket">Zoom to the pocket</button>
             <button type="button" data-view="residues">Show pocket residues</button>
+            <button type="button" data-view="helix7">Highlight helix 7</button>
             <button type="button" data-view="spin">Spin</button>
           </div>
           <div class="legend">
@@ -146,6 +148,8 @@
             <span><i class="swatch" style="background:#5fd3bc;"></i> fentanyl (experimental)</span>
             <span><i class="swatch" style="background:#b98cff;"></i> SR-17018 (experimental)</span>
             <span><i class="swatch" style="background:#c0654a;"></i> pocket residues</span>
+            <span><i class="swatch" style="background:#8fb4ff;"></i> morphine</span>
+            <span><i class="swatch" style="background:#e06c9f;"></i> helix 7 face</span>
             <span><i class="swatch" style="background:#8f8fff;"></i> nitrogen</span>
             <span><i class="swatch" style="background:#f00000;"></i> oxygen</span>
           </div>
@@ -356,7 +360,9 @@
     (function () {
       if (typeof $3Dmol === 'undefined') return;
 
-      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a, VIOLET = 0xb98cff, SAND = 0xd9c48a;
+      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a, VIOLET = 0xb98cff, SAND = 0xd9c48a,
+          BLUE = 0x8fb4ff, PINK = '#e06c9f';
+      var HELIX7 = [324, 327, 328];
 
       // Colour carbons to match the legend; leave N, O, Cl at their standard colours.
       function carbons(hex) {
@@ -383,13 +389,16 @@
       }
 
       /* ── Receptor ── */
-      var rv = null, rspin = false, showRes = false, ligand = 'fentanyl';
+      var rv = null, rspin = false, showRes = false, showH7 = false, ligand = 'fentanyl';
       function drawReceptor() {
         if (!rv) return;
         rv.setStyle({}, {});
         rv.setStyle({ chain: 'R', hetflag: false }, { cartoon: { color: GOLD, opacity: showRes ? 0.55 : 0.9 } });
         if (ligand === 'fentanyl' || ligand === 'both') {
           rv.setStyle({ resn: '7V7' }, { stick: { colorscheme: carbons(TEAL), radius: 0.22 } });
+        }
+        if (ligand === 'morphine' || ligand === 'both') {
+          rv.setStyle({ resn: 'MOI' }, { stick: { colorscheme: carbons(BLUE), radius: 0.22 } });
         }
         if (ligand === 'sr' || ligand === 'both') {
           rv.setStyle({ resn: 'WH9' }, { stick: { colorscheme: carbons(VIOLET), radius: 0.22 } });
@@ -401,13 +410,19 @@
         if (showRes) {
           rv.addStyle({ resi: POCKET, hetflag: false }, { stick: { colorscheme: carbons(RUST), radius: 0.14 } });
         }
+        if (showH7) {
+          rv.addStyle({ resi: HELIX7, hetflag: false }, { stick: { color: PINK, radius: 0.2 } });
+          rv.addStyle({ resi: HELIX7, hetflag: false }, { cartoon: { color: PINK } });
+        }
         var warn = document.getElementById('model-warning');
         if (warn) warn.hidden = (ligand !== 'model');
         rv.render();
       }
       function ligandSel() {
         if (ligand === 'sr') return { resn: 'WH9' };
+        if (ligand === 'morphine') return { resn: 'MOI' };
         if (ligand === 'model') return { resn: ['WH9', 'SRM'] };
+        if (ligand === 'both') return { resn: ['7V7', 'WH9', 'MOI'] };
         return { resn: ['7V7', 'WH9'] };
       }
 
@@ -416,7 +431,8 @@
         grab('assets/structures/mor-8ef5.pdb'),
         grab('assets/structures/fentanyl-7v7.pdb'),
         grab('assets/structures/sr17018-8efl.pdb'),
-        grab('assets/structures/sr17018-model.pdb')
+        grab('assets/structures/sr17018-model.pdb'),
+        grab('assets/structures/morphine-8ef6.pdb')
       ]).then(function (parts) {
         var box = document.getElementById('v-receptor');
         box.innerHTML = '';
@@ -425,6 +441,7 @@
         rv.addModel(parts[1], 'pdb');
         rv.addModel(parts[2], 'pdb');
         rv.addModel(parts[3], 'pdb');
+        rv.addModel(parts[4], 'pdb');
         drawReceptor();
         rv.zoomTo();
         rv.render();
@@ -439,8 +456,9 @@
           if (v === 'overview') { showRes = false; drawReceptor(); rv.zoomTo(); }
           if (v === 'pocket') { rv.zoomTo(ligandSel()); rv.zoom(0.45); }
           if (v === 'residues') { showRes = !showRes; btn.classList.toggle('on', showRes); drawReceptor(); rv.zoomTo(ligandSel()); rv.zoom(0.6); }
+          if (v === 'helix7') { showH7 = !showH7; btn.classList.toggle('on', showH7); drawReceptor(); rv.zoomTo(ligandSel()); rv.zoom(0.5); }
           if (v === 'spin') { rspin = !rspin; btn.classList.toggle('on', rspin); rv.spin(rspin ? 'y' : false); }
-          if (v !== 'residues' && v !== 'spin') {
+          if (v !== 'residues' && v !== 'spin' && v !== 'helix7') {
             document.querySelectorAll('[data-view]').forEach(function (b) {
               if (b.getAttribute('data-view') === 'overview' || b.getAttribute('data-view') === 'pocket') b.classList.remove('on');
             });
