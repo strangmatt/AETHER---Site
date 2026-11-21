@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SR-17018 at the µ-Opioid Receptor — ÆTHER</title>
-  <meta name="description" content="An interactive look at the µ-opioid receptor from experimental structures, the pocket that opioids bind, and why nobody has yet shown where SR-17018 binds." />
+  <meta name="description" content="An interactive look at the µ-opioid receptor from experimental cryo-EM structures: the pocket opioids bind, and SR-17018 shown in it alongside fentanyl." />
   <link rel="canonical" href="https://www.aethera2.com/receptor.html" />
 
   <!-- Open Graph / social share -->
   <meta property="og:type"        content="article" />
   <meta property="og:url"         content="https://www.aethera2.com/receptor.html" />
   <meta property="og:title"       content="SR-17018 at the µ-Opioid Receptor — ÆTHER" />
-  <meta property="og:description" content="Experimental structures of the µ-opioid receptor, the opioid binding pocket, and the unsolved question of where SR-17018 binds." />
+  <meta property="og:description" content="Experimental structures of the µ-opioid receptor, with fentanyl and SR-17018 shown in the same binding pocket." />
   <meta property="og:image"       content="https://www.aethera2.com/assets/og-image.png" />
   <meta name="twitter:card"        content="summary" />
   <meta name="twitter:title"       content="SR-17018 at the µ-Opioid Receptor — ÆTHER" />
-  <meta name="twitter:description" content="Experimental structures of the µ-opioid receptor, the opioid binding pocket, and the unsolved question of where SR-17018 binds." />
+  <meta name="twitter:description" content="Experimental structures of the µ-opioid receptor, with fentanyl and SR-17018 shown in the same binding pocket." />
   <meta name="twitter:image"       content="https://www.aethera2.com/assets/og-image.png" />
 
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -113,7 +113,7 @@
   <main>
     <div class="hero">
       <h1 class="title">The µ-Opioid Receptor</h1>
-      <p class="subtitle">What the structures show — and where SR-17018 is still a blank</p>
+      <p class="subtitle">Fentanyl and SR-17018 in the same pocket, from experimental structures</p>
     </div>
 
     <div class="rule"></div>
@@ -123,15 +123,16 @@
       <div class="section">
         <h2 class="section-title">Start With What Is Solved</h2>
         <p class="section-body">Every opioid on this site acts on one protein: the µ-opioid receptor, a G-protein-coupled receptor threaded seven times through the membrane of a nerve cell. Its structure has been solved many times over, by X-ray crystallography and cryo-electron microscopy, with different drugs held inside it.</p>
-        <p class="section-body" style="margin-top:1rem;">The model below is <strong>real experimental data</strong>, not a drawing: the receptor from PDB entry <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener" style="color:#9A7D2E;">8EF5</a>, a cryo-EM structure of the fentanyl-bound receptor coupled to its G protein, determined at 3.3&nbsp;Å. Drag to rotate, scroll to zoom.</p>
+        <p class="section-body" style="margin-top:1rem;">The model below is <strong>real experimental data</strong>, not a drawing: the receptor from PDB entry <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener" style="color:#9A7D2E;">8EF5</a>, a cryo-EM structure of the fentanyl-bound receptor coupled to its G protein, determined at 3.3&nbsp;Å. The same study also solved the receptor with SR-17018 bound (<a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener" style="color:#9A7D2E;">8EFL</a>), so you can switch between the two drugs, or overlay them. Drag to rotate, scroll to zoom.</p>
 
         <div class="viewer-wrap">
           <div class="viewer" id="v-receptor"><div class="viewer-loading" id="v-receptor-msg">Loading the receptor…</div></div>
           <div class="viewer-controls" style="margin-bottom:0.2rem;">
             <span class="ctl-label">Ligand</span>
             <button type="button" data-lig="fentanyl" class="on">Fentanyl — experimental</button>
-            <button type="button" data-lig="sr">SR-17018 — model</button>
+            <button type="button" data-lig="sr">SR-17018 — experimental</button>
             <button type="button" data-lig="both">Both</button>
+            <button type="button" data-lig="model">Our earlier model</button>
           </div>
           <div class="viewer-controls">
             <span class="ctl-label">View</span>
@@ -143,13 +144,13 @@
           <div class="legend">
             <span><i class="swatch" style="background:#9A7D2E;"></i> receptor backbone</span>
             <span><i class="swatch" style="background:#5fd3bc;"></i> fentanyl (experimental)</span>
-            <span><i class="swatch" style="background:#b98cff;"></i> SR-17018 (model)</span>
+            <span><i class="swatch" style="background:#b98cff;"></i> SR-17018 (experimental)</span>
             <span><i class="swatch" style="background:#c0654a;"></i> pocket residues</span>
             <span><i class="swatch" style="background:#8f8fff;"></i> nitrogen</span>
             <span><i class="swatch" style="background:#f00000;"></i> oxygen</span>
           </div>
-          <p class="model-warning" id="model-warning" hidden><strong>This SR-17018 position is a model, not a measurement.</strong> No experimental structure of SR-17018 bound to this receptor exists. Its piperidine ring has been superimposed on fentanyl's, which is the only thing the two molecules share; everything else about the placement is inference, and the published pharmacology suggests SR-17018 may not occupy this pocket in the way fentanyl does.</p>
-          <p class="viewer-note">Carbon atoms carry the legend colour; nitrogen and oxygen keep their standard colours in every molecule, so the charged nitrogen and the carbonyl oxygen stay recognisable. Source: Zhuang et&nbsp;al., PDB 8EF5, chain R (the receptor only — the G protein, cholesterol and detergent are hidden for clarity). Rendered in your browser with 3Dmol.js.</p>
+          <p class="model-warning" id="model-warning" hidden><strong>This is our earlier model, not the experiment.</strong> It was built by superimposing SR-17018's piperidine ring on fentanyl's before we found the experimental structure. Its centre of mass is 2.6&nbsp;Å from the real position. Switch to <em>SR-17018 — experimental</em> for the measured pose.</p>
+          <p class="viewer-note">Carbon atoms carry the legend colour; nitrogen, oxygen and chlorine keep their standard colours, so the charged nitrogen stays recognisable. Receptor and fentanyl from PDB 8EF5; SR-17018 from PDB 8EFL, superimposed on 8EF5 over 287 backbone atoms (0.4&nbsp;Å RMSD). Both from Zhuang et&nbsp;al., <em>Cell</em> 2022. Chain R only — the G protein, cholesterol and detergent are hidden for clarity. Rendered in your browser with 3Dmol.js.</p>
         </div>
       </div>
 
@@ -179,27 +180,48 @@
 
       <div class="section" id="where">
         <h2 class="section-title">So Where Does It Bind?</h2>
-        <p class="section-body"><strong>Nobody knows.</strong> We searched the Protein Data Bank: there is no experimental structure of SR-17018 bound to the µ-opioid receptor, or of SR-15099 bound to anything. Over 200 µ-opioid receptor structures exist. None of them contains this compound.</p>
-        <p class="section-body" style="margin-top:1rem;">That is not merely a gap in the record. The pharmacology actively suggests something unusual is going on. In 2021, the Scripps group that made these compounds reported that SR-17018 and its relative SR-14968 are <strong>noncompetitive</strong> with radiolabelled antagonists at the receptor — meaning they do not simply displace a drug sitting in the orthosteric pocket the way morphine and naloxone compete with each other. They also leave the receptor in a G-protein-signalling state that survives washing the drug away, yet an antagonist can still reverse their effects in a living animal (<a href="https://doi.org/10.1073/pnas.2102178118" target="_blank" rel="noopener" style="color:#9A7D2E;">Stahl et al., PNAS 2021</a>).</p>
-        <p class="section-body" style="margin-top:1rem;">A 2024 study from Dundee titled, plainly, <a href="https://doi.org/10.1016/j.neuropharm.2024.110093" target="_blank" rel="noopener" style="color:#9A7D2E;">“Activation of µ receptors by SR-17018 through a distinctive mechanism”</a> reached the same conclusion from a different direction, and also found that much of the published “bias” in this field is an artefact of measuring in cells with far more receptors than a neuron has.</p>
-        <p class="section-body" style="margin-top:1rem;">Three explanations fit that evidence, and the published work does not yet separate them:</p>
-        <ul class="effects-list" style="margin-top:1.25rem;">
-          <li><strong>An allosteric site.</strong> SR-17018 might bind somewhere other than the orthosteric pocket — a second site on the receptor, possibly facing the membrane — and switch the receptor on from there. This would explain the noncompetitive binding directly. It is the hypothesis the word "allosteric" usually refers to, and it is unproven.</li>
-          <li><strong>Slow, trapped binding in the normal pocket.</strong> The compound may reach the orthosteric site but bind so slowly to leave, or lock the receptor into a conformation that it holds so tightly, that in a binding assay it behaves as though it were non-competing. Wash-resistance points this way.</li>
-          <li><strong>A state the receptor can only reach with this shape.</strong> The 2026 follow-up in <em>Nature</em> frames these compounds as selecting between active states of the receptor that differ in how they handle the G protein's nucleotide (<a href="https://doi.org/10.1038/s41586-025-09880-5" target="_blank" rel="noopener" style="color:#9A7D2E;">Stahl et al., Nature 2026</a>) — a difference in <em>which</em> switched-on shape is stabilised, rather than in where the drug sits.</li>
-        </ul>
-        <p class="section-body" style="margin-top:1.25rem;">Settling this needs a cryo-EM structure of the complex. Nobody has solved one, so the SR-17018 position you can switch on in the viewer above is <strong>a model we built</strong>, and it is worth being precise about how.</p>
-        <p class="section-body" style="margin-top:1rem;">Fentanyl and SR-17018 have almost nothing in common except one thing: both are 4-substituted piperidines. Each carries a ring nitrogen that is positively charged at body pH, an aromatic arm hanging off that nitrogen, and a bulky group at the ring's 4-position. We superimposed SR-17018's piperidine ring onto fentanyl's as it sits in 8EF5, searched 300 conformers and both ring orientations, and kept the arrangement that fits the pocket with the fewest collisions.</p>
-        <p class="section-body" style="margin-top:1rem;">What that exercise shows is modest but real: SR-17018 <em>can</em> sit in this pocket. The best arrangement puts its piperidine ring within 0.4&nbsp;Å of fentanyl's, leaves no atom closer than 2.6&nbsp;Å to the receptor — no steric clash — and places its charged nitrogen 3.9&nbsp;Å from Asp149, against 3.2&nbsp;Å for fentanyl. It makes contacts with Gln126, Tyr150, His299, Val302, Ile324 and Tyr328, the same residues that line the fentanyl site.</p>
-        <p class="section-body" style="margin-top:1rem;">What it does not show is that SR-17018 <em>does</em> sit there. Fitting is a low bar; many molecules fit. The binding assays say this compound does not compete for that pocket the way a classical opioid does, and no superposition can overrule an experiment. Treat the violet molecule as a hypothesis with a number attached, not a finding.</p>
+        <p class="section-body"><strong>In the same pocket as fentanyl.</strong> The same 2022 study that produced the fentanyl structure also froze the receptor with SR-17018 bound and solved it: <a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener" style="color:#9A7D2E;">PDB 8EFL</a>, "SR17018-bound mu-opioid receptor-Gi complex". You can switch it on in the viewer above — that violet molecule is experimental data, not a guess.</p>
+        <p class="section-body" style="margin-top:1rem;">We superimposed the two receptors on 287 backbone atoms (0.4&nbsp;Å apart) so the two drugs can be compared in one frame. SR-17018's centre of mass lands <strong>1.4&nbsp;Å</strong> from fentanyl's. Its contacts are the orthosteric residues listed above: Asp149 at 2.7&nbsp;Å, then Val145, Trp135, Gln126, Tyr150, Asn129, Ile298, Met153, Cys219, Val238, Tyr328, His299, Val302 and Trp295. There is no separate site, no membrane-facing pocket, no second cavity. It sits where morphine sits.</p>
+        <p class="section-body" style="margin-top:1rem;">That settles the location and sharpens the real question. In 2021 the Scripps group reported that SR-17018 is <strong>noncompetitive</strong> with radiolabelled antagonists and leaves the receptor in a G-protein-signalling state that survives washing, while remaining reversible by an antagonist in a living animal (<a href="https://doi.org/10.1073/pnas.2102178118" target="_blank" rel="noopener" style="color:#9A7D2E;">Stahl et al., PNAS 2021</a>). A drug that occupies the orthosteric pocket is not supposed to behave that way.</p>
+        <p class="section-body" style="margin-top:1rem;">With the structure in hand, the explanation has to be about <em>time</em> rather than place. The compound appears to get into the ordinary pocket and then stay — stabilising a receptor state it leaves slowly enough to look non-competing in an assay that assumes rapid equilibrium. A 2024 study from Dundee reached a similar conclusion from a different direction, under the plain title <a href="https://doi.org/10.1016/j.neuropharm.2024.110093" target="_blank" rel="noopener" style="color:#9A7D2E;">“Activation of µ receptors by SR-17018 through a distinctive mechanism”</a>, and also found that much of the published "bias" in this field is an artefact of measuring in cells carrying far more receptors than a neuron does. The 2026 follow-up in <em>Nature</em> frames compounds of this class as selecting between active states that differ in how the receptor handles the G protein's nucleotide (<a href="https://doi.org/10.1038/s41586-025-09880-5" target="_blank" rel="noopener" style="color:#9A7D2E;">Stahl et al., Nature 2026</a>).</p>
+        <p class="section-body" style="margin-top:1rem;">So: where it binds is answered. <em>How long it stays, which state it holds, and what that does over months of use</em> are not.</p>
       </div>
 
       <div class="section" id="docking">
-        <h2 class="section-title">What Docking Could and Could Not Tell You</h2>
-        <p class="section-body">Molecular docking takes a receptor structure and a molecule and searches for the arrangement with the best calculated interaction energy. It is cheap, fast and routinely used to generate hypotheses. It is also the single most over-interpreted technique in structural pharmacology.</p>
-        <p class="section-body" style="margin-top:1rem;">Docking SR-17018 into the pocket shown above would certainly produce a pose, and it would place the piperidine nitrogen near Asp149 — because that is what the scoring function rewards, and because our far cruder superposition lands in the same place. The picture would look convincing. It would also have assumed the very thing the pharmacology calls into question: that the compound binds in that pocket at all. A docking score is not evidence of binding; it is a number produced on the assumption of binding.</p>
-        <p class="section-body" style="margin-top:1rem;">What docking cannot do here is tell you whether a pose is real, how tightly the compound binds, how slowly it leaves, which active state it stabilises, or whether it is safe. Those are the questions that matter for this compound, and none of them is answerable from a picture.</p>
-        <p class="section-body" style="margin-top:1rem;">So this page shows the experimental structure and stops there. If a structure of the complex is published, we will put it here.</p>
+        <h2 class="section-title">A Note on Models</h2>
+        <p class="section-body">Before we found 8EFL, this page carried a model of SR-17018 built by superimposing its piperidine ring onto fentanyl's and keeping the arrangement that fitted the pocket without collisions. You can still switch it on in the viewer, because the comparison is instructive.</p>
+        <p class="section-body" style="margin-top:1rem;">It was close, and wrong in the way models usually are. The modelled molecule sits in the right pocket, with its charged nitrogen reaching toward Asp149 — but its centre of mass is <strong>2.6&nbsp;Å</strong> from the experimental position, and its atoms average <strong>2.3&nbsp;Å</strong> from the nearest real one. At that scale the contacts are different, the ring orientations are different, and any conclusion drawn about <em>how</em> it binds would have been drawn from our own assumptions.</p>
+        <p class="section-body" style="margin-top:1rem;">This is also why a docking score is a poor substitute for a structure. Docking would have placed the nitrogen near Asp149 too, because that is what scoring functions reward, and it would have produced a confident number for a pose that was still a couple of ångströms out. We only know the model was close because somebody did the experiment.</p>
+      </div>
+
+      <div class="section" id="guesswork">
+        <h2 class="section-title">Guesswork</h2>
+        <p class="section-body">Everything above this line is measured. What follows is us reasoning past the data, and we have tried to say what would show each guess to be wrong.</p>
+
+        <p class="section-body" style="margin-top:1rem;">Start with the chlorines, because they are the only thing about this molecule that looks deliberate. There are three, and in the structure each one is pressed against a different wall of the pocket.</p>
+
+        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
+          <thead>
+            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
+              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Contact</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Distance</th><th style="padding:0.5rem 0;">What that looks like</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Chlorine to the backbone oxygen of Ile298</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.7&nbsp;Å</td><td style="padding:0.5rem 0;">a halogen bond</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Chlorine to Val145</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">2.9&nbsp;Å</td><td style="padding:0.5rem 0;">a snug fit against a hydrophobic side chain</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Chlorine to the face of Trp135</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.1&nbsp;Å</td><td style="padding:0.5rem 0;">chlorine stacked on an aromatic ring</td></tr>
+            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">Charged ring nitrogen to Asp149</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.3&nbsp;Å</td><td style="padding:0.5rem 0;">the salt bridge every opioid makes (fentanyl: 3.2&nbsp;Å)</td></tr>
+          </tbody>
+        </table>
+
+        <p class="section-body"><strong>Our first guess is that it comes off slowly.</strong> To leave the pocket the molecule has to give up the salt bridge and all three chlorine contacts, and those point in three different directions, so there is no obvious cheap way out. A drug that binds normally but leaves slowly would look exactly the way SR-17018 looks in the laboratory: wash it away and the signal stays, run a competition assay built on the assumption of fast exchange and it behaves as though it were not competing at all, give an antagonist to an animal and it wins anyway, because an animal has hours rather than minutes.</p>
+        <p class="section-body" style="margin-top:1rem;">That guess is easy to kill. Measure the off-rate directly, or strip the chlorines off and see whether the wash-resistance goes with them. If a des-chloro version behaves the same way, the chlorines were never the reason and we were reading a coincidence.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;"><strong>Our second guess is that the interesting part is not in this pocket at all.</strong> Compare the two structures residue by residue and nothing in the binding site really moves: the largest side-chain difference anywhere near the drug is under one ångström, and at 3.2&nbsp;Å resolution that is indistinguishable from noise. If SR-17018 really does hold the receptor in an unusual signalling state, the evidence for it is unlikely to be visible here. It would be on the far side of the protein, where the G protein docks. That is also where the 2026 <em>Nature</em> work points, with its account of agonists that prefer the receptor state favouring nucleotide release. Testing it means hydrogen–deuterium exchange or spectroscopy on the intracellular half, not another picture of the pocket.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;"><strong>On what months of this do to a person, we will not guess.</strong> A structure is a photograph of one molecule in one protein, and it has nothing to say about a year of daily dosing. Two things are worth holding onto anyway. Rats given the chance to self-administer SR-17018 took it, so whatever else is unusual about this compound, it still reaches the circuitry that makes drugs worth taking again. And nobody has ever run a clinical trial, so the honest answer to "what happens after six months" is that the first people to find out are the people taking it now.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;">One caveat on all of the above. Both structures were determined by cryo-electron microscopy at around 3.2&nbsp;Å, which is good enough to place a molecule confidently and not good enough to defend a single bond length to a tenth of an ångström. The pattern of three chlorines against three walls is solid. The 2.9 is not.</p>
       </div>
 
       <div class="section" id="safety">
@@ -218,18 +240,13 @@
 
       <div class="section papers" id="key-papers">
         <h2 class="section-title">Key Papers</h2>
+        <p class="section-body" style="margin-bottom:1.25rem;">The structural and receptor-level work. For the compound-level evidence — the animal studies, the overdose report and the human registry — see the <a href="sr17018.html#key-papers" style="color:#9A7D2E;">SR-17018 page</a>, which lists them in full.</p>
         <ol class="paper-list">
           <li class="paper">
             <span class="paper-tag">Medicinal chemistry</span>
             <a class="paper-title" href="https://doi.org/10.1016/j.cell.2017.10.035" target="_blank" rel="noopener">Bias factor and therapeutic window correlate to predict safer opioid analgesics</a>
             <p class="paper-meta">Schmid et al. · 2017 · <em>Cell</em> 171:1165 · <a href="https://pubmed.ncbi.nlm.nih.gov/29149605/" target="_blank" rel="noopener">PubMed</a></p>
             <p class="paper-sum">The paper that introduced SR-17018 and its relatives, from Scripps Research. It proposed that the separation between pain relief and respiratory depression tracks with signalling bias — the idea the whole class rests on, and one later work has qualified.</p>
-          </li>
-          <li class="paper">
-            <span class="paper-tag">Animal study</span>
-            <a class="paper-title" href="https://doi.org/10.1038/s41386-019-0491-8" target="_blank" rel="noopener">A G protein signaling-biased agonist at the µ-opioid receptor reverses morphine tolerance while preventing morphine withdrawal</a>
-            <p class="paper-meta">Grim et al. · 2020 · <em>Neuropsychopharmacology</em> 45:416 · <a href="https://pubmed.ncbi.nlm.nih.gov/31443104/" target="_blank" rel="noopener">PubMed</a></p>
-            <p class="paper-sum">In mice, SR-17018 restored morphine's effect in tolerant animals and suppressed withdrawal signs. The origin of the claim that these compounds help people come off opioids — a claim that has never been tested in a human trial.</p>
           </li>
           <li class="paper">
             <span class="paper-tag">Receptor pharmacology</span>
@@ -244,28 +261,22 @@
             <p class="paper-sum">Re-measured a dozen opioids with receptor numbers cut down to realistic levels, and found that much published "bias" reflects receptor reserve in overexpressing cells. SR-17018 still behaved differently from the rest.</p>
           </li>
           <li class="paper">
+            <span class="paper-tag">Receptor pharmacology</span>
+            <a class="paper-title" href="https://doi.org/10.1038/s41586-025-09880-5" target="_blank" rel="noopener">GTP release-selective agonists prolong opioid analgesic efficacy</a>
+            <p class="paper-meta">Stahl et al. · 2026 · <em>Nature</em> 650:500 · <a href="https://pubmed.ncbi.nlm.nih.gov/41407861/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">The current account of what makes these compounds unusual, now that the binding site is settled: agonists can prefer receptor states that differ in how the G protein releases rather than binds its nucleotide. In mice, a release-preferring compound extended morphine and fentanyl pain relief without adding to fentanyl's respiratory effects.</p>
+          </li>
+          <li class="paper">
             <span class="paper-tag">Animal study</span>
             <a class="paper-title" href="https://doi.org/10.1007/s00213-024-06690-x" target="_blank" rel="noopener">Comparison of the reinforcing, antinociceptive, and respiratory depressant effects of prototypical and G-protein biased µ-opioid receptor agonists</a>
             <p class="paper-meta">Zamarripa et al. · 2024 · <em>Psychopharmacology</em> 241:2453 · <a href="https://pubmed.ncbi.nlm.nih.gov/39333403/" target="_blank" rel="noopener">PubMed</a></p>
             <p class="paper-sum">Rats self-administered SR-17018 and SR-14968, so the compounds have abuse liability, though less than oxycodone or fentanyl. Neither produced respiratory depression at the doses tested, while the conventional opioids did.</p>
           </li>
           <li class="paper">
-            <span class="paper-tag">Clinical review</span>
-            <a class="paper-title" href="https://doi.org/10.7759/cureus.116383" target="_blank" rel="noopener">Internet sales of “research grade compounds”: the opioid SR-17018 (SR-17) as an example</a>
-            <p class="paper-meta">Raffa et al. · 2026 · <em>Cureus</em> 18:e116383 · <a href="https://pubmed.ncbi.nlm.nih.gov/42755511/" target="_blank" rel="noopener">PubMed</a></p>
-            <p class="paper-sum">Written from the emergency department's point of view: a compound sold for "research" is being swallowed, and the clinicians who meet an overdose have almost no human evidence to work from. Includes a suspected SR-17 overdose case.</p>
-          </li>
-          <li class="paper">
-            <span class="paper-tag">Self-report registry</span>
-            <a class="paper-title" href="https://doi.org/10.3389/fphar.2026.1899247" target="_blank" rel="noopener">Observational characterization of self-reported SR-17018 exposure and outcomes in individuals with prior opioid use histories</a>
-            <p class="paper-meta">Picard · 2026 · <em>Frontiers in Pharmacology</em> 17:1899247 · <a href="https://pubmed.ncbi.nlm.nih.gov/42807096/" target="_blank" rel="noopener">PubMed</a></p>
-            <p class="paper-sum">The only human dataset: 55 self-selected users, 87% reporting improvement, no verification of substance or outcome. The author is explicit that the recruitment channel excludes people who stopped because it went badly, and that the figures cannot be read as evidence of safety.</p>
-          </li>
-          <li class="paper">
             <span class="paper-tag">Structure</span>
             <a class="paper-title" href="https://doi.org/10.1016/j.cell.2022.09.041" target="_blank" rel="noopener">Molecular recognition of morphine and fentanyl by the human µ-opioid receptor</a>
             <p class="paper-meta">Zhuang et al. · 2022 · <em>Cell</em> 185:4361 · <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener">PDB 8EF5</a></p>
-            <p class="paper-sum">The cryo-EM structures shown at the top of this page, including the fentanyl-bound receptor coupled to its G protein. The source of the pocket geometry described here.</p>
+            <p class="paper-sum">The source of both structures on this page. The group froze the human receptor with five different drugs bound and solved each one, including fentanyl (<a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener">8EF5</a>) and SR-17018 (<a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener">8EFL</a>). It is the experiment that answers where SR-17018 binds: the ordinary orthosteric pocket, not a separate site.</p>
           </li>
         </ol>
       </div>
@@ -302,7 +313,7 @@
     (function () {
       if (typeof $3Dmol === 'undefined') return;
 
-      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a, VIOLET = 0xb98cff;
+      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a, VIOLET = 0xb98cff, SAND = 0xd9c48a;
 
       // Colour carbons to match the legend; leave N, O, Cl at their standard colours.
       function carbons(hex) {
@@ -338,23 +349,30 @@
           rv.setStyle({ resn: '7V7' }, { stick: { colorscheme: carbons(TEAL), radius: 0.22 } });
         }
         if (ligand === 'sr' || ligand === 'both') {
-          rv.setStyle({ resn: 'SRM' }, { stick: { colorscheme: carbons(VIOLET), radius: 0.22 } });
+          rv.setStyle({ resn: 'WH9' }, { stick: { colorscheme: carbons(VIOLET), radius: 0.22 } });
+        }
+        if (ligand === 'model') {
+          rv.setStyle({ resn: 'WH9' }, { stick: { colorscheme: carbons(VIOLET), radius: 0.12, opacity: 0.55 } });
+          rv.setStyle({ resn: 'SRM' }, { stick: { colorscheme: carbons(SAND), radius: 0.22 } });
         }
         if (showRes) {
           rv.addStyle({ resi: POCKET, hetflag: false }, { stick: { colorscheme: carbons(RUST), radius: 0.14 } });
         }
         var warn = document.getElementById('model-warning');
-        if (warn) warn.hidden = (ligand === 'fentanyl');
+        if (warn) warn.hidden = (ligand !== 'model');
         rv.render();
       }
       function ligandSel() {
-        return ligand === 'sr' ? { resn: 'SRM' } : { resn: ['7V7', 'SRM'] };
+        if (ligand === 'sr') return { resn: 'WH9' };
+        if (ligand === 'model') return { resn: ['WH9', 'SRM'] };
+        return { resn: ['7V7', 'WH9'] };
       }
 
       function grab(u) { return fetch(u).then(function (r) { if (!r.ok) throw 0; return r.text(); }); }
       Promise.all([
         grab('assets/structures/mor-8ef5.pdb'),
         grab('assets/structures/fentanyl-7v7.pdb'),
+        grab('assets/structures/sr17018-8efl.pdb'),
         grab('assets/structures/sr17018-model.pdb')
       ]).then(function (parts) {
         var box = document.getElementById('v-receptor');
@@ -363,6 +381,7 @@
         rv.addModel(parts[0], 'pdb');
         rv.addModel(parts[1], 'pdb');
         rv.addModel(parts[2], 'pdb');
+        rv.addModel(parts[3], 'pdb');
         drawReceptor();
         rv.zoomTo();
         rv.render();
