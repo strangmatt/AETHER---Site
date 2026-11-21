@@ -82,7 +82,7 @@
       text-transform: uppercase;
       color: #6f6f66;
       align-self: center;
-      min-width: 3.6rem;
+      min-width: 5.4rem;
     }
     .model-warning {
       margin: 0.85rem 0 0;
@@ -140,13 +140,16 @@
         <div class="viewer-wrap">
           <div class="viewer" id="v-receptor"><div class="viewer-loading" id="v-receptor-msg">Loading the receptor…</div></div>
           <div class="viewer-controls" style="margin-bottom:0.2rem;">
-            <span class="ctl-label">Ligand</span>
+            <span class="ctl-label">Measured</span>
             <button type="button" data-lig="fentanyl" class="on">Fentanyl</button>
             <button type="button" data-lig="morphine">Morphine</button>
             <button type="button" data-lig="sr">SR-17018</button>
             <button type="button" data-lig="both">Overlay all three</button>
-            <button type="button" data-lig="sr15099">SR-15099 (model)</button>
-            <button type="button" data-lig="model">Our earlier model</button>
+          </div>
+          <div class="viewer-controls" style="margin-bottom:0.2rem;">
+            <span class="ctl-label">Modelled</span>
+            <button type="button" data-lig="sr15099">SR-15099</button>
+            <button type="button" data-lig="model">SR-17018, superseded</button>
           </div>
           <div class="viewer-controls">
             <span class="ctl-label">View</span>
