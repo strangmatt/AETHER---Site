@@ -195,33 +195,53 @@
       </div>
 
       <div class="section" id="guesswork">
-        <h2 class="section-title">Guesswork</h2>
-        <p class="section-body">Everything above this line is measured. What follows is us reasoning past the data, and we have tried to say what would show each guess to be wrong.</p>
+        <h2 class="section-title">A Guess, and What Happened to It</h2>
+        <p class="section-body">Everything above this line is measured. What follows started as a guess, so we went and tested it, and it did not survive. We are leaving the whole thing here because the failure is more useful than the guess was.</p>
 
-        <p class="section-body" style="margin-top:1rem;">Start with the chlorines, because they are the only thing about this molecule that looks deliberate. There are three, and in the structure each one is pressed against a different wall of the pocket.</p>
+        <p class="section-body" style="margin-top:1rem;">The guess was about the chlorines. SR-17018 carries three of them, which is unusual, and in the structure each one is pressed against a different wall of the pocket. If those were halogen bonds — a real, directional interaction, not just two atoms touching — then leaving the pocket would mean breaking three of them at once plus the salt bridge to Asp149. A drug that binds normally but leaves slowly would look exactly the way SR-17018 looks in the laboratory: wash it off and the signal stays, run a competition assay built on fast exchange and it behaves as though it is not competing, give an antagonist to an animal and it still wins, because an animal has hours rather than minutes.</p>
+
+        <p class="section-body" style="margin-top:1rem;">A halogen bond has a geometry you can check. The chlorine's positive patch sits directly opposite the carbon it is attached to, so the carbon, the chlorine and the oxygen it reaches for should fall nearly in a straight line, somewhere above about 155 degrees. We measured all four candidate contacts in 8EFL:</p>
 
         <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
           <thead>
             <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
-              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Contact</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Distance</th><th style="padding:0.5rem 0;">What that looks like</th>
+              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Contact</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Distance</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">C&ndash;Cl&middot;&middot;&middot;X angle</th><th style="padding:0.5rem 0;">Verdict</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Chlorine to the backbone oxygen of Ile298</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.7&nbsp;Å</td><td style="padding:0.5rem 0;">a halogen bond</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Chlorine to Val145</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">2.9&nbsp;Å</td><td style="padding:0.5rem 0;">a snug fit against a hydrophobic side chain</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Chlorine to the face of Trp135</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.1&nbsp;Å</td><td style="padding:0.5rem 0;">chlorine stacked on an aromatic ring</td></tr>
-            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">Charged ring nitrogen to Asp149</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.3&nbsp;Å</td><td style="padding:0.5rem 0;">the salt bridge every opioid makes (fentanyl: 3.2&nbsp;Å)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl1 to the backbone oxygen of Ile298</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">4.0&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">47&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl1 to His299</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.9&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">77&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl2 to Gln126</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.8&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">103&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
+            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl3 to Asn129</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.2&nbsp;Å</td><td style="padding:0.5rem 0;">74&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
           </tbody>
         </table>
 
-        <p class="section-body"><strong>Our first guess is that it comes off slowly.</strong> To leave the pocket the molecule has to give up the salt bridge and all three chlorine contacts, and those point in three different directions, so there is no obvious cheap way out. A drug that binds normally but leaves slowly would look exactly the way SR-17018 looks in the laboratory: wash it away and the signal stays, run a competition assay built on the assumption of fast exchange and it behaves as though it were not competing at all, give an antagonist to an animal and it wins anyway, because an animal has hours rather than minutes.</p>
-        <p class="section-body" style="margin-top:1rem;">That guess is easy to kill. Measure the off-rate directly, or strip the chlorines off and see whether the wash-resistance goes with them. If a des-chloro version behaves the same way, the chlorines were never the reason and we were reading a coincidence.</p>
+        <p class="section-body">Every one of them approaches side-on, which is the opposite of what a halogen bond needs. They are ordinary contacts. The chlorines fill space and press against Val145, Trp135, Cys219 and His299, and that is all they do.</p>
 
-        <p class="section-body" style="margin-top:1.25rem;"><strong>Our second guess is that the interesting part is not in this pocket at all.</strong> Compare the two structures residue by residue and nothing in the binding site really moves: the largest side-chain difference anywhere near the drug is under one ångström, and at 3.2&nbsp;Å resolution that is indistinguishable from noise. If SR-17018 really does hold the receptor in an unusual signalling state, the evidence for it is unlikely to be visible here. It would be on the far side of the protein, where the G protein docks. That is also where the 2026 <em>Nature</em> work points, with its account of agonists that prefer the receptor state favouring nucleotide release. Testing it means hydrogen–deuterium exchange or spectroscopy on the intracellular half, not another picture of the pocket.</p>
+        <p class="section-body" style="margin-top:1.25rem;">So we ran the broader version of the question. The same study solved the receptor with four other drugs bound, which gives a built-in comparison. If SR-17018 is held unusually tightly, it should show up as more buried surface or more contacts than the rest.</p>
 
-        <p class="section-body" style="margin-top:1.25rem;"><strong>On what months of this do to a person, we will not guess.</strong> A structure is a photograph of one molecule in one protein, and it has nothing to say about a year of daily dosing. Two things are worth holding onto anyway. Rats given the chance to self-administer SR-17018 took it, so whatever else is unusual about this compound, it still reaches the circuitry that makes drugs worth taking again. And nobody has ever run a clinical trial, so the honest answer to "what happens after six months" is that the first people to find out are the people taking it now.</p>
+        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
+          <thead>
+            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
+              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Drug</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Receptor atoms within 4&nbsp;Å, per ligand atom</th><th style="padding:0.5rem 0;">Surface buried on binding</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">PZM21</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">528&nbsp;Å&sup2; (87%)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Oliceridine</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">505&nbsp;Å&sup2; (83%)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Fentanyl</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">488&nbsp;Å&sup2; (85%)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">SR-17018</strong></td><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">1.0</strong></td><td style="padding:0.5rem 0;"><strong style="color:#b98cff;">462&nbsp;Å&sup2; (79%)</strong></td></tr>
+            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">Morphine</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">0.5</td><td style="padding:0.5rem 0;">350&nbsp;Å&sup2; (84%)</td></tr>
+          </tbody>
+        </table>
 
-        <p class="section-body" style="margin-top:1.25rem;">One caveat on all of the above. Both structures were determined by cryo-electron microscopy at around 3.2&nbsp;Å, which is good enough to place a molecule confidently and not good enough to defend a single bond length to a tenth of an ångström. The pattern of three chlorines against three walls is solid. The 2.9 is not.</p>
+        <p class="section-body">SR-17018 buries the least surface of the four large ligands and makes exactly as many contacts per atom as the others. On this evidence it is held no more tightly than fentanyl, and rather less than a drug nobody claims is wash-resistant.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;">The second idea fared no better. If SR-17018 holds the receptor in a distinctive shape, the difference ought to appear on the inside face, where the G protein docks. We fitted each structure to the fentanyl one using only the extracellular half, then measured how far the intracellular ends had drifted. SR-17018 came in at 0.50&nbsp;Å, the same as morphine, while oliceridine managed 1.13&nbsp;Å. Whatever is different about this compound, the receptor is not wearing it in a way that a 3.2&nbsp;Å map can show.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;">Which leaves a result worth stating plainly: <strong>nothing in these structures singles SR-17018 out.</strong> Same pocket, same salt bridge, ordinary contacts, unremarkable burial, a receptor shaped like every other agonist-bound copy. The strange behaviour is real and measured, and it is not in the picture. That points away from geometry and toward time — how fast the drug arrives and leaves, how long a given state survives — which is a different experiment from the one that produced these coordinates.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;">One caveat on all of the above. Both structures come from cryo-electron microscopy at around 3.2&nbsp;Å, good enough to place a molecule and not good enough to defend a bond length to a tenth of an ångström. A real difference smaller than about half an ångström would be invisible here, so "we cannot see it" is not the same as "it is not there".</p>
       </div>
 
       <div class="section" id="safety">
