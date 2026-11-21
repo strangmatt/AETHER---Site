@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SR-17018 at the µ-Opioid Receptor — ÆTHER</title>
+  <meta name="description" content="An interactive look at the µ-opioid receptor from experimental structures, the pocket that opioids bind, and why nobody has yet shown where SR-17018 binds." />
+  <link rel="canonical" href="https://www.aethera2.com/receptor.html" />
+
+  <!-- Open Graph / social share -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:url"         content="https://www.aethera2.com/receptor.html" />
+  <meta property="og:title"       content="SR-17018 at the µ-Opioid Receptor — ÆTHER" />
+  <meta property="og:description" content="Experimental structures of the µ-opioid receptor, the opioid binding pocket, and the unsolved question of where SR-17018 binds." />
+  <meta property="og:image"       content="https://www.aethera2.com/assets/og-image.png" />
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:title"       content="SR-17018 at the µ-Opioid Receptor — ÆTHER" />
+  <meta name="twitter:description" content="Experimental structures of the µ-opioid receptor, the opioid binding pocket, and the unsolved question of where SR-17018 binds." />
+  <meta name="twitter:image"       content="https://www.aethera2.com/assets/og-image.png" />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/substance.css" />
+  <!-- Enhancements: living bg, reading progress, sticky header, scroll reveal -->
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="assets/enhance.css" />
+  <script defer src="assets/enhance.js"></script>
+
+  <style>
+    .viewer-wrap { margin: 1.5rem 0 0; }
+    .viewer {
+      position: relative;
+      width: 100%;
+      height: 460px;
+      border: 1px solid #2a2a24;
+      border-radius: 6px;
+      background: #07070a;
+      overflow: hidden;
+    }
+    .viewer-note {
+      margin: 0.6rem 0 0;
+      font-size: 0.7rem;
+      line-height: 1.6;
+      color: #8a8a80;
+    }
+    .viewer-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.85rem 0 0;
+    }
+    .viewer-controls button {
+      background: transparent;
+      border: 1px solid #2a2a24;
+      color: #c9c5b6;
+      font-family: inherit;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.8rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .viewer-controls button:hover { border-color: #9A7D2E; color: #fff; }
+    .viewer-controls button.on { border-color: #9A7D2E; color: #9A7D2E; }
+    .viewer-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8a8a80;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0.8rem 0 0; font-size: 0.72rem; color: #c9c5b6; }
+    .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .swatch { width: 0.8rem; height: 0.8rem; border-radius: 2px; display: inline-block; }
+    @media (max-width: 600px) {
+      .viewer { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <a href="index.html" class="header-logo"><img src="assets/logo-header.png" alt="ÆTHER" /></a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1 class="title">The µ-Opioid Receptor</h1>
+      <p class="subtitle">What the structures show — and where SR-17018 is still a blank</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="sections">
+
+      <div class="section">
+        <h2 class="section-title">Start With What Is Solved</h2>
+        <p class="section-body">Every opioid on this site acts on one protein: the µ-opioid receptor, a G-protein-coupled receptor threaded seven times through the membrane of a nerve cell. Its structure has been solved many times over, by X-ray crystallography and cryo-electron microscopy, with different drugs held inside it.</p>
+        <p class="section-body" style="margin-top:1rem;">The model below is <strong>real experimental data</strong>, not a drawing: the receptor from PDB entry <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener" style="color:#9A7D2E;">8EF5</a>, a cryo-EM structure of the fentanyl-bound receptor coupled to its G protein, determined at 3.3&nbsp;Å. Drag to rotate, scroll to zoom.</p>
+
+        <div class="viewer-wrap">
+          <div class="viewer" id="v-receptor"><div class="viewer-loading" id="v-receptor-msg">Loading the receptor…</div></div>
+          <div class="viewer-controls">
+            <button type="button" data-view="overview" class="on">Whole receptor</button>
+            <button type="button" data-view="pocket">Zoom to the pocket</button>
+            <button type="button" data-view="residues">Show pocket residues</button>
+            <button type="button" data-view="spin">Spin</button>
+          </div>
+          <div class="legend">
+            <span><i class="swatch" style="background:#9A7D2E;"></i> receptor backbone</span>
+            <span><i class="swatch" style="background:#5fd3bc;"></i> fentanyl</span>
+            <span><i class="swatch" style="background:#c0654a;"></i> pocket residues</span>
+          </div>
+          <p class="viewer-note">Source: Zhuang et&nbsp;al., PDB 8EF5, chain R (the receptor only — the G protein, cholesterol and detergent are hidden for clarity). Rendered in your browser with 3Dmol.js.</p>
+        </div>
+      </div>
+
+      <div class="section" id="pocket">
+        <h2 class="section-title">The Pocket</h2>
+        <p class="section-body">Fentanyl sits in a cavity near the top of the receptor, the <em>orthosteric</em> site — the place the body's own endorphins bind. We measured which residues line it by taking every amino acid within 5&nbsp;Å of the fentanyl molecule in 8EF5:</p>
+        <p class="section-body" style="margin-top:1rem;font-family:monospace;font-size:0.8rem;line-height:2;color:#c9c5b6;">Gln126 · Asn129 · Trp135 · Val145 · Ile146 · <strong style="color:#9A7D2E;">Asp149</strong> · Tyr150 · Met153 · Cys219 · Val238 · <strong style="color:#9A7D2E;">Trp295</strong> · Ile298 · His299 · Val302 · Ile324 · Gly327 · <strong style="color:#9A7D2E;">Tyr328</strong></p>
+        <p class="section-body" style="margin-top:1rem;">Three of those do most of the work. <strong>Asp149</strong> carries a negative charge that pairs with the positively charged nitrogen every classical opioid carries — morphine, fentanyl, oxycodone and SR-17018 all have one. <strong>Trp295</strong> sits directly beneath the drug and shifts when the receptor switches on. <strong>Tyr328</strong> caps the pocket from the other side.</p>
+        <p class="section-body" style="margin-top:1rem;">This is the part worth understanding: a drug can be a powerful opioid and still differ enormously in what the receptor does <em>after</em> it binds. The pocket is the beginning of the story, not the end.</p>
+      </div>
+
+      <div class="section" id="molecule">
+        <h2 class="section-title">The Molecule</h2>
+        <p class="section-body">SR-17018 is 5,6-dichloro-3-[1-[(4-chlorophenyl)methyl]piperidin-4-yl]-1H-benzimidazol-2-one (C<sub>19</sub>H<sub>18</sub>Cl<sub>3</sub>N<sub>3</sub>O, 410.7&nbsp;g/mol, <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431397" target="_blank" rel="noopener" style="color:#9A7D2E;">PubChem CID 130431397</a>). It looks nothing like morphine. It is a benzimidazolone joined to a piperidine ring, with a chlorobenzyl arm — a shape closer to the old benzimidazole opioids than to anything poppy-derived.</p>
+        <p class="section-body" style="margin-top:1rem;">The 3D conformer below was generated from that structure and energy-minimised, with the piperidine nitrogen protonated as it would be at body pH. That nitrogen is the one that would reach for Asp149.</p>
+
+        <div class="viewer-wrap">
+          <div class="viewer" id="v-ligand" style="height:360px;"><div class="viewer-loading" id="v-ligand-msg">Loading the molecule…</div></div>
+          <div class="viewer-controls">
+            <button type="button" data-lview="sticks" class="on">Sticks</button>
+            <button type="button" data-lview="spheres">Space-filling</button>
+            <button type="button" data-lview="lspin">Spin</button>
+          </div>
+          <p class="viewer-note">A computed low-energy conformer, not an experimental structure. Chlorine green, nitrogen blue, oxygen red, carbon grey.</p>
+        </div>
+      </div>
+
+      <div class="section" id="where">
+        <h2 class="section-title">So Where Does It Bind?</h2>
+        <p class="section-body"><strong>Nobody knows.</strong> We searched the Protein Data Bank: there is no experimental structure of SR-17018 bound to the µ-opioid receptor, or of SR-15099 bound to anything. Over 200 µ-opioid receptor structures exist. None of them contains this compound.</p>
+        <p class="section-body" style="margin-top:1rem;">That is not merely a gap in the record. The pharmacology actively suggests something unusual is going on. In 2021, the Scripps group that made these compounds reported that SR-17018 and its relative SR-14968 are <strong>noncompetitive</strong> with radiolabelled antagonists at the receptor — meaning they do not simply displace a drug sitting in the orthosteric pocket the way morphine and naloxone compete with each other. They also leave the receptor in a G-protein-signalling state that survives washing the drug away, yet an antagonist can still reverse their effects in a living animal (<a href="https://doi.org/10.1073/pnas.2102178118" target="_blank" rel="noopener" style="color:#9A7D2E;">Stahl et al., PNAS 2021</a>).</p>
+        <p class="section-body" style="margin-top:1rem;">A 2024 study from Dundee titled, plainly, <a href="https://doi.org/10.1016/j.neuropharm.2024.110093" target="_blank" rel="noopener" style="color:#9A7D2E;">“Activation of µ receptors by SR-17018 through a distinctive mechanism”</a> reached the same conclusion from a different direction, and also found that much of the published “bias” in this field is an artefact of measuring in cells with far more receptors than a neuron has.</p>
+        <p class="section-body" style="margin-top:1rem;">Three explanations fit that evidence, and the published work does not yet separate them:</p>
+        <ul class="effects-list" style="margin-top:1.25rem;">
+          <li><strong>An allosteric site.</strong> SR-17018 might bind somewhere other than the orthosteric pocket — a second site on the receptor, possibly facing the membrane — and switch the receptor on from there. This would explain the noncompetitive binding directly. It is the hypothesis the word "allosteric" usually refers to, and it is unproven.</li>
+          <li><strong>Slow, trapped binding in the normal pocket.</strong> The compound may reach the orthosteric site but bind so slowly to leave, or lock the receptor into a conformation that it holds so tightly, that in a binding assay it behaves as though it were non-competing. Wash-resistance points this way.</li>
+          <li><strong>A state the receptor can only reach with this shape.</strong> The 2026 follow-up in <em>Nature</em> frames these compounds as selecting between active states of the receptor that differ in how they handle the G protein's nucleotide (<a href="https://doi.org/10.1038/s41586-025-09880-5" target="_blank" rel="noopener" style="color:#9A7D2E;">Stahl et al., Nature 2026</a>) — a difference in <em>which</em> switched-on shape is stabilised, rather than in where the drug sits.</li>
+        </ul>
+        <p class="section-body" style="margin-top:1.25rem;">Settling this needs a cryo-EM structure of the complex. Until somebody solves one, any picture of SR-17018 inside the receptor — including any we could generate — is a guess dressed as an image.</p>
+      </div>
+
+      <div class="section" id="docking">
+        <h2 class="section-title">What Docking Could and Could Not Tell You</h2>
+        <p class="section-body">Molecular docking takes a receptor structure and a molecule and searches for the arrangement with the best calculated interaction energy. It is cheap, fast and routinely used to generate hypotheses. It is also the single most over-interpreted technique in structural pharmacology.</p>
+        <p class="section-body" style="margin-top:1rem;">Docking SR-17018 into the pocket shown above would certainly produce a pose. The piperidine nitrogen would almost certainly be placed near Asp149, because that is what the scoring function rewards. The picture would look convincing. And it would have assumed the very thing the pharmacology calls into question: that the compound binds in that pocket at all.</p>
+        <p class="section-body" style="margin-top:1rem;">What docking cannot do here is tell you whether a pose is real, how tightly the compound binds, how slowly it leaves, which active state it stabilises, or whether it is safe. Those are the questions that matter for this compound, and none of them is answerable from a picture.</p>
+        <p class="section-body" style="margin-top:1rem;">So this page shows the experimental structure and stops there. If a structure of the complex is published, we will put it here.</p>
+      </div>
+
+      <div class="section" id="safety">
+        <h2 class="section-title">What Is Actually Known About the Effects</h2>
+        <p class="section-body">Structural elegance is not safety. The animal and human record, briefly:</p>
+        <ul class="effects-list" style="margin-top:1.25rem;">
+          <li><strong>It is reinforcing.</strong> In rats trained to self-administer drugs, SR-17018 and SR-14968 functioned as reinforcers — less so than oxycodone and fentanyl, but they were taken (<a href="https://doi.org/10.1007/s00213-024-06690-x" target="_blank" rel="noopener" style="color:#9A7D2E;">Zamarripa et al., 2024</a>). "G-protein biased" does not mean "non-addictive".</li>
+          <li><strong>Reduced respiratory depression in animals.</strong> In the same study, oxycodone and fentanyl produced dose-dependent respiratory depression and the SR compounds did not. That is the central claim for this class, and it is an animal result at tested doses, not a human safety finding.</li>
+          <li><strong>Tolerance and withdrawal in mice.</strong> Repeated SR-17018 did not produce the tolerance morphine does, and it reversed established morphine tolerance while preventing withdrawal signs (<a href="https://doi.org/10.1038/s41386-019-0491-8" target="_blank" rel="noopener" style="color:#9A7D2E;">Grim et al., 2020</a>). This is the finding behind most of what is said about these compounds online. It is mice.</li>
+          <li><strong>No clinical trial has ever been run.</strong> SR-17018 never left the laboratory. There is no approved human dose, no pharmacokinetic data in people, and no established treatment for an overdose beyond general opioid management.</li>
+          <li><strong>It is being sold and used.</strong> A 2026 review in <em>Cureus</em> describes internet sales of SR-17018 as "research grade compound", a DEA alert about such compounds, and an emergency physician's account of a suspected overdose (<a href="https://doi.org/10.7759/cureus.116383" target="_blank" rel="noopener" style="color:#9A7D2E;">Raffa et al., 2026</a>).</li>
+          <li><strong>The only human data is self-reported.</strong> A registry of 55 people who used SR-17018, most with several failed detox attempts, reported high rates of improvement — and its own author concludes the design "precludes any conclusion regarding efficacy or safety" and that the sample is biased toward good outcomes (<a href="https://doi.org/10.3389/fphar.2026.1899247" target="_blank" rel="noopener" style="color:#9A7D2E;">Picard, 2026</a>).</li>
+        </ul>
+        <p class="section-body" style="margin-top:1.25rem;">Naloxone reverses these compounds in animals, and the Scripps group specifically noted that antagonist reversal is retained. If you are around anyone using opioids of any kind, keep naloxone in the room. See the <a href="crisis.html" style="color:#9A7D2E;">crisis guide</a>.</p>
+      </div>
+
+      <div class="section papers" id="key-papers">
+        <h2 class="section-title">Key Papers</h2>
+        <ol class="paper-list">
+          <li class="paper">
+            <span class="paper-tag">Medicinal chemistry</span>
+            <a class="paper-title" href="https://doi.org/10.1016/j.cell.2017.10.035" target="_blank" rel="noopener">Bias factor and therapeutic window correlate to predict safer opioid analgesics</a>
+            <p class="paper-meta">Schmid et al. · 2017 · <em>Cell</em> 171:1165 · <a href="https://pubmed.ncbi.nlm.nih.gov/29149605/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">The paper that introduced SR-17018 and its relatives, from Scripps Research. It proposed that the separation between pain relief and respiratory depression tracks with signalling bias — the idea the whole class rests on, and one later work has qualified.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Animal study</span>
+            <a class="paper-title" href="https://doi.org/10.1038/s41386-019-0491-8" target="_blank" rel="noopener">A G protein signaling-biased agonist at the µ-opioid receptor reverses morphine tolerance while preventing morphine withdrawal</a>
+            <p class="paper-meta">Grim et al. · 2020 · <em>Neuropsychopharmacology</em> 45:416 · <a href="https://pubmed.ncbi.nlm.nih.gov/31443104/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">In mice, SR-17018 restored morphine's effect in tolerant animals and suppressed withdrawal signs. The origin of the claim that these compounds help people come off opioids — a claim that has never been tested in a human trial.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Receptor pharmacology</span>
+            <a class="paper-title" href="https://doi.org/10.1073/pnas.2102178118" target="_blank" rel="noopener">G protein signaling-biased mu opioid receptor agonists that produce sustained G protein activation are noncompetitive agonists</a>
+            <p class="paper-meta">Stahl et al. · 2021 · <em>PNAS</em> 118:e2102178118 · <a href="https://pubmed.ncbi.nlm.nih.gov/34819362/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">The key paper for the binding-site question. SR-17018 and SR-14968 do not compete with radiolabelled antagonists and leave the receptor in a wash-resistant signalling state, while remaining reversible by antagonists in vivo.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Receptor pharmacology</span>
+            <a class="paper-title" href="https://doi.org/10.1016/j.neuropharm.2024.110093" target="_blank" rel="noopener">Activation of µ receptors by SR-17018 through a distinctive mechanism</a>
+            <p class="paper-meta">Singleton et al. · 2024 · <em>Neuropharmacology</em> 258:110093 · <a href="https://pubmed.ncbi.nlm.nih.gov/39067665/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">Re-measured a dozen opioids with receptor numbers cut down to realistic levels, and found that much published "bias" reflects receptor reserve in overexpressing cells. SR-17018 still behaved differently from the rest.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Animal study</span>
+            <a class="paper-title" href="https://doi.org/10.1007/s00213-024-06690-x" target="_blank" rel="noopener">Comparison of the reinforcing, antinociceptive, and respiratory depressant effects of prototypical and G-protein biased µ-opioid receptor agonists</a>
+            <p class="paper-meta">Zamarripa et al. · 2024 · <em>Psychopharmacology</em> 241:2453 · <a href="https://pubmed.ncbi.nlm.nih.gov/39333403/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">Rats self-administered SR-17018 and SR-14968, so the compounds have abuse liability, though less than oxycodone or fentanyl. Neither produced respiratory depression at the doses tested, while the conventional opioids did.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Clinical review</span>
+            <a class="paper-title" href="https://doi.org/10.7759/cureus.116383" target="_blank" rel="noopener">Internet sales of “research grade compounds”: the opioid SR-17018 (SR-17) as an example</a>
+            <p class="paper-meta">Raffa et al. · 2026 · <em>Cureus</em> 18:e116383 · <a href="https://pubmed.ncbi.nlm.nih.gov/42755511/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">Written from the emergency department's point of view: a compound sold for "research" is being swallowed, and the clinicians who meet an overdose have almost no human evidence to work from. Includes a suspected SR-17 overdose case.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Self-report registry</span>
+            <a class="paper-title" href="https://doi.org/10.3389/fphar.2026.1899247" target="_blank" rel="noopener">Observational characterization of self-reported SR-17018 exposure and outcomes in individuals with prior opioid use histories</a>
+            <p class="paper-meta">Picard · 2026 · <em>Frontiers in Pharmacology</em> 17:1899247 · <a href="https://pubmed.ncbi.nlm.nih.gov/42807096/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">The only human dataset: 55 self-selected users, 87% reporting improvement, no verification of substance or outcome. The author is explicit that the recruitment channel excludes people who stopped because it went badly, and that the figures cannot be read as evidence of safety.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Structure</span>
+            <a class="paper-title" href="https://doi.org/10.1016/j.cell.2022.09.041" target="_blank" rel="noopener">Molecular recognition of morphine and fentanyl by the human µ-opioid receptor</a>
+            <p class="paper-meta">Zhuang et al. · 2022 · <em>Cell</em> 185:4361 · <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener">PDB 8EF5</a></p>
+            <p class="paper-sum">The cryo-EM structures shown at the top of this page, including the fentanyl-bound receptor coupled to its G protein. The source of the pocket geometry described here.</p>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="section">
+      <h2 class="section-title">Further Reading</h2>
+      <a class="learn-more" href="sr17018.html">SR-17018 →</a>
+      <a class="learn-more" href="sr15099.html" style="margin-left:1.25rem;">SR-15099 →</a>
+      <a class="learn-more" href="paws.html" style="margin-left:1.25rem;">PAWS →</a>
+      <a class="learn-more" href="crisis.html" style="margin-left:1.25rem;">Crisis guide →</a>
+    </div>
+
+    <p class="disclaimer">This page is for educational purposes only. Nothing here constitutes legal, medical, or therapeutic advice, and nothing here should be read as a claim that any compound is safe or effective. SR-17018 and SR-15099 have never been tested in a human clinical trial. Know your local laws.</p>
+  </main>
+
+  <footer>
+    <img class="footer-logo" src="assets/logo-header.png" alt="ÆTHER" /><span>Ann Arbor</span>
+    <script src="assets/social.js" defer></script>
+  </footer>
+
+  <script src="assets/3Dmol-min.js"></script>
+  <script>
+    /* Two 3Dmol viewers, both fed from files served by this site. */
+    (function () {
+      if (typeof $3Dmol === 'undefined') return;
+
+      var GOLD = '#9A7D2E', TEAL = '#5fd3bc', RUST = '#c0654a';
+      var POCKET = [126, 129, 135, 145, 146, 149, 150, 153, 219, 238, 295, 298, 299, 302, 324, 327, 328];
+
+      function fail(id, msg) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = msg;
+      }
+
+      // 3Dmol needs WebGL. Without it, leave the message in place rather than an empty box.
+      var NOGL = 'This 3D model needs WebGL, which this browser has turned off or does not support.';
+      try {
+        var probe = document.createElement('canvas');
+        if (!(probe.getContext('webgl') || probe.getContext('experimental-webgl'))) throw 0;
+      } catch (e) {
+        fail('v-receptor-msg', NOGL);
+        fail('v-ligand-msg', NOGL);
+        return;
+      }
+
+      /* ── Receptor ── */
+      var rv = null, rspin = false, showRes = false;
+      function drawReceptor() {
+        if (!rv) return;
+        rv.setStyle({}, {});
+        rv.setStyle({ chain: 'R', hetflag: false }, { cartoon: { color: GOLD, opacity: showRes ? 0.55 : 0.9 } });
+        rv.setStyle({ resn: '7V7' }, { stick: { colorscheme: 'greenCarbon', radius: 0.22 } });
+        if (showRes) {
+          rv.addStyle({ resi: POCKET, hetflag: false }, { stick: { color: RUST, radius: 0.14 } });
+        }
+        rv.render();
+      }
+
+      Promise.all([
+        fetch('assets/structures/mor-8ef5.pdb').then(function (r) { if (!r.ok) throw 0; return r.text(); }),
+        fetch('assets/structures/fentanyl-7v7.pdb').then(function (r) { if (!r.ok) throw 0; return r.text(); })
+      ]).then(function (parts) {
+        var box = document.getElementById('v-receptor');
+        box.innerHTML = '';
+        rv = $3Dmol.createViewer(box, { backgroundColor: '#07070a' });
+        rv.addModel(parts[0], 'pdb');
+        rv.addModel(parts[1], 'pdb');
+        drawReceptor();
+        rv.zoomTo();
+        rv.render();
+      }).catch(function () {
+        fail('v-receptor-msg', 'The 3D viewer could not load. It needs WebGL — try a different browser.');
+      });
+
+      document.querySelectorAll('[data-view]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!rv) return;
+          var v = btn.getAttribute('data-view');
+          if (v === 'overview') { showRes = false; drawReceptor(); rv.zoomTo(); }
+          if (v === 'pocket') { rv.zoomTo({ resn: '7V7' }); rv.zoom(0.45); }
+          if (v === 'residues') { showRes = !showRes; btn.classList.toggle('on', showRes); drawReceptor(); rv.zoomTo({ resn: '7V7' }); rv.zoom(0.6); }
+          if (v === 'spin') { rspin = !rspin; btn.classList.toggle('on', rspin); rv.spin(rspin ? 'y' : false); }
+          if (v !== 'residues' && v !== 'spin') {
+            document.querySelectorAll('[data-view]').forEach(function (b) {
+              if (b.getAttribute('data-view') === 'overview' || b.getAttribute('data-view') === 'pocket') b.classList.remove('on');
+            });
+            btn.classList.add('on');
+          }
+          rv.render();
+        });
+      });
+
+      /* ── Ligand ── */
+      var lv = null, lspin = false;
+      function drawLigand(mode) {
+        if (!lv) return;
+        lv.setStyle({}, mode === 'spheres'
+          ? { sphere: { colorscheme: 'default', scale: 0.85 } }
+          : { stick: { colorscheme: 'default', radius: 0.17 }, sphere: { scale: 0.22 } });
+        lv.render();
+      }
+
+      fetch('assets/structures/sr17018.sdf').then(function (r) {
+        if (!r.ok) throw 0;
+        return r.text();
+      }).then(function (sdf) {
+        var box = document.getElementById('v-ligand');
+        box.innerHTML = '';
+        lv = $3Dmol.createViewer(box, { backgroundColor: '#07070a' });
+        lv.addModel(sdf, 'sdf');
+        drawLigand('sticks');
+        lv.zoomTo();
+        lv.zoom(0.8);
+        lv.render();
+      }).catch(function () {
+        fail('v-ligand-msg', 'The 3D viewer could not load. It needs WebGL — try a different browser.');
+      });
+
+      document.querySelectorAll('[data-lview]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!lv) return;
+          var v = btn.getAttribute('data-lview');
+          if (v === 'lspin') { lspin = !lspin; btn.classList.toggle('on', lspin); lv.spin(lspin ? 'y' : false); lv.render(); return; }
+          document.querySelectorAll('[data-lview]').forEach(function (b) {
+            if (b.getAttribute('data-lview') !== 'lspin') b.classList.remove('on');
+          });
+          btn.classList.add('on');
+          drawLigand(v);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
