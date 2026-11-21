@@ -222,12 +222,12 @@
 
         <p class="section-body" style="margin-top:1rem;">The guess was about the chlorines. SR-17018 carries three of them, which is unusual, and in the structure each one is pressed against a different wall of the pocket. If those were halogen bonds — a real, directional interaction, not just two atoms touching — then leaving the pocket would mean breaking three of them at once plus the salt bridge to Asp149. A drug that binds normally but leaves slowly would look exactly the way SR-17018 looks in the laboratory: wash it off and the signal stays, run a competition assay built on fast exchange and it behaves as though it is not competing, give an antagonist to an animal and it still wins, because an animal has hours rather than minutes.</p>
 
-        <p class="section-body" style="margin-top:1rem;">A halogen bond has a geometry you can check. The chlorine's positive patch sits directly opposite the carbon it is attached to, so the carbon, the chlorine and the oxygen it reaches for should fall nearly in a straight line, somewhere above about 155 degrees. We measured all four candidate contacts in 8EFL:</p>
+        <p class="section-body" style="margin-top:1rem;">A halogen bond has a geometry you can check. The chlorine's positive patch sits directly opposite the carbon it is attached to, so the carbon, the chlorine and the oxygen it reaches for should fall nearly in a straight line — in the usual convention the C&ndash;Cl&middot;&middot;&middot;X angle should be above about 155&deg;, which is to say no more than about 25&deg; off straight. The column below reports <em>how far off straight</em> each contact falls, so small numbers would support a halogen bond and large ones rule it out. We measured all four candidates in 8EFL:</p>
 
         <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
           <thead>
             <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
-              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Contact</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Distance</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">C&ndash;Cl&middot;&middot;&middot;X angle</th><th style="padding:0.5rem 0;">Verdict</th>
+              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Contact</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Distance</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Degrees off straight</th><th style="padding:0.5rem 0;">Verdict</th>
             </tr>
           </thead>
           <tbody>
@@ -311,7 +311,32 @@
         <p class="section-body" style="margin-top:1.25rem;">So every structural statement about SR-15099 — including the ones on our own <a href="sr15099.html" style="color:#9A7D2E;">SR-15099 page</a> — is an inference from its close relative, not an observation of it. That inference is reasonable and it is not evidence.</p>
         <p class="section-body" style="margin-top:1.25rem;">It gets thinner. The identity of the material is not firmly established either. A CAS registry number exists and is well formed — 2134602-44-9, sitting immediately before SR-17018's 2134602-45-0, which is consistent with the two having been registered together. It does not resolve in PubChem or ChEMBL. Tying structure to registry number to name needs paid CAS registry access, which we have not bought. And no certified reference standard is published, which has a blunt practical consequence: <strong>a testing laboratory has nothing to calibrate against, so no lab can currently verify a sample of it</strong> — ours or anyone else's.</p>
         <p class="section-body" style="margin-top:1.25rem;">We could put a model of it in the viewer. We are not going to, for the reason set out in <a href="#docking" style="color:#9A7D2E;">A Note on Models</a> further up: when we modelled SR-17018 before the real structure appeared, the model was 2.6 Å out at the centre of mass, which was close enough to look convincing and far enough to make every conclusion about contacts wrong. Doing that again for a compound whose structure is itself uncertain would stack one guess on another and render it in 3D, which is the most persuasive possible way to be wrong.</p>
-        <p class="section-body" style="margin-top:1.25rem;">Two things would close this gap. Cryo-EM of SR-15099 at the receptor, which is beyond what we can do. Or analytical characterisation of market samples — identity, purity, analogue content, batch variation — which needs money rather than permission, involves no human subjects and therefore no ethics board, and is the single most publishable piece of work available in this area. Nobody has done it.</p>
+        <p class="section-body" style="margin-top:1.25rem;">There is one thing we can do honestly, and we have done it. Because the two compounds differ by exactly one atom — bromine where SR-17018 has chlorine, on the far end of the benzyl ring — we can take the measured SR-17018 pose, swap that single atom, and ask what changes. This is not a prediction of how SR-15099 binds. It is the narrower question of what that one substitution does to the geometry, holding everything else at its experimental position.</p>
+
+        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
+          <thead>
+            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
+              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Measurement</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">SR-17018 <span style="color:#8a8a80;font-weight:normal;">(measured)</span></th><th style="padding:0.5rem 0;">SR-15099 <span style="color:#8a8a80;font-weight:normal;">(model)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Receptor atoms within 4.5&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">48</td><td style="padding:0.5rem 0;">49</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Share of contacts on helix 7</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1 atom — 2.1%</td><td style="padding:0.5rem 0;">1 atom — 2.0%</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Surface buried on binding</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">458&nbsp;Å&sup2; (78%)</td><td style="padding:0.5rem 0;">465&nbsp;Å&sup2; (79%)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Halogen to Ile298 backbone oxygen</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.66&nbsp;Å</td><td style="padding:0.5rem 0;">3.54&nbsp;Å</td></tr>
+            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">That contact, degrees off straight</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">45&deg;</td><td style="padding:0.5rem 0;">47&deg;</td></tr>
+          </tbody>
+        </table>
+
+        <p class="section-body">Almost nothing changes. One additional contact, seven more square ångströms buried, the same solitary graze against helix 7.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;">The last row is the one worth dwelling on. Bromine is a markedly better halogen-bond donor than chlorine — a larger, more polarisable atom with a deeper positive patch opposite the carbon. If the halogen-bond idea further up this page was ever going to work for anything in this series, SR-15099 is where it should work. It does not. The contact is 47&deg; off straight, no better aligned than the chlorine it replaces, and a halogen bond needs to be within about 25&deg;. <strong>The refutation extends to the compound we actually sell.</strong></p>
+
+        <p class="section-body" style="margin-top:1.25rem;">What this cannot tell you is whether SR-15099 binds in this pose at all. A single atom can change potency, duration and metabolism, and the two compounds already differ measurably in the one study that tested both side by side. The model answers a geometric question and nothing beyond it.</p>
+
+        <p class="caption" style="color:#8a8a80;font-size:0.78rem;line-height:1.6;"><strong>Method.</strong> SR-17018 from 8EFL superimposed on the 8EF5 receptor; contacts counted as unique receptor atoms within 4.5&nbsp;Å; buried surface by Shrake–Rupley with a 1.4&nbsp;Å probe. Run against SR-17018 first as a control — it returns 2.1% on helix 7 and 458&nbsp;Å&sup2; buried, against the 2% and 462&nbsp;Å&sup2; in the tables above, which were computed in the native 8EFL frame. Not peer reviewed.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;">Two things would close the real gap. Cryo-EM of SR-15099 at the receptor, which is beyond what we can do. Or analytical characterisation of market samples — identity, purity, analogue content, batch variation — which needs money rather than permission, involves no human subjects and therefore no ethics board, and is the single most publishable piece of work available in this area. Nobody has done it.</p>
       </div>
 
       <div class="section" id="safety">
