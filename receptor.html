@@ -145,6 +145,7 @@
             <button type="button" data-lig="morphine">Morphine</button>
             <button type="button" data-lig="sr">SR-17018</button>
             <button type="button" data-lig="both">Overlay all three</button>
+            <button type="button" data-lig="sr15099">SR-15099 (model)</button>
             <button type="button" data-lig="model">Our earlier model</button>
           </div>
           <div class="viewer-controls">
@@ -159,6 +160,7 @@
             <span><i class="swatch" style="background:#9A7D2E;"></i> receptor backbone</span>
             <span><i class="swatch" style="background:#5fd3bc;"></i> fentanyl (experimental)</span>
             <span><i class="swatch" style="background:#b98cff;"></i> SR-17018 (experimental)</span>
+            <span><i class="swatch" style="background:#e8a33d;"></i> SR-15099 (model)</span>
             <span><i class="swatch" style="background:#c0654a;"></i> pocket residues</span>
             <span><i class="swatch" style="background:#8fb4ff;"></i> morphine</span>
             <span><i class="swatch" style="background:#e06c9f;"></i> helix 7 face</span>
@@ -166,6 +168,7 @@
             <span><i class="swatch" style="background:#f00000;"></i> oxygen</span>
           </div>
           <p class="model-warning" id="model-warning" hidden><strong>This is our earlier model, not the experiment.</strong> It was built by superimposing SR-17018's piperidine ring on fentanyl's before we found the experimental structure. Its center of mass is 2.6&nbsp;Å from the real position. Switch to <em>SR-17018 — experimental</em> for the measured pose.</p>
+          <p class="model-warning" id="s99-warning" hidden><strong>This is a model, not an experiment.</strong> No structure of SR-15099 bound to any receptor has ever been deposited. This is the measured SR-17018 pose from 8EFL with one atom changed: the benzyl ring's para-chlorine replaced by bromine, the bond extended from 1.72 to 1.89&nbsp;Å. Every other atom is unmoved experimental data. It assumes SR-15099 is the 4-bromobenzyl analogue and that it binds the same way — neither has been shown. The pale violet overlay is the real SR-17018 for comparison.</p>
           <p class="viewer-note">Carbon atoms carry the legend color; nitrogen, oxygen and chlorine keep their standard colors, so the charged nitrogen stays recognizable. Receptor and fentanyl from PDB 8EF5; SR-17018 from PDB 8EFL, superimposed on 8EF5 over 287 backbone atoms (0.4&nbsp;Å RMSD). Both from Zhuang et&nbsp;al., <em>Cell</em> 2022. Chain R only — the G protein, cholesterol and detergent are hidden for clarity. Rendered in your browser with 3Dmol.js.</p>
         </div>
       </div>
@@ -408,7 +411,7 @@
     (function () {
       if (typeof $3Dmol === 'undefined') return;
 
-      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a, VIOLET = 0xb98cff, SAND = 0xd9c48a,
+      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a, VIOLET = 0xb98cff, SAND = 0xd9c48a, AMBER = 0xe8a33d,
           BLUE = 0x8fb4ff, PINK = '#e06c9f';
       var HELIX7 = [324, 327, 328];
 
@@ -451,6 +454,10 @@
         if (ligand === 'sr' || ligand === 'both') {
           rv.setStyle({ resn: 'WH9' }, { stick: { colorscheme: carbons(VIOLET), radius: 0.22 } });
         }
+        if (ligand === 'sr15099') {
+          rv.setStyle({ resn: 'WH9' }, { stick: { colorscheme: carbons(VIOLET), radius: 0.12, opacity: 0.55 } });
+          rv.setStyle({ resn: 'S99' }, { stick: { colorscheme: carbons(AMBER), radius: 0.22 } });
+        }
         if (ligand === 'model') {
           rv.setStyle({ resn: 'WH9' }, { stick: { colorscheme: carbons(VIOLET), radius: 0.12, opacity: 0.55 } });
           rv.setStyle({ resn: 'SRM' }, { stick: { colorscheme: carbons(SAND), radius: 0.22 } });
@@ -464,12 +471,15 @@
         }
         var warn = document.getElementById('model-warning');
         if (warn) warn.hidden = (ligand !== 'model');
+        var s99warn = document.getElementById('s99-warning');
+        if (s99warn) s99warn.hidden = (ligand !== 'sr15099');
         rv.render();
       }
       function ligandSel() {
         if (ligand === 'sr') return { resn: 'WH9' };
         if (ligand === 'morphine') return { resn: 'MOI' };
         if (ligand === 'model') return { resn: ['WH9', 'SRM'] };
+        if (ligand === 'sr15099') return { resn: ['WH9', 'S99'] };
         if (ligand === 'both') return { resn: ['7V7', 'WH9', 'MOI'] };
         return { resn: ['7V7', 'WH9'] };
       }
@@ -480,7 +490,8 @@
         grab('assets/structures/fentanyl-7v7.pdb'),
         grab('assets/structures/sr17018-8efl.pdb'),
         grab('assets/structures/sr17018-model.pdb'),
-        grab('assets/structures/morphine-8ef6.pdb')
+        grab('assets/structures/morphine-8ef6.pdb'),
+        grab('assets/structures/sr15099-model.pdb')
       ]).then(function (parts) {
         var box = document.getElementById('v-receptor');
         box.innerHTML = '';
@@ -490,6 +501,7 @@
         rv.addModel(parts[2], 'pdb');
         rv.addModel(parts[3], 'pdb');
         rv.addModel(parts[4], 'pdb');
+        rv.addModel(parts[5], 'pdb');
         drawReceptor();
         rv.zoomTo();
         rv.render();
