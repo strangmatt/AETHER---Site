@@ -116,8 +116,10 @@
             <span><i class="swatch" style="background:#9A7D2E;"></i> receptor backbone</span>
             <span><i class="swatch" style="background:#5fd3bc;"></i> fentanyl</span>
             <span><i class="swatch" style="background:#c0654a;"></i> pocket residues</span>
+            <span><i class="swatch" style="background:#8f8fff;"></i> nitrogen</span>
+            <span><i class="swatch" style="background:#f00000;"></i> oxygen</span>
           </div>
-          <p class="viewer-note">Source: Zhuang et&nbsp;al., PDB 8EF5, chain R (the receptor only — the G protein, cholesterol and detergent are hidden for clarity). Rendered in your browser with 3Dmol.js.</p>
+          <p class="viewer-note">Carbon atoms carry the legend colour; nitrogen and oxygen keep their standard colours in every molecule, so the charged nitrogen and the carbonyl oxygen stay recognisable. Source: Zhuang et&nbsp;al., PDB 8EF5, chain R (the receptor only — the G protein, cholesterol and detergent are hidden for clarity). Rendered in your browser with 3Dmol.js.</p>
         </div>
       </div>
 
@@ -141,7 +143,7 @@
             <button type="button" data-lview="spheres">Space-filling</button>
             <button type="button" data-lview="lspin">Spin</button>
           </div>
-          <p class="viewer-note">A computed low-energy conformer, not an experimental structure. Chlorine green, nitrogen blue, oxygen red, carbon grey.</p>
+          <p class="viewer-note">A computed low-energy conformer, not an experimental structure. Carbon grey, chlorine green, nitrogen blue, oxygen red, hydrogen white.</p>
         </div>
       </div>
 
@@ -261,7 +263,14 @@
     (function () {
       if (typeof $3Dmol === 'undefined') return;
 
-      var GOLD = '#9A7D2E', TEAL = '#5fd3bc', RUST = '#c0654a';
+      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a;
+
+      // Colour carbons to match the legend; leave N, O, Cl at their standard colours.
+      function carbons(hex) {
+        var map = Object.assign({}, $3Dmol.elementColors.defaultColors);
+        map.C = hex;
+        return { prop: 'elem', map: map };
+      }
       var POCKET = [126, 129, 135, 145, 146, 149, 150, 153, 219, 238, 295, 298, 299, 302, 324, 327, 328];
 
       function fail(id, msg) {
@@ -286,9 +295,9 @@
         if (!rv) return;
         rv.setStyle({}, {});
         rv.setStyle({ chain: 'R', hetflag: false }, { cartoon: { color: GOLD, opacity: showRes ? 0.55 : 0.9 } });
-        rv.setStyle({ resn: '7V7' }, { stick: { colorscheme: 'greenCarbon', radius: 0.22 } });
+        rv.setStyle({ resn: '7V7' }, { stick: { colorscheme: carbons(TEAL), radius: 0.22 } });
         if (showRes) {
-          rv.addStyle({ resi: POCKET, hetflag: false }, { stick: { color: RUST, radius: 0.14 } });
+          rv.addStyle({ resi: POCKET, hetflag: false }, { stick: { colorscheme: carbons(RUST), radius: 0.14 } });
         }
         rv.render();
       }
