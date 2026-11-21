@@ -75,6 +75,27 @@
       text-align: center;
       padding: 1rem;
     }
+    .ctl-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #6f6f66;
+      align-self: center;
+      min-width: 3.6rem;
+    }
+    .model-warning {
+      margin: 0.85rem 0 0;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid #5a4a7a;
+      border-left: 3px solid #b98cff;
+      border-radius: 4px;
+      background: rgba(185, 140, 255, 0.08);
+      color: #d8d2e8;
+      font-size: 0.74rem;
+      line-height: 1.6;
+    }
+    .model-warning[hidden] { display: none; }
     .legend { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0.8rem 0 0; font-size: 0.72rem; color: #c9c5b6; }
     .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
     .swatch { width: 0.8rem; height: 0.8rem; border-radius: 2px; display: inline-block; }
@@ -106,7 +127,14 @@
 
         <div class="viewer-wrap">
           <div class="viewer" id="v-receptor"><div class="viewer-loading" id="v-receptor-msg">Loading the receptor…</div></div>
+          <div class="viewer-controls" style="margin-bottom:0.2rem;">
+            <span class="ctl-label">Ligand</span>
+            <button type="button" data-lig="fentanyl" class="on">Fentanyl — experimental</button>
+            <button type="button" data-lig="sr">SR-17018 — model</button>
+            <button type="button" data-lig="both">Both</button>
+          </div>
           <div class="viewer-controls">
+            <span class="ctl-label">View</span>
             <button type="button" data-view="overview" class="on">Whole receptor</button>
             <button type="button" data-view="pocket">Zoom to the pocket</button>
             <button type="button" data-view="residues">Show pocket residues</button>
@@ -114,11 +142,13 @@
           </div>
           <div class="legend">
             <span><i class="swatch" style="background:#9A7D2E;"></i> receptor backbone</span>
-            <span><i class="swatch" style="background:#5fd3bc;"></i> fentanyl</span>
+            <span><i class="swatch" style="background:#5fd3bc;"></i> fentanyl (experimental)</span>
+            <span><i class="swatch" style="background:#b98cff;"></i> SR-17018 (model)</span>
             <span><i class="swatch" style="background:#c0654a;"></i> pocket residues</span>
             <span><i class="swatch" style="background:#8f8fff;"></i> nitrogen</span>
             <span><i class="swatch" style="background:#f00000;"></i> oxygen</span>
           </div>
+          <p class="model-warning" id="model-warning" hidden><strong>This SR-17018 position is a model, not a measurement.</strong> No experimental structure of SR-17018 bound to this receptor exists. Its piperidine ring has been superimposed on fentanyl's, which is the only thing the two molecules share; everything else about the placement is inference, and the published pharmacology suggests SR-17018 may not occupy this pocket in the way fentanyl does.</p>
           <p class="viewer-note">Carbon atoms carry the legend colour; nitrogen and oxygen keep their standard colours in every molecule, so the charged nitrogen and the carbonyl oxygen stay recognisable. Source: Zhuang et&nbsp;al., PDB 8EF5, chain R (the receptor only — the G protein, cholesterol and detergent are hidden for clarity). Rendered in your browser with 3Dmol.js.</p>
         </div>
       </div>
@@ -158,13 +188,16 @@
           <li><strong>Slow, trapped binding in the normal pocket.</strong> The compound may reach the orthosteric site but bind so slowly to leave, or lock the receptor into a conformation that it holds so tightly, that in a binding assay it behaves as though it were non-competing. Wash-resistance points this way.</li>
           <li><strong>A state the receptor can only reach with this shape.</strong> The 2026 follow-up in <em>Nature</em> frames these compounds as selecting between active states of the receptor that differ in how they handle the G protein's nucleotide (<a href="https://doi.org/10.1038/s41586-025-09880-5" target="_blank" rel="noopener" style="color:#9A7D2E;">Stahl et al., Nature 2026</a>) — a difference in <em>which</em> switched-on shape is stabilised, rather than in where the drug sits.</li>
         </ul>
-        <p class="section-body" style="margin-top:1.25rem;">Settling this needs a cryo-EM structure of the complex. Until somebody solves one, any picture of SR-17018 inside the receptor — including any we could generate — is a guess dressed as an image.</p>
+        <p class="section-body" style="margin-top:1.25rem;">Settling this needs a cryo-EM structure of the complex. Nobody has solved one, so the SR-17018 position you can switch on in the viewer above is <strong>a model we built</strong>, and it is worth being precise about how.</p>
+        <p class="section-body" style="margin-top:1rem;">Fentanyl and SR-17018 have almost nothing in common except one thing: both are 4-substituted piperidines. Each carries a ring nitrogen that is positively charged at body pH, an aromatic arm hanging off that nitrogen, and a bulky group at the ring's 4-position. We superimposed SR-17018's piperidine ring onto fentanyl's as it sits in 8EF5, searched 300 conformers and both ring orientations, and kept the arrangement that fits the pocket with the fewest collisions.</p>
+        <p class="section-body" style="margin-top:1rem;">What that exercise shows is modest but real: SR-17018 <em>can</em> sit in this pocket. The best arrangement puts its piperidine ring within 0.4&nbsp;Å of fentanyl's, leaves no atom closer than 2.6&nbsp;Å to the receptor — no steric clash — and places its charged nitrogen 3.9&nbsp;Å from Asp149, against 3.2&nbsp;Å for fentanyl. It makes contacts with Gln126, Tyr150, His299, Val302, Ile324 and Tyr328, the same residues that line the fentanyl site.</p>
+        <p class="section-body" style="margin-top:1rem;">What it does not show is that SR-17018 <em>does</em> sit there. Fitting is a low bar; many molecules fit. The binding assays say this compound does not compete for that pocket the way a classical opioid does, and no superposition can overrule an experiment. Treat the violet molecule as a hypothesis with a number attached, not a finding.</p>
       </div>
 
       <div class="section" id="docking">
         <h2 class="section-title">What Docking Could and Could Not Tell You</h2>
         <p class="section-body">Molecular docking takes a receptor structure and a molecule and searches for the arrangement with the best calculated interaction energy. It is cheap, fast and routinely used to generate hypotheses. It is also the single most over-interpreted technique in structural pharmacology.</p>
-        <p class="section-body" style="margin-top:1rem;">Docking SR-17018 into the pocket shown above would certainly produce a pose. The piperidine nitrogen would almost certainly be placed near Asp149, because that is what the scoring function rewards. The picture would look convincing. And it would have assumed the very thing the pharmacology calls into question: that the compound binds in that pocket at all.</p>
+        <p class="section-body" style="margin-top:1rem;">Docking SR-17018 into the pocket shown above would certainly produce a pose, and it would place the piperidine nitrogen near Asp149 — because that is what the scoring function rewards, and because our far cruder superposition lands in the same place. The picture would look convincing. It would also have assumed the very thing the pharmacology calls into question: that the compound binds in that pocket at all. A docking score is not evidence of binding; it is a number produced on the assumption of binding.</p>
         <p class="section-body" style="margin-top:1rem;">What docking cannot do here is tell you whether a pose is real, how tightly the compound binds, how slowly it leaves, which active state it stabilises, or whether it is safe. Those are the questions that matter for this compound, and none of them is answerable from a picture.</p>
         <p class="section-body" style="margin-top:1rem;">So this page shows the experimental structure and stops there. If a structure of the complex is published, we will put it here.</p>
       </div>
@@ -252,6 +285,12 @@
     <p class="disclaimer">This page is for educational purposes only. Nothing here constitutes legal, medical, or therapeutic advice, and nothing here should be read as a claim that any compound is safe or effective. SR-17018 and SR-15099 have never been tested in a human clinical trial. Know your local laws.</p>
   </main>
 
+  <nav class="site-nav" aria-label="All pages">
+    <div class="nav-group"><span class="nav-label">Guides</span> <a href="index.html">Home</a> <a href="library.html">Library</a> <a href="microdosing.html">Microdosing</a> <a href="paws.html">PAWS</a> <span class="here">Receptor in 3D</span> <a href="crisis.html">Crisis Guide</a></div>
+    <div class="nav-group"><span class="nav-label">Substances</span> <a href="psilocybin.html">Psilocybin</a> <a href="dmt.html">DMT</a> <a href="5meo-dmt.html">5-MeO-DMT</a> <a href="mescaline.html">Mescaline</a> <a href="2cb.html">2C-B</a> <a href="harmala.html">Harmala</a> <a href="sr17018.html">SR-17018</a> <a href="sr15099.html">SR-15099</a></div>
+    <div class="nav-group nav-store"><span class="nav-label">Shop</span> <a href="https://aether-shop-aether4.vercel.app/store.html" target="_blank" rel="noopener">Harm Reduction Store &rarr;</a></div>
+  </nav>
+
   <footer>
     <img class="footer-logo" src="assets/logo-header.png" alt="ÆTHER" /><span>Ann Arbor</span>
     <script src="assets/social.js" defer></script>
@@ -263,7 +302,7 @@
     (function () {
       if (typeof $3Dmol === 'undefined') return;
 
-      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a;
+      var GOLD = '#9A7D2E', TEAL = 0x5fd3bc, RUST = 0xc0654a, VIOLET = 0xb98cff;
 
       // Colour carbons to match the legend; leave N, O, Cl at their standard colours.
       function carbons(hex) {
@@ -290,27 +329,40 @@
       }
 
       /* ── Receptor ── */
-      var rv = null, rspin = false, showRes = false;
+      var rv = null, rspin = false, showRes = false, ligand = 'fentanyl';
       function drawReceptor() {
         if (!rv) return;
         rv.setStyle({}, {});
         rv.setStyle({ chain: 'R', hetflag: false }, { cartoon: { color: GOLD, opacity: showRes ? 0.55 : 0.9 } });
-        rv.setStyle({ resn: '7V7' }, { stick: { colorscheme: carbons(TEAL), radius: 0.22 } });
+        if (ligand === 'fentanyl' || ligand === 'both') {
+          rv.setStyle({ resn: '7V7' }, { stick: { colorscheme: carbons(TEAL), radius: 0.22 } });
+        }
+        if (ligand === 'sr' || ligand === 'both') {
+          rv.setStyle({ resn: 'SRM' }, { stick: { colorscheme: carbons(VIOLET), radius: 0.22 } });
+        }
         if (showRes) {
           rv.addStyle({ resi: POCKET, hetflag: false }, { stick: { colorscheme: carbons(RUST), radius: 0.14 } });
         }
+        var warn = document.getElementById('model-warning');
+        if (warn) warn.hidden = (ligand === 'fentanyl');
         rv.render();
       }
+      function ligandSel() {
+        return ligand === 'sr' ? { resn: 'SRM' } : { resn: ['7V7', 'SRM'] };
+      }
 
+      function grab(u) { return fetch(u).then(function (r) { if (!r.ok) throw 0; return r.text(); }); }
       Promise.all([
-        fetch('assets/structures/mor-8ef5.pdb').then(function (r) { if (!r.ok) throw 0; return r.text(); }),
-        fetch('assets/structures/fentanyl-7v7.pdb').then(function (r) { if (!r.ok) throw 0; return r.text(); })
+        grab('assets/structures/mor-8ef5.pdb'),
+        grab('assets/structures/fentanyl-7v7.pdb'),
+        grab('assets/structures/sr17018-model.pdb')
       ]).then(function (parts) {
         var box = document.getElementById('v-receptor');
         box.innerHTML = '';
         rv = $3Dmol.createViewer(box, { backgroundColor: '#07070a' });
         rv.addModel(parts[0], 'pdb');
         rv.addModel(parts[1], 'pdb');
+        rv.addModel(parts[2], 'pdb');
         drawReceptor();
         rv.zoomTo();
         rv.render();
@@ -323,8 +375,8 @@
           if (!rv) return;
           var v = btn.getAttribute('data-view');
           if (v === 'overview') { showRes = false; drawReceptor(); rv.zoomTo(); }
-          if (v === 'pocket') { rv.zoomTo({ resn: '7V7' }); rv.zoom(0.45); }
-          if (v === 'residues') { showRes = !showRes; btn.classList.toggle('on', showRes); drawReceptor(); rv.zoomTo({ resn: '7V7' }); rv.zoom(0.6); }
+          if (v === 'pocket') { rv.zoomTo(ligandSel()); rv.zoom(0.45); }
+          if (v === 'residues') { showRes = !showRes; btn.classList.toggle('on', showRes); drawReceptor(); rv.zoomTo(ligandSel()); rv.zoom(0.6); }
           if (v === 'spin') { rspin = !rspin; btn.classList.toggle('on', rspin); rv.spin(rspin ? 'y' : false); }
           if (v !== 'residues' && v !== 'spin') {
             document.querySelectorAll('[data-view]').forEach(function (b) {
@@ -332,6 +384,19 @@
             });
             btn.classList.add('on');
           }
+          rv.render();
+        });
+      });
+
+      document.querySelectorAll('[data-lig]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!rv) return;
+          ligand = btn.getAttribute('data-lig');
+          document.querySelectorAll('[data-lig]').forEach(function (b) { b.classList.remove('on'); });
+          btn.classList.add('on');
+          drawReceptor();
+          rv.zoomTo(ligandSel());
+          rv.zoom(0.55);
           rv.render();
         });
       });

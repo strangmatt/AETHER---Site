@@ -789,6 +789,43 @@
         radial-gradient(circle at 55% 88%, rgba(150, 255, 90, 0.14), transparent 55%);
       animation: ae-aura 6s ease-in-out infinite alternate;
     }
+
+/* Footer sitemap — every page reaches every other page (added 2026-11-20) */
+.site-nav {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 0;
+  border-top: 1px solid var(--rule, #2a2a24);
+}
+.site-nav .nav-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1.1rem;
+  margin: 0 0 1rem;
+}
+.site-nav .nav-label {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold, #9A7D2E);
+  min-width: 5.5rem;
+}
+.site-nav a {
+  color: #8a8a80;
+  text-decoration: none;
+  font-size: 0.76rem;
+  transition: color 0.2s;
+}
+.site-nav a:hover { color: #fff; }
+.site-nav .here { color: #e6e1d2; font-size: 0.76rem; }
+.site-nav .nav-store a { color: var(--gold, #9A7D2E); }
+.site-nav .nav-store a:hover { color: #d6b45c; }
+@media (max-width: 600px) {
+  .site-nav { padding-top: 2rem; }
+  .site-nav .nav-label { min-width: 100%; margin-bottom: 0.1rem; }
+}
   </style>
   <!-- Enhancements: living bg, reading progress, sticky header, scroll reveal -->
   <script>document.documentElement.classList.add('js');</script>
@@ -1106,6 +1143,12 @@
       <button class="modal-close" onclick="closeModal()">Close</button>
     </div>
   </div>
+
+  <nav class="site-nav" aria-label="All pages">
+    <div class="nav-group"><span class="nav-label">Guides</span> <span class="here">Home</span> <a href="library.html">Library</a> <a href="microdosing.html">Microdosing</a> <a href="paws.html">PAWS</a> <a href="receptor.html">Receptor in 3D</a> <a href="crisis.html">Crisis Guide</a></div>
+    <div class="nav-group"><span class="nav-label">Substances</span> <a href="psilocybin.html">Psilocybin</a> <a href="dmt.html">DMT</a> <a href="5meo-dmt.html">5-MeO-DMT</a> <a href="mescaline.html">Mescaline</a> <a href="2cb.html">2C-B</a> <a href="harmala.html">Harmala</a> <a href="sr17018.html">SR-17018</a> <a href="sr15099.html">SR-15099</a></div>
+    <div class="nav-group nav-store"><span class="nav-label">Shop</span> <a href="https://aether-shop-aether4.vercel.app/store.html" target="_blank" rel="noopener">Harm Reduction Store &rarr;</a></div>
+  </nav>
 
   <footer>
     <img class="footer-logo" src="assets/logo-header.png" alt="ÆTHER" /><span>Ann Arbor</span>

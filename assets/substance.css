@@ -475,3 +475,40 @@ textarea:focus-visible,
   box-shadow: 0 0 22px rgba(154, 125, 46, 0.4);
 }
 .store-link i { font-size: 1.05em; }
+
+/* Footer sitemap — every page reaches every other page (added 2026-11-20) */
+.site-nav {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 0;
+  border-top: 1px solid var(--rule, #2a2a24);
+}
+.site-nav .nav-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1.1rem;
+  margin: 0 0 1rem;
+}
+.site-nav .nav-label {
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold, #9A7D2E);
+  min-width: 5.5rem;
+}
+.site-nav a {
+  color: #8a8a80;
+  text-decoration: none;
+  font-size: 0.76rem;
+  transition: color 0.2s;
+}
+.site-nav a:hover { color: #fff; }
+.site-nav .here { color: #e6e1d2; font-size: 0.76rem; }
+.site-nav .nav-store a { color: var(--gold, #9A7D2E); }
+.site-nav .nav-store a:hover { color: #d6b45c; }
+@media (max-width: 600px) {
+  .site-nav { padding-top: 2rem; }
+  .site-nav .nav-label { min-width: 100%; margin-bottom: 0.1rem; }
+}
