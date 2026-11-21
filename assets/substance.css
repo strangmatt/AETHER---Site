@@ -452,3 +452,26 @@ textarea:focus-visible,
 @media (max-width: 360px) {
   .effects-grid { grid-template-columns: 1fr; }
 }
+
+/* Store link in the page hero */
+.store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.6rem;
+  background: var(--gold, #9A7D2E);
+  color: #0a0a0a;
+  font-family: 'GeometosRounded', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--gold, #9A7D2E);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.store-link:hover {
+  background: #b8952e;
+  box-shadow: 0 0 22px rgba(154, 125, 46, 0.4);
+}
+.store-link i { font-size: 1.05em; }
