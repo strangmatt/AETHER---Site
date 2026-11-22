@@ -187,15 +187,23 @@
       <div class="section" id="molecule">
         <h2 class="section-title">The Molecule</h2>
         <p class="section-body">SR-17018 is 5,6-dichloro-3-[1-[(4-chlorophenyl)methyl]piperidin-4-yl]-1H-benzimidazol-2-one (C<sub>19</sub>H<sub>18</sub>Cl<sub>3</sub>N<sub>3</sub>O, 410.7&nbsp;g/mol, <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431397" target="_blank" rel="noopener" style="color:#9A7D2E;">PubChem CID 130431397</a>). It looks nothing like morphine. It is a benzimidazolone joined to a piperidine ring, with a chlorobenzyl arm — a shape closer to the old benzimidazole opioids than to anything poppy-derived.</p>
-        <p class="section-body" style="margin-top:1rem;">The 3D conformer below was generated from that structure and energy-minimized, with the piperidine nitrogen protonated as it would be at body pH. That nitrogen is the one that would reach for Asp149.</p>
+        <p class="section-body" style="margin-top:1rem;"><strong>SR-15099 is the same molecule with one atom changed.</strong> Bromine replaces the chlorine at the end of the benzyl arm, giving 3-[1-[(4-bromophenyl)methyl]piperidin-4-yl]-5,6-dichloro-1H-benzimidazol-2-one (C<sub>19</sub>H<sub>18</sub>BrCl<sub>2</sub>N<sub>3</sub>O, 455.2&nbsp;g/mol). Switch between them below and the only thing that moves is that one atom, which is worth seeing directly — a great deal is claimed about the difference between these two compounds.</p>
+        <p class="section-body" style="margin-top:1rem;">The 3D conformers were generated from those structures and energy-minimized, with the piperidine nitrogen protonated as it would be at body pH. That nitrogen is the one that would reach for Asp149.</p>
 
         <div class="viewer-wrap">
           <div class="viewer" id="v-ligand" style="height:360px;"><div class="viewer-loading" id="v-ligand-msg">Loading the molecule…</div></div>
           <div class="viewer-controls">
+            <span class="ctl-label">Molecule</span>
+            <button type="button" data-mol="sr17018" class="on">SR-17018</button>
+            <button type="button" data-mol="sr15099">SR-15099</button>
+          </div>
+          <div class="viewer-controls">
+            <span class="ctl-label">Style</span>
             <button type="button" data-lview="sticks" class="on">Sticks</button>
             <button type="button" data-lview="spheres">Space-filling</button>
             <button type="button" data-lview="lspin">Spin</button>
           </div>
+          <p class="model-warning" id="mol-note" hidden><strong>This conformer is derived, not measured.</strong> It is the SR-17018 conformer with the benzyl chlorine replaced by bromine and that bond lengthened from 1.72 to 1.89&nbsp;Å; every other atom is unchanged. The bromo identity is what the supplier states, and it matches the structure PubChem holds as <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431412" target="_blank" rel="noopener" style="color:#9A7D2E;">CID 130431412</a>, whose receptor data in ChEMBL (EC<sub>50</sub> 149&nbsp;nM, E<sub>max</sub> 83%) match the published SR-15099 figures. The material sold as SR-15099 has still never been independently assayed.</p>
           <p class="viewer-note">A computed low-energy conformer, not an experimental structure. Carbon gray, chlorine green, nitrogen blue, oxygen red, hydrogen white.</p>
         </div>
       </div>
@@ -579,20 +587,40 @@
         lv.render();
       }
 
-      fetch('assets/structures/sr17018.sdf').then(function (r) {
-        if (!r.ok) throw 0;
-        return r.text();
-      }).then(function (sdf) {
+      var SDF = {}, lmode = 'sticks';
+      function showMolecule(key) {
+        if (!lv || !SDF[key]) return;
+        lv.removeAllModels();
+        lv.addModel(SDF[key], 'sdf');
+        drawLigand(lmode);
+        lv.zoomTo();
+        lv.zoom(0.8);
+        lv.spin(lspin ? 'y' : false);
+        lv.render();
+        var n = document.getElementById('mol-note');
+        if (n) n.hidden = (key !== 'sr15099');
+      }
+      Promise.all([
+        grab('assets/structures/sr17018.sdf'),
+        grab('assets/structures/sr15099.sdf')
+      ]).then(function (parts) {
+        SDF.sr17018 = parts[0];
+        SDF.sr15099 = parts[1];
         var box = document.getElementById('v-ligand');
         box.innerHTML = '';
         lv = $3Dmol.createViewer(box, { backgroundColor: '#07070a' });
-        lv.addModel(sdf, 'sdf');
-        drawLigand('sticks');
-        lv.zoomTo();
-        lv.zoom(0.8);
-        lv.render();
+        showMolecule('sr17018');
       }).catch(function () {
         fail('v-ligand-msg', 'The 3D viewer could not load. It needs WebGL — try a different browser.');
+      });
+
+      document.querySelectorAll('[data-mol]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!lv) return;
+          document.querySelectorAll('[data-mol]').forEach(function (b) { b.classList.remove('on'); });
+          btn.classList.add('on');
+          showMolecule(btn.getAttribute('data-mol'));
+        });
       });
 
       document.querySelectorAll('[data-lview]').forEach(function (btn) {
@@ -604,6 +632,7 @@
             if (b.getAttribute('data-lview') !== 'lspin') b.classList.remove('on');
           });
           btn.classList.add('on');
+          lmode = v;
           drawLigand(v);
         });
       });
