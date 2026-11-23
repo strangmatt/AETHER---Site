@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Notes — ÆTHER</title>
+  <meta name="description" content="Working notes behind the receptor page: the mechanism hypotheses that were tested and refuted, the measurements, the methods, and the full reference list." />
+  <link rel="canonical" href="https://www.aethera2.com/research-notes.html" />
+
+  <!-- Open Graph / social share -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:url"         content="https://www.aethera2.com/research-notes.html" />
+  <meta property="og:title"       content="Research Notes — ÆTHER" />
+  <meta property="og:description" content="Working notes: hypotheses tested and refuted, measurements, methods and references." />
+  <meta property="og:image"       content="https://www.aethera2.com/assets/og-image.png" />
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:title"       content="Research Notes — ÆTHER" />
+  <meta name="twitter:description" content="Working notes: hypotheses tested and refuted, measurements, methods and references." />
+  <meta name="twitter:image"       content="https://www.aethera2.com/assets/og-image.png" />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/substance.css" />
+  <!-- Enhancements: living bg, reading progress, sticky header, scroll reveal -->
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="assets/enhance.css" />
+  <script defer src="assets/enhance.js"></script>
+
+  <style>
+    .viewer-wrap { margin: 1.5rem 0 0; }
+    .viewer {
+      position: relative;
+      width: 100%;
+      height: 460px;
+      border: 1px solid #2a2a24;
+      border-radius: 6px;
+      background: #07070a;
+      overflow: hidden;
+    }
+    .viewer-note {
+      margin: 0.6rem 0 0;
+      font-size: 0.7rem;
+      line-height: 1.6;
+      color: #8a8a80;
+    }
+    .viewer-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.85rem 0 0;
+    }
+    .viewer-controls button {
+      background: transparent;
+      border: 1px solid #2a2a24;
+      color: #c9c5b6;
+      font-family: inherit;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.8rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .viewer-controls button:hover { border-color: #9A7D2E; color: #fff; }
+    .viewer-controls button.on { border-color: #9A7D2E; color: #9A7D2E; }
+    .viewer-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8a8a80;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .ctl-label {
+      font-family: 'GeometosRounded', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #6f6f66;
+      align-self: center;
+      min-width: 5.4rem;
+    }
+    .model-warning {
+      margin: 0.85rem 0 0;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid #5a4a7a;
+      border-left: 3px solid #b98cff;
+      border-radius: 4px;
+      background: rgba(185, 140, 255, 0.08);
+      color: #d8d2e8;
+      font-size: 0.74rem;
+      line-height: 1.6;
+    }
+    .model-warning[hidden] { display: none; }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0.8rem 0 0; font-size: 0.72rem; color: #c9c5b6; }
+    .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .swatch { width: 0.8rem; height: 0.8rem; border-radius: 2px; display: inline-block; }
+    @media (max-width: 600px) {
+      .viewer { height: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="receptor.html" class="back-btn">← Research</a>
+    <a href="index.html" class="header-logo"><img src="assets/logo-header.png" alt="ÆTHER" /></a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1 class="title">Research Notes</h1>
+      <p class="subtitle">The working detail behind the receptor page</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="sections">
+
+      <div class="section">
+        <p class="section-body">These are the notes. The <a href="receptor.html" style="color:#9A7D2E;">receptor page</a> carries the findings; this page carries the work behind them — the hypotheses that failed, the numbers, the methods, and the references. It is kept separate so the main page stays readable, and public so the reasoning can be checked.</p>
+      </div>
+
+      <div class="section" id="refuted">
+        <h2 class="section-title">Four Explanations, All Refuted</h2>
+        <p class="section-body">SR-17018 sits in the ordinary orthosteric pocket yet behaves non-competitively. If it lingers there, something should hold it. Four candidate mechanisms were tested against the deposited coordinates. All four failed.</p>
+
+        <p class="section-body" style="margin-top:1.25rem;"><strong>1. Halogen bonding.</strong> The molecule carries three chlorines, each pressed against a different wall. A halogen bond is directional: the carbon, the halogen and its partner should fall within about 25&deg; of straight. The column below reports how far off straight each contact falls, so small numbers would support the idea.</p>
+        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
+          <thead>
+            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
+              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Contact</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Distance</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Degrees off straight</th><th style="padding:0.5rem 0;">Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl1 to the backbone oxygen of Ile298</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">4.0&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">47&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl1 to His299</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.9&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">77&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl2 to Gln126</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.8&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">103&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
+            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl3 to Asn129</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.2&nbsp;Å</td><td style="padding:0.5rem 0;">74&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
+          </tbody>
+        </table>
+        <p class="section-body">Every contact approaches side-on. These are ordinary van der Waals contacts that fill space. The same holds for SR-15099: bromine is the better halogen-bond donor, so the idea should work there if anywhere, and modelled, its contact sits 47&deg; off straight.</p>
+
+        <p class="section-body" style="margin-top:1.5rem;"><strong>2. Tighter binding.</strong> If the pocket grips this drug harder, it should bury more surface or make more contacts than the others.</p>
+        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
+          <thead>
+            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
+              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Drug</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Receptor atoms within 4&nbsp;Å, per ligand atom</th><th style="padding:0.5rem 0;">Surface buried on binding</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">PZM21</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">528&nbsp;Å&sup2; (87%)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Oliceridine</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">505&nbsp;Å&sup2; (83%)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Fentanyl</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">488&nbsp;Å&sup2; (85%)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">SR-17018</strong></td><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">1.0</strong></td><td style="padding:0.5rem 0;"><strong style="color:#b98cff;">462&nbsp;Å&sup2; (79%)</strong></td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#e8a33d;">SR-15099</strong> <span style="color:#8a8a80;">(model &mdash; not a structure)</span></td><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#e8a33d;">1.1</strong></td><td style="padding:0.5rem 0;"><strong style="color:#e8a33d;">465&nbsp;Å&sup2; (79%)</strong></td></tr>
+            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">Morphine</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">0.5</td><td style="padding:0.5rem 0;">350&nbsp;Å&sup2; (84%)</td></tr>
+          </tbody>
+        </table>
+        <p class="section-body">It buries the least surface of the four large ligands. It is held no more tightly than fentanyl.</p>
+        <p class="caption" style="color:#8a8a80;font-size:0.78rem;line-height:1.6;margin:0.6rem 0 0;">The amber row is not deposited data and was computed in a separate pass from the rows above it. That pass re-measures SR-17018 at 1.04 contacts per atom and 458&nbsp;Å&sup2;, against the 1.0 and 462&nbsp;Å&sup2; printed here, which come from the native 8EFL frame. Read it as +7&nbsp;Å&sup2; and two extra receptor atoms relative to SR-17018.</p>
+
+        <p class="section-body" style="margin-top:1.5rem;"><strong>3. A distinct receptor shape.</strong> Fitting each structure on the extracellular half and measuring how far the intracellular ends drift: SR-17018 lands 0.50&nbsp;Å from fentanyl&rsquo;s, the same as morphine. Oliceridine manages 1.13&nbsp;Å.</p>
+        <p class="section-body" style="margin-top:1rem;"><strong>4. A second binding site.</strong> Empty adjacent volume is large in every structure examined — 1,200 to 2,000&nbsp;Å&sup3; in the extracellular vestibule — and no different for SR-17018.</p>
+
+        <p class="section-body" style="margin-top:1.5rem;">The conclusion is the finding. The mechanism is probably not visible in a static structure at all. That points at kinetics, or at a receptor state that outlives the drug, and it means the next useful experiments are time-resolved rather than structural.</p>
+      </div>
+
+      <div class="section" id="sr15099">
+        <h2 class="section-title">SR-15099 in the Pocket</h2>
+        <p class="section-body">No structure of SR-15099 bound to any receptor has ever been deposited. The Protein Data Bank was queried with a control to confirm the search itself worked: fentanyl returns 42 structures, SR17018 returns exactly one, SR15099 returns nothing.</p>
+        <p class="section-body" style="margin-top:1rem;">Because the two compounds differ by one atom, the measured SR-17018 pose can be swapped at that position and the change measured. This is not a prediction of how SR-15099 binds. It is the narrower question of what that substitution does to the geometry with everything else held at its experimental position.</p>
+        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
+          <thead>
+            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
+              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Measurement</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">SR-17018 <span style="color:#8a8a80;font-weight:normal;">(measured)</span></th><th style="padding:0.5rem 0;">SR-15099 <span style="color:#8a8a80;font-weight:normal;">(model)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Receptor atoms within 4.5&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">48</td><td style="padding:0.5rem 0;">49</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Share of contacts on helix 7</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1 atom — 2.1%</td><td style="padding:0.5rem 0;">1 atom — 2.0%</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Surface buried on binding</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">458&nbsp;Å&sup2; (78%)</td><td style="padding:0.5rem 0;">465&nbsp;Å&sup2; (79%)</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Halogen to Ile298 backbone oxygen</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.66&nbsp;Å</td><td style="padding:0.5rem 0;">3.54&nbsp;Å</td></tr>
+            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">That contact, degrees off straight</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">45&deg;</td><td style="padding:0.5rem 0;">47&deg;</td></tr>
+          </tbody>
+        </table>
+        <p class="section-body">Almost nothing changes: one extra contact, seven more square ångströms buried, the same solitary graze on helix 7.</p>
+        <p class="section-body" style="margin-top:1rem;">Identity is better established than this page once stated. The name does not resolve in PubChem or ChEMBL, but the structure does — <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431412" target="_blank" rel="noopener" style="color:#9A7D2E;">CID 130431412</a> and CHEMBL4217435, carrying µ-opioid data (EC<sub>50</sub> 149&nbsp;nM, E<sub>max</sub> 83%) that match the published SR-15099 figures of 155&nbsp;nM and 81%. CAS 2134602-44-9 sits immediately before SR-17018&rsquo;s 2134602-45-0, as two compounds registered together would. No certified reference standard is published, so no laboratory can verify a sample.</p>
+      </div>
+
+      <div class="section" id="methods">
+        <h2 class="section-title">Methods and Limits</h2>
+        <p class="section-body">Coordinates come from the RCSB PDB. Contacts are counted as unique receptor atoms within 4&nbsp;Å per ligand atom, except the helix-7 count, which uses 4.5&nbsp;Å and anchors each structure on conserved landmarks found by geometry rather than residue number. Buried surface is Shrake–Rupley with a 1.4&nbsp;Å probe. Molecular conformers were embedded and energy-minimised from the chemical structure with the piperidine nitrogen protonated.</p>
+        <p class="section-body" style="margin-top:1rem;">Three limits worth stating. These are cryo-EM structures near 3.2&nbsp;Å, good enough to place a molecule and not to defend a bond length, so a real difference under about half an ångström would be invisible. None of this analysis is peer reviewed. And before 8EFL existed the receptor page carried a model of SR-17018 built onto fentanyl&rsquo;s pose; it was 2.6&nbsp;Å out at the centre of mass, close enough to look convincing and far enough that every conclusion about contacts was wrong.</p>
+      </div>
+
+      <div class="section" id="corrections">
+        <h2 class="section-title">Corrections</h2>
+        <p class="section-body">Claims that appeared on this site and were wrong, listed because a page about uncertainty that hid its own errors would not be worth reading.</p>
+        <ul class="effects-list" style="margin-top:1.25rem;">
+          <li><strong>That no structure of SR-17018 existed.</strong> It does — PDB 8EFL, deposited 2022. Arguments had been built on the absence.</li>
+          <li><strong>That the three chlorines formed halogen bonds.</strong> The angles refute it. Plausible chemistry asserted without measuring.</li>
+          <li><strong>That SR-15099 had no CAS number.</strong> It has one: 2134602-44-9.</li>
+          <li><strong>That SR-15099 does not resolve in PubChem or ChEMBL.</strong> True of the name, false of the structure.</li>
+          <li><strong>That SR-17018 tops out at 83% of a full agonist.</strong> That figure is SR-15099&rsquo;s. SR-17018 is 75% in the assay where both were measured together.</li>
+        </ul>
+      </div>
+
+      <div class="section papers" id="key-papers">
+        <h2 class="section-title">Key Papers</h2>
+        <p class="section-body" style="margin-bottom:1.25rem;">The structural and receptor-level work. For the compound-level evidence — the animal studies, the overdose report and the human registry — see the <a href="sr17018.html#key-papers" style="color:#9A7D2E;">SR-17018 page</a>, which lists them in full.</p>
+        <ol class="paper-list">
+          <li class="paper">
+            <span class="paper-tag">Medicinal chemistry</span>
+            <a class="paper-title" href="https://doi.org/10.1016/j.cell.2017.10.035" target="_blank" rel="noopener">Bias factor and therapeutic window correlate to predict safer opioid analgesics</a>
+            <p class="paper-meta">Schmid et al. · 2017 · <em>Cell</em> 171:1165 · <a href="https://pubmed.ncbi.nlm.nih.gov/29149605/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">The paper that introduced SR-17018 and its relatives, from Scripps Research. It proposed that the separation between pain relief and respiratory depression tracks with signalling bias — the idea the whole class rests on, and one later work has qualified.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Receptor pharmacology</span>
+            <a class="paper-title" href="https://doi.org/10.1073/pnas.2102178118" target="_blank" rel="noopener">G protein signaling-biased mu opioid receptor agonists that produce sustained G protein activation are noncompetitive agonists</a>
+            <p class="paper-meta">Stahl et al. · 2021 · <em>PNAS</em> 118:e2102178118 · <a href="https://pubmed.ncbi.nlm.nih.gov/34819362/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">The key paper for the binding-site question. SR-17018 and SR-14968 do not compete with radiolabelled antagonists and leave the receptor in a wash-resistant signalling state, while remaining reversible by antagonists in vivo.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Receptor pharmacology</span>
+            <a class="paper-title" href="https://doi.org/10.1016/j.neuropharm.2024.110093" target="_blank" rel="noopener">Activation of µ receptors by SR-17018 through a distinctive mechanism</a>
+            <p class="paper-meta">Singleton et al. · 2024 · <em>Neuropharmacology</em> 258:110093 · <a href="https://pubmed.ncbi.nlm.nih.gov/39067665/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">Re-measured a dozen opioids with receptor numbers cut down to realistic levels, and found that much published "bias" reflects receptor reserve in overexpressing cells. SR-17018 still behaved differently from the rest.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Receptor pharmacology</span>
+            <a class="paper-title" href="https://doi.org/10.1038/s41586-025-09880-5" target="_blank" rel="noopener">GTP release-selective agonists prolong opioid analgesic efficacy</a>
+            <p class="paper-meta">Stahl et al. · 2026 · <em>Nature</em> 650:500 · <a href="https://pubmed.ncbi.nlm.nih.gov/41407861/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">The current account of what makes these compounds unusual, now that the binding site is settled: agonists can prefer receptor states that differ in how the G protein releases rather than binds its nucleotide. In mice, a release-preferring compound extended morphine and fentanyl pain relief without adding to fentanyl's respiratory effects.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Animal study</span>
+            <a class="paper-title" href="https://doi.org/10.1007/s00213-024-06690-x" target="_blank" rel="noopener">Comparison of the reinforcing, antinociceptive, and respiratory depressant effects of prototypical and G-protein biased µ-opioid receptor agonists</a>
+            <p class="paper-meta">Zamarripa et al. · 2024 · <em>Psychopharmacology</em> 241:2453 · <a href="https://pubmed.ncbi.nlm.nih.gov/39333403/" target="_blank" rel="noopener">PubMed</a></p>
+            <p class="paper-sum">Rats self-administered SR-17018 and SR-14968, so the compounds have abuse liability, though less than oxycodone or fentanyl. Neither produced respiratory depression at the doses tested, while the conventional opioids did.</p>
+          </li>
+          <li class="paper">
+            <span class="paper-tag">Structure</span>
+            <a class="paper-title" href="https://doi.org/10.1016/j.cell.2022.09.041" target="_blank" rel="noopener">Molecular recognition of morphine and fentanyl by the human µ-opioid receptor</a>
+            <p class="paper-meta">Zhuang et al. · 2022 · <em>Cell</em> 185:4361 · <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener">PDB 8EF5</a></p>
+            <p class="paper-sum">The source of both structures on this page. The group froze the human receptor with five different drugs bound and solved each one, including fentanyl (<a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener">8EF5</a>) and SR-17018 (<a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener">8EFL</a>). It is the experiment that answers where SR-17018 binds: the ordinary orthosteric pocket, not a separate site.</p>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="section">
+      <h2 class="section-title">Further Reading</h2>
+      <a class="learn-more" href="receptor.html">The receptor page →</a>
+      <a class="learn-more" href="sr17018.html" style="margin-left:1.25rem;">SR-17018 →</a>
+      <a class="learn-more" href="sr15099.html" style="margin-left:1.25rem;">SR-15099 →</a>
+    </div>
+
+    <p class="disclaimer">This page is for educational purposes only. Nothing here constitutes legal, medical, or therapeutic advice, and nothing here should be read as a claim that any compound is safe or effective. ÆTHER sells SR-15099, which gives us a financial interest in what you conclude; sources are linked so you can check the argument rather than trust us. SR-17018 and SR-15099 have never been tested in a human clinical trial. Know your local laws.</p>
+  </main>
+
+  <nav class="site-nav" aria-label="All pages">
+    <div class="nav-group"><span class="nav-label">Guides</span> <a href="index.html">Home</a> <a href="library.html">Library</a> <a href="microdosing.html">Microdosing</a> <a href="paws.html">PAWS</a> <a href="crisis.html">Crisis Guide</a></div>
+    <div class="nav-group"><span class="nav-label">Research</span> <a href="receptor.html">The Receptor</a> <a href="sr17018.html">SR-17018</a> <a href="sr15099.html">SR-15099</a></div>
+    <div class="nav-group"><span class="nav-label">Substances</span> <a href="psilocybin.html">Psilocybin</a> <a href="dmt.html">DMT</a> <a href="5meo-dmt.html">5-MeO-DMT</a> <a href="mescaline.html">Mescaline</a> <a href="2cb.html">2C-B</a> <a href="harmala.html">Harmala</a></div>
+    <div class="nav-group nav-store"><span class="nav-label">Shop</span> <a href="https://aether-shop-aether4.vercel.app/store.html" target="_blank" rel="noopener">Harm Reduction Store &rarr;</a></div>
+  </nav>
+
+  <footer>
+    <img class="footer-logo" src="assets/logo-header.png" alt="ÆTHER" /><span>Ann Arbor</span>
+    <script src="assets/social.js" defer></script>
+  </footer>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>µ-Opioid Receptor Research — ÆTHER</title>
-  <meta name="description" content="ÆTHER's research on the SR compounds: the µ-opioid receptor from experimental cryo-EM structures, the mechanism hypotheses we tested and refuted, and what nobody has measured." />
+  <meta name="description" content="The µ-opioid receptor in 3D from cryo-EM data, with SR-17018 and SR-15099 in the binding pocket, and what ÆTHER has measured from the published structures." />
   <link rel="canonical" href="https://www.aethera2.com/receptor.html" />
 
   <!-- Open Graph / social share -->
@@ -113,28 +113,21 @@
   <main>
     <div class="hero">
       <h1 class="title">The µ-Opioid Receptor</h1>
-      <p class="subtitle">Our research on the SR compounds — the structures, the hypotheses tested and refuted, and what nobody knows</p>
+      <p class="subtitle">What the structures show, and what they do not</p>
     </div>
 
     <div class="rule"></div>
 
     <div class="sections">
 
-      <div class="section" id="contents">
-        <p class="section-body">ÆTHER&rsquo;s own work on these compounds. Everything is measured from publicly deposited structures and published papers. The analyses are not peer reviewed; each one states its method so it can be checked.</p>
-        <ul class="effects-list" style="margin-top:1.25rem;">
-          <li><strong><a href="#pocket" style="color:#9A7D2E;">The structures</a></strong> — the receptor in 3D from real cryo-EM data, and where SR-17018 actually sits in it.</li>
-          <li><strong><a href="#guesswork" style="color:#9A7D2E;">Tested and refuted</a></strong> — four explanations for its odd behaviour, all measured, all refuted.</li>
-          <li><strong><a href="#helix7" style="color:#9A7D2E;">The one clue that survived</a></strong> — SR-17018 grazes the helix-7 face with a single atom where every other ligand uses 12–35% of its contacts.</li>
-          <li><strong><a href="#sr15099" style="color:#9A7D2E;">The compound we sell</a></strong> — SR-15099 has no deposited structure. What can and cannot be said about it.</li>
-          <li><strong><a href="#safety" style="color:#9A7D2E;">What is known about the effects</a></strong> — including the unresolved contradiction over whether these compounds depress breathing.</li>
-        </ul>
-        <p class="section-body" style="margin-top:1rem;">For what a compound does rather than how it works, see <a href="sr17018.html" style="color:#9A7D2E;">SR-17018</a> and <a href="sr15099.html" style="color:#9A7D2E;">SR-15099</a>. If you are using either to come off something, read <a href="buprenorphine.html" style="color:#9A7D2E;">SR vs Buprenorphine</a> first.</p>
+      <div class="section">
+        <p class="section-body">Every opioid on this site acts on one protein. It has been solved many times by cryo-electron microscopy, with different drugs held inside it, and those structures are public. This page shows them, and sets out what we have measured from them.</p>
+        <p class="section-body" style="margin-top:1rem;">The analysis is ours and it is not peer reviewed. The working detail sits on the <a href="research-notes.html" style="color:#9A7D2E;">notes page</a>: the hypotheses that failed, the methods, the limits and the references.</p>
       </div>
-      <div class="section" id="pocket">
-        <h2 class="section-title">The Receptor</h2>
-        <p class="section-body">Every opioid on this site acts on one protein: the µ-opioid receptor, threaded seven times through the membrane of a nerve cell. It has been solved many times over, with different drugs held inside it.</p>
-        <p class="section-body" style="margin-top:1rem;">Below is <strong>real experimental data</strong>, not a drawing — the fentanyl-bound receptor at 3.3&nbsp;Å (<a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener" style="color:#9A7D2E;">PDB 8EF5</a>), with the same study&rsquo;s SR-17018 (<a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener" style="color:#9A7D2E;">8EFL</a>) and morphine (<a href="https://www.rcsb.org/structure/8EF6" target="_blank" rel="noopener" style="color:#9A7D2E;">8EF6</a>) structures switchable in the same frame. Drag to rotate, scroll to zoom.</p>
+
+      <div class="section" id="model">
+        <h2 class="section-title">The Model</h2>
+        <p class="section-body">Real experimental data, not a drawing. The receptor is from <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener" style="color:#9A7D2E;">PDB 8EF5</a> at 3.3&nbsp;Å, with the same study&rsquo;s SR-17018 (<a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener" style="color:#9A7D2E;">8EFL</a>) and morphine (<a href="https://www.rcsb.org/structure/8EF6" target="_blank" rel="noopener" style="color:#9A7D2E;">8EF6</a>) switchable in the same frame. Drag to rotate, scroll to zoom.</p>
         <div class="viewer-wrap">
           <div class="viewer" id="v-receptor"><div class="viewer-loading" id="v-receptor-msg">Loading the receptor…</div></div>
           <div class="viewer-controls" style="margin-bottom:0.2rem;">
@@ -172,81 +165,22 @@
           <p class="model-warning" id="s99-warning" hidden><strong>This is a model, not an experiment.</strong> No structure of SR-15099 bound to any receptor has ever been deposited. This is the measured SR-17018 pose from 8EFL with one atom changed: the benzyl ring's para-chlorine replaced by bromine, the bond extended from 1.72 to 1.89&nbsp;Å. Every other atom is unmoved experimental data. The 4-bromobenzyl identity is supported — it is the structure PubChem holds as CID 130431412, whose receptor data match the published SR-15099 figures. What has not been shown is that it binds in this pose. The pale violet overlay is the real SR-17018 for comparison.</p>
           <p class="viewer-note">Carbon atoms carry the legend color; nitrogen, oxygen and chlorine keep their standard colors, so the charged nitrogen stays recognizable. Receptor and fentanyl from PDB 8EF5; SR-17018 from PDB 8EFL, superimposed on 8EF5 over 287 backbone atoms (0.4&nbsp;Å RMSD). Both from Zhuang et&nbsp;al., <em>Cell</em> 2022. Chain R only — the G protein, cholesterol and detergent are hidden for clarity. Rendered in your browser with 3Dmol.js.</p>
         </div>
-        <p class="section-body" style="margin-top:1rem;">Seventeen residues line the pocket. Three do most of the work: <strong>Asp149</strong> carries the negative charge that pairs with the positive nitrogen every classical opioid has; <strong>Trp295</strong> sits beneath the drug and shifts when the receptor switches on; <strong>Tyr328</strong> caps the pocket from the far side.</p>
-        <p class="section-body" style="margin-top:1rem;">The point worth holding onto: a drug can be a powerful opioid and still differ enormously in what the receptor does <em>after</em> it binds. The pocket is the beginning of the story, not the end.</p>
       </div>
-      <div class="section" id="molecule">
-        <h2 class="section-title">Two Molecules, One Atom Apart</h2>
-        <p class="section-body">SR-17018 is 5,6-dichloro-3-[1-[(4-chlorophenyl)methyl]piperidin-4-yl]-1H-benzimidazol-2-one (C<sub>19</sub>H<sub>18</sub>Cl<sub>3</sub>N<sub>3</sub>O, 410.7&nbsp;g/mol, <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431397" target="_blank" rel="noopener" style="color:#9A7D2E;">PubChem CID 130431397</a>). It looks nothing like morphine — a benzimidazolone joined to a piperidine ring with a halobenzyl arm, closer to the old benzimidazole opioids than to anything poppy-derived.</p>
-        <p class="section-body" style="margin-top:1rem;"><strong>SR-15099 is the same molecule with one atom changed</strong> — bromine for chlorine at the end of the benzyl arm (C<sub>19</sub>H<sub>18</sub>BrCl<sub>2</sub>N<sub>3</sub>O, 455.2&nbsp;g/mol, <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431412" target="_blank" rel="noopener" style="color:#9A7D2E;">CID 130431412</a>). Switch between them below; the only thing that moves is that one atom. A great deal is claimed about the difference.</p>
-        <div class="viewer-wrap">
-          <div class="viewer" id="v-ligand" style="height:360px;"><div class="viewer-loading" id="v-ligand-msg">Loading the molecule…</div></div>
-          <div class="viewer-controls">
-            <span class="ctl-label">Molecule</span>
-            <button type="button" data-mol="sr17018" class="on">SR-17018</button>
-            <button type="button" data-mol="sr15099">SR-15099</button>
-          </div>
-          <div class="viewer-controls">
-            <span class="ctl-label">Style</span>
-            <button type="button" data-lview="sticks" class="on">Sticks</button>
-            <button type="button" data-lview="spheres">Space-filling</button>
-            <button type="button" data-lview="lspin">Spin</button>
-          </div>
-          <p class="model-warning" id="mol-note" hidden><strong>This is a computed conformer, like the one beside it.</strong> Both were embedded and energy-minimised from the chemical structure with the piperidine nitrogen protonated, so neither is an experimental geometry — but the SR-15099 one is not derived from the SR-17018 one. The structure is the one PubChem holds as <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431412" target="_blank" rel="noopener" style="color:#9A7D2E;">CID 130431412</a> and ChEMBL as CHEMBL4217435, whose µ-opioid data — EC<sub>50</sub> 149&nbsp;nM, E<sub>max</sub> 83% — match the published SR-15099 figures of 155&nbsp;nM and 81%. What has never been done is an independent assay of the material actually sold under that name.</p>
-          <p class="viewer-note">A computed low-energy conformer, not an experimental structure. Carbon gray, chlorine green, bromine brown, nitrogen blue, oxygen red, hydrogen white.</p>
-        </div>
+
+      <div class="section" id="findings">
+        <h2 class="section-title">What We Found</h2>
+        <ul class="effects-list" style="margin-top:0.5rem;">
+          <li><strong>It binds the ordinary pocket.</strong> SR-17018 sits where morphine sits, 1.4&nbsp;Å from fentanyl&rsquo;s centre of mass, with Asp149 at 2.7&nbsp;Å. There is no second site and no membrane-facing cavity.</li>
+          <li><strong>It ignores one face of that pocket.</strong> SR-17018 touches the helix-7 triad with a single atom, 2% of its contacts. Every other ligand measured uses 12 to 35%. Helix 7 is the interface whose mutation abolishes arrestin recruitment, and arrestin signalling is tied to tolerance.</li>
+          <li><strong>Four explanations for its odd behaviour were tested, and all four failed.</strong> Halogen bonding, tighter binding, a distinct receptor shape, a second site. None survives measurement, which suggests the mechanism is not visible in a static structure at all.</li>
+          <li><strong>SR-15099 has no structure.</strong> Nothing bound to any receptor has ever been deposited for it, and no reference standard is published, so no laboratory can verify a sample.</li>
+          <li><strong>Two laboratories disagree about breathing.</strong> One reports no respiratory depression at tested doses. <a href="https://doi.org/10.1111/bph.16199" target="_blank" rel="noopener" style="color:#9A7D2E;">Hill et al., 2023</a> measured awake mice and found it dose-dependent, comparable to morphine at the top of the range. Unresolved, and the most important open question here.</li>
+        </ul>
       </div>
-      <div class="section" id="where">
-        <h2 class="section-title">Where It Binds</h2>
-        <p class="section-body">In the same pocket as fentanyl. The violet molecule in the viewer is experimental data: SR-17018&rsquo;s centre of mass lands 1.4&nbsp;Å from fentanyl&rsquo;s, with Asp149 at 2.7&nbsp;Å. <strong>No separate site, no second cavity.</strong> It sits where morphine sits.</p>
-        <p class="section-body" style="margin-top:1rem;">That settles the location and sharpens the real question. SR-17018 is noncompetitive with radiolabelled antagonists and leaves the receptor in a signalling state that survives washing, while still being reversible by an antagonist in a living animal (<a href="https://doi.org/10.1073/pnas.2102178118" target="_blank" rel="noopener" style="color:#9A7D2E;">Stahl et al., PNAS 2021</a>). A drug occupying the ordinary pocket is not supposed to behave that way.</p>
-        <p class="section-body" style="margin-top:1rem;">With the structure in hand, the explanation has to be about <em>time</em> rather than place — getting into the ordinary pocket and then staying, slowly enough to look non-competing in an assay that assumes rapid equilibrium. Where it binds is answered. How long it stays, and what that does over months of use, are not.</p>
-      </div>
-      <div class="section" id="guesswork">
-        <h2 class="section-title">Four Explanations, All Refuted</h2>
-        <p class="section-body">If the drug lingers, something should hold it there. Four explanations were tested against the deposited coordinates. <strong>All four failed</strong>, and they are kept here because a dead end nobody publishes is a dead end everyone walks down twice.</p>
-        <p class="section-body" style="margin-top:1rem;"><strong>1. The chlorines form halogen bonds.</strong> SR-17018 carries three, each pressed against a different wall. A halogen bond is directional: the carbon, the halogen and its partner should fall nearly in a straight line, within about 25&deg;. All four candidate contacts in 8EFL:</p>
-        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
-          <thead>
-            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
-              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Contact</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Distance</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Degrees off straight</th><th style="padding:0.5rem 0;">Verdict</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl1 to the backbone oxygen of Ile298</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">4.0&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">47&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl1 to His299</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.9&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">77&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl2 to Gln126</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.8&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">103&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
-            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">Cl3 to Asn129</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.2&nbsp;Å</td><td style="padding:0.5rem 0;">74&deg;</td><td style="padding:0.5rem 0;">not a halogen bond</td></tr>
-          </tbody>
-        </table>
-        <p class="section-body">Every one approaches side-on. They are ordinary contacts that fill space, not bonds. <strong>The same holds for SR-15099:</strong> bromine is the better halogen-bond donor, so if the idea worked anywhere in this series it should work there — modelled, its contact sits 47&deg; off straight, no better aligned than the chlorine it replaces.</p>
-        <p class="section-body" style="margin-top:1rem;"><strong>2. It is held more tightly than the others.</strong> If so, it should bury more surface or make more contacts. It does neither:</p>
-        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
-          <thead>
-            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
-              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Drug</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">Receptor atoms within 4&nbsp;Å, per ligand atom</th><th style="padding:0.5rem 0;">Surface buried on binding</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">PZM21</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">528&nbsp;Å&sup2; (87%)</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Oliceridine</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">505&nbsp;Å&sup2; (83%)</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Fentanyl</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1.0</td><td style="padding:0.5rem 0;">488&nbsp;Å&sup2; (85%)</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">SR-17018</strong></td><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">1.0</strong></td><td style="padding:0.5rem 0;"><strong style="color:#b98cff;">462&nbsp;Å&sup2; (79%)</strong></td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#e8a33d;">SR-15099</strong> <span style="color:#8a8a80;">(model &mdash; not a structure)</span></td><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#e8a33d;">1.1</strong></td><td style="padding:0.5rem 0;"><strong style="color:#e8a33d;">465&nbsp;Å&sup2; (79%)</strong></td></tr>
-            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">Morphine</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">0.5</td><td style="padding:0.5rem 0;">350&nbsp;Å&sup2; (84%)</td></tr>
-          </tbody>
-        </table>
-        <p class="section-body">SR-17018 buries the <em>least</em> surface of the four large ligands and makes as many contacts per atom as the rest. It is held no more tightly than fentanyl.</p>
-        <p class="caption" style="color:#8a8a80;font-size:0.78rem;line-height:1.6;margin:0.6rem 0 0;">The amber row is not deposited data, and it was computed in a separate pass from the rows above it. That pass re-measures SR-17018 at 1.04 contacts per atom and 458&nbsp;Å&sup2;, against the 1.0 and 462&nbsp;Å&sup2; printed here, which come from the native 8EFL frame. Read the model row as <strong>+7&nbsp;Å&sup2; and two extra receptor atoms relative to SR-17018</strong>, not as a figure to set beside PZM21 or fentanyl.</p>
-        <p class="section-body" style="margin-top:1rem;"><strong>3. It holds the receptor in a distinct shape.</strong> Fitting each structure on the extracellular half and measuring how far the intracellular ends drift, SR-17018 lands 0.50&nbsp;Å from fentanyl&rsquo;s — the same as morphine, while oliceridine manages 1.13&nbsp;Å. <strong>4. It occupies a second site.</strong> Empty adjacent volume is large in every structure (1,200–2,000&nbsp;Å&sup3;, the extracellular vestibule) and no different here.</p>
-      </div>
-      <div class="section" id="docking">
-        <p class="section-body"><strong>The conclusion is itself the finding: the mechanism is probably not visible in a static structure at all.</strong> A still photograph of the bound state does not contain it. That points at kinetics, or at a receptor state outliving the drug — and it means the next useful experiments are time-resolved rather than structural. The one measurement that bears on timing: receptor phosphorylation persists for <strong>hours</strong> after washout where a full agonist&rsquo;s clears in minutes, and the only other compound tested that behaved that way was buprenorphine (<a href="https://doi.org/10.3390/molecules26154509" target="_blank" rel="noopener" style="color:#9A7D2E;">Fritzwanker et al., 2021</a>).</p>
-        <p class="caption" style="color:#8a8a80;font-size:0.78rem;line-height:1.6;"><strong>Method.</strong> Coordinates from the RCSB PDB; contacts as unique receptor atoms within 4&nbsp;Å per ligand atom; buried surface by Shrake–Rupley with a 1.4&nbsp;Å probe. Two caveats on all of it. These are cryo-EM structures near 3.2&nbsp;Å — good enough to place a molecule, not to defend a bond length, so a real difference under about half an ångström would be invisible. And before 8EFL existed this page carried a model of SR-17018 built onto fentanyl&rsquo;s pose; it was 2.6&nbsp;Å out at the centre of mass, close enough to look convincing and far enough that every conclusion about contacts was wrong. You can still switch it on in the viewer.</p>
-      </div>
+
       <div class="section" id="helix7">
-        <h2 class="section-title">The One Clue That Survived</h2>
-        <p class="section-body">The pocket has two faces — one built from helix 3, the other from helices 6 and 7. Morphine and fentanyl touch both. Every receptor atom within 4.5&nbsp;Å of the drug was counted across eight published structures, each anchored on conserved landmarks found by geometry rather than by residue number.</p>
+        <h2 class="section-title">The Helix-7 Count</h2>
+        <p class="section-body">The pocket has two faces, one built from helix 3 and one from helices 6 and 7. Morphine and fentanyl press on both. Counting every receptor atom within 4.5&nbsp;Å of the drug, across eight published structures:</p>
         <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
           <thead>
             <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
@@ -264,92 +198,38 @@
             <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">SR-17018</strong></td><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">8EFL</strong></td><td style="padding:0.5rem 0.75rem 0.5rem 0;"><strong style="color:#b98cff;">2%</strong></td><td style="padding:0.5rem 0;"><strong style="color:#b98cff;">one, at 4.0&nbsp;Å — a graze</strong></td></tr>
           </tbody>
         </table>
-        <p class="section-body">SR-17018 is on its own. The next lowest is morphine at 13%, six times more, and SR-17018 never reaches Ile324 or Gly327 at all. Press <em>Highlight helix 7</em> in the viewer and switch between the drugs.</p>
-        <p class="section-body" style="margin-top:1rem;">Why it might matter: helix 7 is the interface whose mutation abolishes arrestin recruitment, and arrestin signalling is tied to desensitisation and tolerance. In mice SR-17018 reverses established morphine tolerance where buprenorphine suppresses withdrawal but <em>maintains</em> it (<a href="https://doi.org/10.1038/s41386-019-0491-8" target="_blank" rel="noopener" style="color:#9A7D2E;">Grim et al., 2020</a>). The compound that undoes tolerance is the compound that does not touch the tolerance interface.</p>
-        <p class="section-body" style="margin-top:1rem;"><strong>It is a tidy story, which is reason enough to distrust it.</strong> It is the kind of neat story the chlorine hypothesis also told, right before it fell apart. And the wider table refuses to cooperate: oliceridine, the one drug here that reached the clinic on its G-protein bias, presses helix 7 harder than fentanyl does, while morphine sits near the bottom. Whatever helix 7 contributes, it does not sort these drugs into the categories the labels promise. It is a hypothesis worth testing, and it is not a finding.</p>
+        <p class="section-body">SR-17018 is on its own. The next lowest is morphine at 13%, six times more. Press <em>Highlight helix 7</em> in the viewer above and switch between the drugs.</p>
+        <p class="section-body" style="margin-top:1rem;">This is the one structural clue that survived testing, and it is a hypothesis rather than a finding. The table also refuses to behave: oliceridine, the biased agonist that reached the clinic, presses helix 7 harder than fentanyl does, and morphine sits near the bottom. Whatever helix 7 contributes, it does not sort these drugs into the categories the labels promise.</p>
       </div>
-      <div class="section" id="sr15099">
-        <h2 class="section-title">SR-15099: No Structure, No Standard</h2>
-        <p class="section-body">Everything above is SR-17018. The compound we sell appears nowhere in that evidence, because there is nothing to show. The Protein Data Bank was queried with a control to confirm the search itself worked: fentanyl returns 42 structures, SR17018 returns exactly one, <strong>SR15099 returns nothing</strong>. No structure of it bound to any receptor has ever been deposited.</p>
-        <p class="section-body" style="margin-top:1rem;">Its identity, however, is better established than this page previously stated. The name does not resolve in PubChem or ChEMBL — but the <em>structure</em> does, as <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431412" target="_blank" rel="noopener" style="color:#9A7D2E;">PubChem CID 130431412</a> and CHEMBL4217435, carrying µ-opioid data (EC<sub>50</sub> 149&nbsp;nM, E<sub>max</sub> 83%) that match the published SR-15099 figures of 155&nbsp;nM and 81%. The CAS number 2134602-44-9 sits immediately before SR-17018&rsquo;s 2134602-45-0, as two compounds registered together would.</p>
-        <p class="section-body" style="margin-top:1rem;"><strong>What that does not fix:</strong> no certified reference standard is published, so a testing laboratory has nothing to calibrate against and <em>no lab can currently verify a sample</em> — ours or anyone&rsquo;s. Knowing what the molecule is does not tell you what is in the bag.</p>
-        <p class="section-body" style="margin-top:1rem;">Because the two differ by one atom, the measured SR-17018 pose can be swapped at that position and the change measured. This is not a prediction of how SR-15099 binds; it is the narrower question of what that substitution does to the geometry with everything else held at its experimental position.</p>
-        <table style="width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:0.85rem;">
-          <thead>
-            <tr style="border-bottom:1px solid #9A7D2E;text-align:left;color:#9A7D2E;">
-              <th style="padding:0.5rem 0.75rem 0.5rem 0;">Measurement</th><th style="padding:0.5rem 0.75rem 0.5rem 0;">SR-17018 <span style="color:#8a8a80;font-weight:normal;">(measured)</span></th><th style="padding:0.5rem 0;">SR-15099 <span style="color:#8a8a80;font-weight:normal;">(model)</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Receptor atoms within 4.5&nbsp;Å</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">48</td><td style="padding:0.5rem 0;">49</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Share of contacts on helix 7</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">1 atom — 2.1%</td><td style="padding:0.5rem 0;">1 atom — 2.0%</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Surface buried on binding</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">458&nbsp;Å&sup2; (78%)</td><td style="padding:0.5rem 0;">465&nbsp;Å&sup2; (79%)</td></tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.08);"><td style="padding:0.5rem 0.75rem 0.5rem 0;">Halogen to Ile298 backbone oxygen</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">3.66&nbsp;Å</td><td style="padding:0.5rem 0;">3.54&nbsp;Å</td></tr>
-            <tr><td style="padding:0.5rem 0.75rem 0.5rem 0;">That contact, degrees off straight</td><td style="padding:0.5rem 0.75rem 0.5rem 0;">45&deg;</td><td style="padding:0.5rem 0;">47&deg;</td></tr>
-          </tbody>
-        </table>
-        <p class="section-body">Almost nothing changes — one extra contact, seven more square ångströms buried, the same solitary graze on helix 7. Closing the real gap needs cryo-EM, which is beyond us, or analytical characterisation of market samples: identity, purity, analogue content, batch variation. That needs money rather than permission, involves no human subjects, and nobody has done it.</p>
+
+      <div class="section" id="molecule">
+        <h2 class="section-title">The Two Compounds</h2>
+        <p class="section-body">SR-15099 is SR-17018 with one atom changed: bromine instead of chlorine at the end of the benzyl arm. Switch between them and that atom is the only thing that moves. A great deal is claimed about the difference.</p>
+        <div class="viewer-wrap">
+          <div class="viewer" id="v-ligand" style="height:360px;"><div class="viewer-loading" id="v-ligand-msg">Loading the molecule…</div></div>
+          <div class="viewer-controls">
+            <span class="ctl-label">Molecule</span>
+            <button type="button" data-mol="sr17018" class="on">SR-17018</button>
+            <button type="button" data-mol="sr15099">SR-15099</button>
+          </div>
+          <div class="viewer-controls">
+            <span class="ctl-label">Style</span>
+            <button type="button" data-lview="sticks" class="on">Sticks</button>
+            <button type="button" data-lview="spheres">Space-filling</button>
+            <button type="button" data-lview="lspin">Spin</button>
+          </div>
+          <p class="model-warning" id="mol-note" hidden><strong>This is a computed conformer, like the one beside it.</strong> Both were embedded and energy-minimised from the chemical structure with the piperidine nitrogen protonated, so neither is an experimental geometry — but the SR-15099 one is not derived from the SR-17018 one. The structure is the one PubChem holds as <a href="https://pubchem.ncbi.nlm.nih.gov/compound/130431412" target="_blank" rel="noopener" style="color:#9A7D2E;">CID 130431412</a> and ChEMBL as CHEMBL4217435, whose µ-opioid data — EC<sub>50</sub> 149&nbsp;nM, E<sub>max</sub> 83% — match the published SR-15099 figures of 155&nbsp;nM and 81%. What has never been done is an independent assay of the material actually sold under that name.</p>
+          <p class="viewer-note">A computed low-energy conformer, not an experimental structure. Carbon gray, chlorine green, bromine brown, nitrogen blue, oxygen red, hydrogen white.</p>
+        </div>
       </div>
-      <div class="section" id="safety">
-        <h2 class="section-title">What Is Known About the Effects</h2>
-        <p class="section-body">Structural elegance is not safety. The record, briefly:</p>
-        <ul class="effects-list" style="margin-top:1.25rem;">
-          <li><strong>It is reinforcing.</strong> Rats self-administered SR-17018 and SR-14968 — less than oxycodone and fentanyl, but they took them (<a href="https://doi.org/10.1007/s00213-024-06690-x" target="_blank" rel="noopener" style="color:#9A7D2E;">Zamarripa et al., 2024</a>). &ldquo;G-protein biased&rdquo; does not mean &ldquo;non-addictive&rdquo;.</li>
-          <li><strong>Breathing: two laboratories, opposite answers.</strong> One group reports no respiratory depression at tested doses, which is the central claim for this class. Measuring awake mice by plethysmography, <a href="https://doi.org/10.1111/bph.16199" target="_blank" rel="noopener" style="color:#9A7D2E;">Hill et al., 2023</a> found oral SR-17018 depressed breathing dose-dependently, comparably to morphine and methadone at the top of the range — and at doses matched for equal respiratory depression, every opioid tested gave equivalent analgesia. On that reading the safety margin the class is named for did not appear. <strong>Unresolved, and the thing that matters most.</strong></li>
-          <li><strong>Tolerance in mice.</strong> Repeated SR-17018 produced no tolerance and reversed morphine&rsquo;s while preventing withdrawal (<a href="https://doi.org/10.1038/s41386-019-0491-8" target="_blank" rel="noopener" style="color:#9A7D2E;">Grim et al., 2020</a>). This is the finding behind most of what is said online. It is mice, from the laboratory holding the patent.</li>
-          <li><strong>No clinical trial has ever been run.</strong> No approved human dose, no pharmacokinetics in people, no established overdose treatment beyond general opioid management.</li>
-          <li><strong>The only human data is self-reported.</strong> A registry of 55 users reported high rates of improvement — and its author concludes the design &ldquo;precludes any conclusion regarding efficacy or safety&rdquo; (<a href="https://doi.org/10.3389/fphar.2026.1899247" target="_blank" rel="noopener" style="color:#9A7D2E;">Picard, 2026</a>).</li>
-        </ul>
-        <p class="section-body" style="margin-top:1rem;">Naloxone reverses these compounds in animals. If you are around anyone using opioids of any kind, keep it in the room — see the <a href="crisis.html" style="color:#9A7D2E;">crisis guide</a>. <strong>Four things nobody has measured:</strong></p>
-        <ul class="effects-list" style="margin-top:1rem;">
-          <li><strong>Whether naloxone restores breathing.</strong> It reverses receptor-level effects in a dish. Nobody has run plethysmography with naloxone rescue, so the question an emergency physician would ask has no answer.</li>
-          <li><strong>Any human dose.</strong> Liver-microsome half-life is ~3.9&nbsp;hours in human preparations against 0.6 in mouse. Animal doses do not transfer, and the gap runs toward accumulation. Every dose in community use is guesswork, ours included.</li>
-          <li><strong>What happens on stopping.</strong> Nothing published. The question people ask most.</li>
-          <li><strong>Whether a sample can be verified.</strong> No reference standard, so no.</li>
-        </ul>
-        <p class="caption" style="color:#8a8a80;font-size:0.78rem;line-height:1.6;">One limit stated outright: the store&rsquo;s safety-feedback form exists to warn people, not to collect data. Research on people needs an ethics board, consent, and someone who owns the data with no stake in the product. Selling the compound disqualifies us from the last of those permanently.</p>
-      </div>
-      <div class="section papers" id="key-papers">
-        <h2 class="section-title">Key Papers</h2>
-        <p class="section-body" style="margin-bottom:1.25rem;">The structural and receptor-level work. For the compound-level evidence — the animal studies, the overdose report and the human registry — see the <a href="sr17018.html#key-papers" style="color:#9A7D2E;">SR-17018 page</a>, which lists them in full.</p>
-        <ol class="paper-list">
-          <li class="paper">
-            <span class="paper-tag">Medicinal chemistry</span>
-            <a class="paper-title" href="https://doi.org/10.1016/j.cell.2017.10.035" target="_blank" rel="noopener">Bias factor and therapeutic window correlate to predict safer opioid analgesics</a>
-            <p class="paper-meta">Schmid et al. · 2017 · <em>Cell</em> 171:1165 · <a href="https://pubmed.ncbi.nlm.nih.gov/29149605/" target="_blank" rel="noopener">PubMed</a></p>
-            <p class="paper-sum">The paper that introduced SR-17018 and its relatives, from Scripps Research. It proposed that the separation between pain relief and respiratory depression tracks with signalling bias — the idea the whole class rests on, and one later work has qualified.</p>
-          </li>
-          <li class="paper">
-            <span class="paper-tag">Receptor pharmacology</span>
-            <a class="paper-title" href="https://doi.org/10.1073/pnas.2102178118" target="_blank" rel="noopener">G protein signaling-biased mu opioid receptor agonists that produce sustained G protein activation are noncompetitive agonists</a>
-            <p class="paper-meta">Stahl et al. · 2021 · <em>PNAS</em> 118:e2102178118 · <a href="https://pubmed.ncbi.nlm.nih.gov/34819362/" target="_blank" rel="noopener">PubMed</a></p>
-            <p class="paper-sum">The key paper for the binding-site question. SR-17018 and SR-14968 do not compete with radiolabelled antagonists and leave the receptor in a wash-resistant signalling state, while remaining reversible by antagonists in vivo.</p>
-          </li>
-          <li class="paper">
-            <span class="paper-tag">Receptor pharmacology</span>
-            <a class="paper-title" href="https://doi.org/10.1016/j.neuropharm.2024.110093" target="_blank" rel="noopener">Activation of µ receptors by SR-17018 through a distinctive mechanism</a>
-            <p class="paper-meta">Singleton et al. · 2024 · <em>Neuropharmacology</em> 258:110093 · <a href="https://pubmed.ncbi.nlm.nih.gov/39067665/" target="_blank" rel="noopener">PubMed</a></p>
-            <p class="paper-sum">Re-measured a dozen opioids with receptor numbers cut down to realistic levels, and found that much published "bias" reflects receptor reserve in overexpressing cells. SR-17018 still behaved differently from the rest.</p>
-          </li>
-          <li class="paper">
-            <span class="paper-tag">Receptor pharmacology</span>
-            <a class="paper-title" href="https://doi.org/10.1038/s41586-025-09880-5" target="_blank" rel="noopener">GTP release-selective agonists prolong opioid analgesic efficacy</a>
-            <p class="paper-meta">Stahl et al. · 2026 · <em>Nature</em> 650:500 · <a href="https://pubmed.ncbi.nlm.nih.gov/41407861/" target="_blank" rel="noopener">PubMed</a></p>
-            <p class="paper-sum">The current account of what makes these compounds unusual, now that the binding site is settled: agonists can prefer receptor states that differ in how the G protein releases rather than binds its nucleotide. In mice, a release-preferring compound extended morphine and fentanyl pain relief without adding to fentanyl's respiratory effects.</p>
-          </li>
-          <li class="paper">
-            <span class="paper-tag">Animal study</span>
-            <a class="paper-title" href="https://doi.org/10.1007/s00213-024-06690-x" target="_blank" rel="noopener">Comparison of the reinforcing, antinociceptive, and respiratory depressant effects of prototypical and G-protein biased µ-opioid receptor agonists</a>
-            <p class="paper-meta">Zamarripa et al. · 2024 · <em>Psychopharmacology</em> 241:2453 · <a href="https://pubmed.ncbi.nlm.nih.gov/39333403/" target="_blank" rel="noopener">PubMed</a></p>
-            <p class="paper-sum">Rats self-administered SR-17018 and SR-14968, so the compounds have abuse liability, though less than oxycodone or fentanyl. Neither produced respiratory depression at the doses tested, while the conventional opioids did.</p>
-          </li>
-          <li class="paper">
-            <span class="paper-tag">Structure</span>
-            <a class="paper-title" href="https://doi.org/10.1016/j.cell.2022.09.041" target="_blank" rel="noopener">Molecular recognition of morphine and fentanyl by the human µ-opioid receptor</a>
-            <p class="paper-meta">Zhuang et al. · 2022 · <em>Cell</em> 185:4361 · <a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener">PDB 8EF5</a></p>
-            <p class="paper-sum">The source of both structures on this page. The group froze the human receptor with five different drugs bound and solved each one, including fentanyl (<a href="https://www.rcsb.org/structure/8EF5" target="_blank" rel="noopener">8EF5</a>) and SR-17018 (<a href="https://www.rcsb.org/structure/8EFL" target="_blank" rel="noopener">8EFL</a>). It is the experiment that answers where SR-17018 binds: the ordinary orthosteric pocket, not a separate site.</p>
-          </li>
-        </ol>
+
+      <div class="section" id="next">
+        <h2 class="section-title">What We Are Doing Now</h2>
+        <p class="section-body">The structural work has run out of road. A still photograph of the bound state does not contain the answer, so the next useful experiments measure time rather than shape, and we cannot run those.</p>
+        <p class="section-body" style="margin-top:1rem;">Two things we can do. The first is analytical: sending market samples for identity, purity, analogue content and batch variation. Nobody has done this, it needs money rather than permission, and it would answer a question this page says is open — whether what circulates under these names is what the label claims.</p>
+        <p class="section-body" style="margin-top:1rem;">The second is asking for real data from suppliers rather than a certificate that asserts a result without showing it. Spectra, chromatograms, methods, batch numbers on the printout.</p>
+        <p class="section-body" style="margin-top:1rem;">Four questions stay open and none of them needs new chemistry: whether naloxone restores breathing, what a human dose is, what happens when people stop, and whether a sample can be verified at all. Each is measurable on the compounds that already exist.</p>
+        <p class="section-body" style="margin-top:1.25rem;"><a href="research-notes.html" style="color:#9A7D2E;">Read the working notes →</a></p>
       </div>
 
     </div>
@@ -358,11 +238,10 @@
 
     <div class="section">
       <h2 class="section-title">Further Reading</h2>
-      <a class="learn-more" href="sr17018.html">SR-17018 →</a>
+      <a class="learn-more" href="research-notes.html">Research notes →</a>
+      <a class="learn-more" href="sr17018.html" style="margin-left:1.25rem;">SR-17018 →</a>
       <a class="learn-more" href="sr15099.html" style="margin-left:1.25rem;">SR-15099 →</a>
       <a class="learn-more" href="buprenorphine.html" style="margin-left:1.25rem;">SR vs Buprenorphine →</a>
-      <a class="learn-more" href="paws.html" style="margin-left:1.25rem;">PAWS →</a>
-      <a class="learn-more" href="crisis.html" style="margin-left:1.25rem;">Crisis guide →</a>
     </div>
 
     <p class="disclaimer">This page is for educational purposes only. Nothing here constitutes legal, medical, or therapeutic advice, and nothing here should be read as a claim that any compound is safe or effective. ÆTHER sells SR-15099, which gives us a financial interest in what you conclude; sources are linked so you can check the argument rather than trust us. SR-17018 and SR-15099 have never been tested in a human clinical trial. Know your local laws.</p>
