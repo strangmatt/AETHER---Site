@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.aethera2.com/sitemap.xml
+
+# deploy test 2026-11-24 (work machine)
